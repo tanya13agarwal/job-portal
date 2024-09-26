@@ -1,8 +1,9 @@
+import Navbar from "./components/common/Navbar";
 
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen text-9xl">
-      Job Portal
+    <div className="p-2 bg-[#EAE4DD] h-screen ">
+      <Navbar/>
     </div>
   );
 }
