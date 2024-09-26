@@ -1,1 +1,2 @@
-# online job portal ( campus specific )
+deployed link (https://job-portal-beige-three.vercel.app/)
+
