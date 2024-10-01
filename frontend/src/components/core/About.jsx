@@ -27,10 +27,10 @@ const About = () => {
           Welcome to OpportuNest, a comprehensive campus recruitment system designed to bridge the gap between employers and talented students. 
           </p>
           <ul className="mb-2 text-lg">
-            <li className='flex gap-2 items-center'><FaRegCheckCircle className='text-customDarkBlue text-xl'/><p>We simplify the job search process by offering personalized job recommendations based on student skills, preferences, and resume data.</p></li>
-            <li className='flex gap-2 items-center'><FaRegCheckCircle className='text-customDarkBlue'/><p>Our platform features AI-powered tools for resume building, ATS score evaluation, and placement prediction to enhance student preparation.</p></li>
-            <li className='flex gap-2 items-center'><FaRegCheckCircle className='text-customDarkBlue'/><p>We provide resources for both on-campus and off-campus opportunities, giving students access to certified courses, internships, and hackathons.</p></li>
-            <li className='flex gap-2 items-center'><FaRegCheckCircle className='text-customDarkBlue'/><p>Realistic mock tests simulate actual recruitment exams, helping students practice and improve their chances of success.</p></li>
+            <li className='flex gap-2 items-start'><FaRegCheckCircle className='text-customDarkBlue text-4xl'/><p>We simplify the job search process by offering personalized job recommendations based on student skills, preferences, and resume data.</p></li>
+            <li className='flex gap-2 items-start'><FaRegCheckCircle className='text-customDarkBlue text-4xl'/><p>Our platform features AI-powered tools for resume building, ATS score evaluation, and placement prediction to enhance student preparation.</p></li>
+            <li className='flex gap-2 items-start'><FaRegCheckCircle className='text-customDarkBlue text-4xl'/><p>We provide resources for both on-campus and off-campus opportunities, giving students access to certified courses, internships, and hackathons.</p></li>
+            <li className='flex gap-2 items-start'><FaRegCheckCircle className='text-customDarkBlue text-4xl'/><p>Realistic mock tests simulate actual recruitment exams, helping students practice and improve their chances of success.</p></li>
           </ul>
           <p className="text-lg mb-6">
              Our dedicated team ensures exceptional support for both students and employers, making OpportuNest the go-to platform for seamless campus placements.

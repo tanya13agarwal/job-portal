@@ -3,10 +3,10 @@ import homePage from "../assets/videos/homePage.mp4";
 
 const Home = () => {
   return (
-    <div className='flex flex-col-reverse md:flex-row justify-between items-center p-[5.5%] min-h-screen'>
+    <div className='flex flex-col-reverse md:flex-row justify-between items-center p-[5.5%]'>
       {/* Left Section */}
-      <div className='flex flex-col items-start justify-start w-full md:w-[50%] mb-8 md:mb-0'>
-        <p className='text-4xl md:text-5xl font-bold w-full md:w-[80%]'>
+      <div className='flex flex-col items-start justify-start w-full md:w-[60%] mb-8 md:mb-0'>
+        <p className='text-4xl md:text-5xl font-bold w-full md:w-[90%]'>
           OpportuNest - Campus Career Management System
         </p>
         <p className='text-lg md:text-xl text-darkGray pt-4'>
@@ -18,13 +18,13 @@ const Home = () => {
       </div>
 
       {/* Right Section */}
-      <div className='w-full md:w-[50%] flex justify-center'>
+      <div className='w-full md:w-[40%] flex justify-center'> {/* Adjusted width to 40% */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
-          className='w-full max-w-[600px] h-auto rounded-lg shadow-lg'>
+          className='w-full max-w-[600px] h-auto rounded shadow-lg'>
           <source src={homePage} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
