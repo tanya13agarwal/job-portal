@@ -22,12 +22,12 @@ function App() {
         
         <Route path="verify-email" element = {<VerifyEmail/>}/>
         
-        {/* <Route path="forgot-password" element = {<ForgotPassword/>}/>
+        {/* <Route path="forgot-password" element = {<ForgotPassword/>}/>*/
         
         
         <Route path="about" element = {<About/>}/>
         
-        <Route path="update-password/:id" element = {<UpdatePassword/>}/> */}
+        /*<Route path="update-password/:id" element = {<UpdatePassword/>}/> */}
         
         
         
