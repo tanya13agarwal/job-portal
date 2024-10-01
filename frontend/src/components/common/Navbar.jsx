@@ -12,9 +12,9 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex items-center justify-between bg-white rounded shadow-xl'>
+    <div className='flex items-center bg-[#fff] justify-between rounded shadow-xl'>
       <div>
-        <img src = {logo} alt='Logo' className='m-2 w-[150px] h-[70px]'/>
+        <img src = {logo} alt='Logo' className='m-2 w-[30%] h-[20%]'/>
       </div>
       <div className='flex items-center gap-4'>
         <Link to={""}>
@@ -37,8 +37,8 @@ const Navbar = () => {
         </Link>
       </div>
       <div className='flex gap-3 items-center mr-4'>
-        <button onClick={handleLogin} className='px-4 py-2 text-white rounded active:scale-90 bg-customDarkBlue transition-all duration-200 hover:bg-white hover:text-customDarkBlue hover:border hover:border-customDarkBlue'>Login</button>
-        <button onClick={handleSignup} className='px-4 py-2 text-white rounded active:scale-90 bg-customDarkBlue transition-all duration-200 hover:bg-white hover:text-customDarkBlue hover:border hover:border-customDarkBlue'>Signup</button>
+        <button onClick={handleLogin} className='px-4 py-2 rounded active:scale-90 transition-all duration-200 border border-customDarkBlue hover:bg-customDarkBlue hover:text-[#fff]'>Login</button>
+        <button onClick={handleSignup} className='px-4 py-2 rounded active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200'>Signup</button>
       </div>
     </div>
   )
