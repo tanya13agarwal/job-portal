@@ -1,5 +1,4 @@
 import {Routes , Route} from "react-router-dom";
-
 import Navbar from "./components/common/Navbar";
 import About from "./components/core/About";
 import Home from "./pages/Home";
@@ -13,9 +12,9 @@ function App() {
       <Navbar/>
       <Routes>
         
-        {/* <Route path="/" element = {<Home/>}/> */}
+         <Route path="/" element = {<Home/>}/> 
 
-        {/* <Route path="catalog/:catalogName" element = {<Catalog/>}/> */}
+        // {/* <Route path="catalog/:catalogName" element = {<Catalog/>}/> */}
         
         <Route path="login" element = {<Login/>}/>
         
