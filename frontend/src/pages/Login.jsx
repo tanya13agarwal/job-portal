@@ -6,9 +6,9 @@ import Template from '../components/core/Auth/Template';
 const Login = () => {
     return (
         <Template
-            title = "Welcome Back"
-            description1="Build skills for today, tomorrow, and beyond."
-            description2="Education to future-proof your career."
+            title = "Hello Trailblazers!"
+            description1="Log in and seize new opportunities with OpportuNest -"
+            description2="Let’s continue your journey to success"
             image = {loginImg}
             fromType = "login" 
         />

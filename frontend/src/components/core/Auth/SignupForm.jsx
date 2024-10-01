@@ -14,7 +14,7 @@ const SignupForm = () => {
     const [showConfirmPassword , setShowConfirmPassword] = useState(false);
     
     // const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [formData , setFormData] = useState({
       firstName : "",
@@ -93,72 +93,81 @@ const SignupForm = () => {
         {/* Form */}
         
         <form onSubmit={handleOnSubmit} className='w-full flex flex-col gap-y-4'>
-          <div className='flex flex-row gap-x-4'>
-            <label>
-              <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+
+          <div className='flex items-center gap-x-4'>
+            <label className='w-full'>
+              <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
                 First Name <span className='text-pink-200'>*</span>
               </p>
               <input
-              required
-              type='text'
-              name='firstName'
-              value={firstName}
-              onChange={handleOnChange}
-              placeholder='Enter first name'
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'/>
+                required
+                type='text'
+                name='firstName'
+                value={firstName}
+                onChange={handleOnChange}
+                placeholder='Enter first name'
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className='w-full rounded-[0.5rem] p-[12px]'
+              />
             </label>
-            <label>
-              <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+
+            <label className='w-full'>
+              <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
                 Last Name <span className='text-pink-200'>*</span>
               </p>
               <input
-              required
-              type='text'
-              name='lastName'
-              value={lastName}
-              onChange={handleOnChange}
-              placeholder='Enter last name'
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'/>
+                required
+                type='text'
+                name='lastName'
+                value={lastName}
+                onChange={handleOnChange}
+                placeholder='Enter last name'
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className='w-full rounded-[0.5rem] p-[12px]'
+              />
             </label>
+
           </div>
+
           <label className='w-full'>
-              <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+              <p className='mb-1 text-[0.875rem] leading-[1.375rem]'>
                 Email Address <span className='text-pink-200'>*</span>
               </p>
               <input
-              required
-              type='email'
-              name='email'
-              value={email}
-              onChange={handleOnChange}
-              placeholder='Enter eamil address'
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'/>
+                required
+                type='email'
+                name='email'
+                value={email}
+                onChange={handleOnChange}
+                placeholder='Enter eamil address'
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className='w-full rounded-[0.5rem]  p-[12px]'
+              />
           </label>
+
           <div className='flex flex-row gap-x-4'>
-            <label className='relative'>
-              <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+
+            <label className='relative w-full'>
+              <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
                 Create Password <span className='text-pink-200'>*</span>
               </p>
               <input
-              required
-              type= {showPassword ? 'text' : 'password'}
-              name= 'password'
-              value= {password}
-              onChange={handleOnChange}
-              placeholder='Enter Password'
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5'
+                required
+                type= {showPassword ? 'text' : 'password'}
+                name= 'password'
+                value= {password}
+                onChange={handleOnChange}
+                placeholder='Enter Password'
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className='w-full rounded-[0.5rem] p-[12px] pr-10 '
               />
               <span 
               className='absolute right-3 top-[38px] cursor-pointer z-10'
@@ -171,38 +180,42 @@ const SignupForm = () => {
                   )
                 }
               </span>
-            </label>
-            <label className='relative'>
-              <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+            </label> 
+
+            <label className='relative w-full'>
+              <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
                 Confirm Password <span className='text-pink-200'>*</span>
               </p>
               <input
-              required
-              type={showConfirmPassword ? 'text' : "password"}
-              name='confirmPassword'
-              value={confirmPassword}
-              onChange={handleOnChange}
-              placeholder='Confirm Password'
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'
+                required
+                type={showConfirmPassword ? 'text' : "password"}
+                name='confirmPassword'
+                value={confirmPassword}
+                onChange={handleOnChange}
+                placeholder='Confirm Password'
+                style={{
+                  boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                }}
+                className='w-full rounded-[0.5rem] p-[12px]'
               />
               <span 
-              className='absolute right-3 top-[38px] cursor-pointer z-10'
-              onClick={() => setShowConfirmPassword((prev) => !prev)}>
-                {
-                  showConfirmPassword ? (
-                    <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-                  ) : (
-                    <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-                  )
-                }
+                className='absolute right-3 top-[38px] cursor-pointer z-10'
+                onClick={() => setShowConfirmPassword((prev) => !prev)}>
+                  {
+                    showConfirmPassword ? (
+                      <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                    ) : (
+                      <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                    )
+                  }
               </span>
             </label>
+
           </div>
-          <button type='submit'
-          className='mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900'>
+          <button 
+            type='submit'
+            className='mt-6 rounded-[8px] bg-customDarkBlue py-[8px] px-[12px] font-medium text-white'
+          >
             Create Account
           </button>
         </form>
