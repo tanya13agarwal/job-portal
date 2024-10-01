@@ -36,7 +36,7 @@ function LoginForm() {
     onSubmit={handleOnSubmit}
     className='flex flex-col w-full mt-6 gap-y-4'>
         <label className='w-full'>
-            <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+            <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
                 Email Address <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -47,10 +47,10 @@ function LoginForm() {
             onChange={handleOnChange}
             placeholder='Enter email address'
             style={{boxShadow:"inset 0px -1px 0px rgba(255, 255, 255, 0.18)",}}
-            className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'/>
+            className='w-full rounded-[0.5rem] p-[12px] '/>
         </label>
         <label className='relative'>
-            <p className='mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5'>
+            <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
                 Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -61,7 +61,7 @@ function LoginForm() {
             onChange={handleOnChange}
             placeholder='Enter Password'
             style={{boxShadow:"inset 0px -1px 0px rgba(255, 255, 255, 0.18)",}}
-            className='w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5'
+            className='w-full rounded-[0.5rem] p-[12px] '
             />
             <span onClick={() => setShowPassword((prev) => !prev)} 
             className='absolute right-3 top-[38px] cursor-pointer'>
@@ -74,13 +74,13 @@ function LoginForm() {
                 }
             </span>
             <Link to={"/forgot-password"}>
-                <p className='mt-1 ml-auto max-w-max text-xs text-blue-100'>
+                <p className='mt-1 ml-auto max-w-max text-xs text-customDarkBlue'>
                     Forgot Password
                 </p>
             </Link>
             <button
             type='submit'
-            className='w-full mt-10 rounded-[8px] bg-yellow-50 px-[12px] py-[8px] font-medium text-richblack-900'>
+            className='w-full mt-10 rounded-[8px] bg-customDarkBlue px-[12px] py-[8px] font-medium text-white'>
                 Sign In
             </button>
         </label>
