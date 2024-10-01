@@ -9,6 +9,8 @@ module.exports = {
       customLightBlue: "#6A9AB0",
       customBlue: "#3A6D8C",
       customDarkBlue: "#001F3F",
+      darkGray: "#696969",
+      lightBlack: "#4A4947",
     },
     extend: {
       maxWidth: {
