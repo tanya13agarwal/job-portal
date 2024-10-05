@@ -10,7 +10,7 @@ function App() {
       <Navbar/>
       {/* <Login/> */}
       <Home/>
-      <About/>
+      {/* <About/> */}
       {/* <Signup/> */}
     </div>
   );
