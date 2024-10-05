@@ -1,6 +1,7 @@
 import React from 'react';
 import homePage from "../assets/videos/homePage.mp4";
 import About from '../components/core/About';
+import Contact from './Contact';
 
 const Home = () => {
   return (
@@ -34,6 +35,7 @@ const Home = () => {
       </div>
       
       <About/>
+      <Contact/>
     </>
   );
 }
