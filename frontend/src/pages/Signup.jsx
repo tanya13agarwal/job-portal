@@ -1,16 +1,18 @@
 import React from 'react'
 import Template from '../components/core/Auth/Template';
-import signupImg from "../assets/images/signup.webp"
+import signupImg from "../assets/images/signup.jpeg"
 
 
 const Signup = () => {
   return (
     <div>
       <Template
-      title="Join the millions learning to code with StudyNotion for free"
-      description1="Build skills for today, tomorrow, and beyond."
-      description2="Education to future-proof your career."
+      title="Where Every Click Leads to Your Dream Job!"
+      description1="Join OpportuNest today and turn opportunities into success-"
+      description2="Your future starts here!"
       image={signupImg}
+      className = "h-full md:h-3/5 lg:h-[70%]"
+      classSet = "flex items-center justify center"
       formType="signup"
     />
     </div>
