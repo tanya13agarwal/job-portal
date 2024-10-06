@@ -26,7 +26,7 @@ export const Features = () => {
   return (
     <div className='flex flex-col p-10 items-center gap-4'>
 
-        <div className='flex items-center justify-center mb-10 text-4xl '>
+        <div className='flex items-center justify-center font-edu-sa font-semibold text-4xl '>
             Features
         </div>
 
@@ -40,79 +40,55 @@ export const Features = () => {
         <div className={`${isStudent === "Student" ? "" : "hidden"} grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 col-span-1 gap-10 justify-between`}>
             <Card
                 image = ""
-                heading = "Hello World" 
-                para = "How are you? You want some come get somme" 
+                heading = "Off-Campus Drives" 
+                para = "Expand your reach and connect with diverse recruiters through our off-campus drive feature." 
                 link = "/"
             />
             <Card
                 image = ""
-                heading = "Hello World" 
-                para = "How are you? You want some come get somme"
+                heading = "On-Campus Drives" 
+                para = "Network with top recruiters on campus through our exclusive on-campus drive feature."
                 link = "/"
             />
             <Card
                 image = ""
-                heading = "Hello World" 
-                para = "How are you? You want some come get somme"
+                heading = "Courses" 
+                para = "Access exclusive courses designed to enhance your skills and boost your placement preparation."
                 link = "/"
             />
 
             <Card
                 image = ""
-                heading = "Hello World" 
-                para = "How are you? You want some come get somme" 
+                heading = "Hackathons / Internships" 
+                para = "Participate in dynamic hackathons and internships, both on and off campus, for all students" 
                 link = "/"
             />
             <Card
                 image = ""
-                heading = "Hello World" 
-                para = "How are you? You want some come get somme"
+                heading = "Resume Building" 
+                para = "Create an ATS-friendly resume, check its score, and gain insights from alumnis’ to boost applications."
                 link = "/"
             />
-            <Card
-                image = ""
-                heading = "Hello World" 
-                para = "How are you? You want some come get somme"
-                link = "/"
-            />
+            
         </div>
 
         <div className={`${isStudent === "Admin" ? "" : "hidden"} grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 col-span-1 gap-10 justify-between`}>
-            <Card
+        <Card
                 image = ""
-                heading = "Hello Universe" 
-                para = "How are you? You want some come get somme" 
+                heading = "Job Posting" 
+                para = "Easily create and post job openings, including detailed descriptions and requirements, to attract top talent and streamline the hiring process."
                 link = "/"
             />
             <Card
                 image = ""
-                heading = "Hello Universe" 
-                para = "How are you? You want some come get somme"
+                heading = "Analytics" 
+                para = "Provides employers and admins insights on student data and recruitment metrics, such as application rates and demographics."
                 link = "/"
             />
             <Card
                 image = ""
-                heading = "Hello Universe" 
-                para = "How are you? You want some come get somme"
-                link = "/"
-            />
-
-            <Card
-                image = ""
-                heading = "Hello Universe" 
-                para = "How are you? You want some come get somme" 
-                link = "/"
-            />
-            <Card
-                image = ""
-                heading = "Hello Universe" 
-                para = "How are you? You want some come get somme"
-                link = "/"
-            />
-            <Card
-                image = ""
-                heading = "Hello Universe" 
-                para = "How are you? You want some come get somme"
+                heading = "Student Database" 
+                para = "Student database with academic details, skills, contact info, and resumes for easy employer search of qualified candidates"
                 link = "/"
             />
         </div>
