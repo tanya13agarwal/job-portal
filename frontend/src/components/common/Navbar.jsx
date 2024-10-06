@@ -37,8 +37,8 @@ const Navbar = () => {
         <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className='transition-all scroll-smooth'>
           Contact
         </a>
-        <a href="#statistics" onClick={(e) => handleScroll(e, 'statistics')} className='transition-all scroll-smooth'>
-          Statistics
+        <a href="#placements" onClick={(e) => handleScroll(e, 'placements')} className='transition-all scroll-smooth'>
+          Placements
         </a>
       </div>
       <div className='flex gap-3 items-center mr-4 ml-auto'>
