@@ -3,6 +3,7 @@ import homePage from "../assets/videos/homePage.mp4";
 import About from '../components/core/About';
 import Contact from '../components/core/Contact';
 import { Features } from '../components/core/Features';
+import {Placements} from '../components/core/Placements';
 
 const Home = () => {
   return (
@@ -37,7 +38,9 @@ const Home = () => {
       
       <About/>
               
-      <Features/>   
+      <Features/>
+
+      <Placements/>
 
       
       <Contact/>
