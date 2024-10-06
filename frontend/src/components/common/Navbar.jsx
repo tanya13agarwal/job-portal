@@ -18,22 +18,22 @@ const Navbar = () => {
         <img src = {logo} alt='Logo' className='m-2 w-[30%] h-[20%]'/>
       </div>
       <div className='flex items-center gap-4'>
-        <Link to={"/home"}>
+        <Link to={"/"}>
            Home
         </Link>
-        <Link to={"/about"}>
+        <Link to={"/"}>
            About
         </Link>
-        <Link to={"/features"}>
+        <Link to={"/"}>
            Features
         </Link>
-        <Link to={"/testimonials"}>
+        <Link to={"/"}>
            Testimonials
         </Link>
-        <Link to={"/contact"}>
+        <Link to={"/"}>
            Contact
         </Link>
-        <Link to={"/statistics"}>
+        <Link to={"/"}>
            Statistics
         </Link>
       </div>
