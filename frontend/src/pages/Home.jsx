@@ -1,6 +1,7 @@
 import React from 'react';
 import homePage from "../assets/videos/homePage.mp4";
 import About from '../components/core/About';
+import Contact from './Contact';
 import { Features } from '../components/core/Features';
 
 const Home = () => {
@@ -35,8 +36,11 @@ const Home = () => {
       </div>
       
       <About/>
+              
+      <Features/>        
+      <Contact/>
 
-      <Features/>
+      
     </div>
   );
 }
