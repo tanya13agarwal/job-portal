@@ -1,7 +1,7 @@
 import React from 'react';
 import homePage from "../assets/videos/homePage.mp4";
 import About from '../components/core/About';
-import Contact from './Contact';
+import Contact from '../components/core/Contact';
 import { Features } from '../components/core/Features';
 
 const Home = () => {
