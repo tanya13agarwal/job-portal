@@ -21,20 +21,20 @@ const Navbar = () => {
         <Link to={"/"}>
            Home
         </Link>
-        <Link to={"/"}>
+        <Link to={"/about"}>
            About
         </Link>
-        <Link to={"/"}>
+        <Link to={"/features"}>
            Features
         </Link>
         <Link to={"/"}>
            Testimonials
         </Link>
-        <Link to={"/"}>
+        <Link to={"/contact"}>
            Contact
         </Link>
-        <Link to={"/"}>
-           Statistics
+        <Link to={"/placements"}>
+           Placements
         </Link>
       </div>
       <div className='flex gap-3 items-center mr-4'>
