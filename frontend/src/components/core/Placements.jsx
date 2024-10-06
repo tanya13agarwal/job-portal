@@ -2,7 +2,7 @@ import React from 'react'
 
 const Placements = () => {
   return (
-    <div>
+    <div id="placements">
         <p className='text-4xl'>Placements</p>
         <div className='flex items-center gap-3 justify-center'>
             <a href='https://www.akgec.ac.in/placements/our-recruiters/' target='_blank'>Companies</a>
