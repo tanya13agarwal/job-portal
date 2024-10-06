@@ -20,7 +20,7 @@ const Contact = () => {
 
   return (
     <div className="bg-gradient-to-t from-customBeige to-customDarkBlue h-screen flex items-center justify-center relative">
-      <div className="relative w-full max-w-sm p-4 bg-white rounded-lg shadow-lg mr-8 z-10">
+      <div className="relative w-full max-w-sm p-6 bg-white rounded-lg shadow-lg mr-8 z-10">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">Contact Us</h1>
 
         <form onSubmit={handleSubmit}>
