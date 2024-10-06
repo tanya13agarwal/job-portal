@@ -3,14 +3,6 @@ import  { Link }  from "react-router-dom";
 import logo from "../../assets/images/logo.jpeg"
 
 const Navbar = () => {
-
-  // const handleLogin = () => {
-
-  // }
-
-  // const handleSignup = () => {
-
-  // }
   
   const handleScroll = (event, id) => {
     event.preventDefault(); // Prevent the default anchor jump
@@ -29,26 +21,6 @@ const Navbar = () => {
       <div>
         <img src = {logo} alt='Logo' className='m-2 w-[30%] h-[20%]'/>
       </div>
-      {/* <div className='flex items-center gap-4'>
-        <a href="#home" className=' transition-all scroll-smooth'>
-           Home
-        </a>
-        <a href="#about" className=' transition-all scroll-smooth'>
-           About
-        </a>
-        <a href="#features" className=' transition-all scroll-smooth '>
-           Features
-        </a>
-        <a href="#home">
-           Testimonials
-        </a>
-        <a href="#contact">
-           Contact
-        </a>
-        <a href="#home">
-           Statistics
-        </a>
-      </div> */}
       <div className='flex items-center gap-4'>
         <a href="#home" onClick={(e) => handleScroll(e, 'home')} className='transition-all scroll-smooth'>
           Home
