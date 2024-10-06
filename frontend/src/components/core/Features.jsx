@@ -24,7 +24,7 @@ export const Features = () => {
     ]
 
   return (
-    <div className='flex flex-col p-10 items-center gap-4'>
+    <div id='features' className='flex flex-col p-10 items-center gap-4'>
 
         <div className='flex items-center justify-center font-edu-sa font-semibold text-4xl '>
             Features

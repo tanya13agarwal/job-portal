@@ -7,7 +7,7 @@ import { Features } from '../components/core/Features';
 const Home = () => {
   return (
     <div className='w-11/12 mx-auto'>
-      <div className='flex flex-col-reverse md:flex-row justify-between items-center p-9'>
+      <div className='flex flex-col-reverse md:flex-row justify-between items-center p-9' id='home'>
         {/* Left Section */}
         <div className='flex flex-col items-start justify-start w-full md:w-[60%] mb-8 md:mb-0'>
           <p className='text-4xl md:text-5xl font-bold w-full md:w-[90%]'>
@@ -37,7 +37,9 @@ const Home = () => {
       
       <About/>
               
-      <Features/>        
+      <Features/>   
+
+      
       <Contact/>
 
       
