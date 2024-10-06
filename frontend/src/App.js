@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
+import { Features } from "./components/core/Features";
+import Placements from "./components/core/Placements";
 
 
 function App() {
@@ -26,12 +28,14 @@ function App() {
 
        
         
-        {/* <Route path="forgot-password" element = {<ForgotPassword/>}/>
+        {/* <Route path="forgot-password" element = {<ForgotPassword/>}/> */}
         
         
         <Route path="about" element = {<About/>}/>
+        <Route path="features" element = {<Features/>}/>
+        <Route path="placements" element = {<Placements/>}/>
         
-        /*<Route path="update-password/:id" element = {<UpdatePassword/>}/> */}
+        {/* /*<Route path="update-password/:id" element = {<UpdatePassword/>}/>  */}
         
         
         
