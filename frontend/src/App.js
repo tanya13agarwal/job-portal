@@ -31,9 +31,9 @@ function App() {
         {/* <Route path="forgot-password" element = {<ForgotPassword/>}/> */}
         
         
-        <Route path="about" element = {<About/>}/>
-        <Route path="features" element = {<Features/>}/>
-        <Route path="placements" element = {<Placements/>}/>
+        // <Route path="about" element = {<About/>}/>
+        // <Route path="features" element = {<Features/>}/>
+        // <Route path="placements" element = {<Placements/>}/>
         
         {/* /*<Route path="update-password/:id" element = {<UpdatePassword/>}/>  */}
         
