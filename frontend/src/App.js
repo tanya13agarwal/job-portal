@@ -8,7 +8,8 @@ import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import { Features } from "./components/core/Features";
 import Placements from "./components/core/Placements";
-
+import Team from'./pages/Team'
+import Testimonials from './pages/Testimonials'
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
         <Route path="signup" element = {<Signup/>}/>
         
         <Route path="verify-email" element = {<VerifyEmail/>}/>
-
+        
+        <Route path="Team" element = {<Team/>}/>
+        <Route path="Testimonial" element = {<Testimonials/>}/>
        
         
         {/* <Route path="forgot-password" element = {<ForgotPassword/>}/> */}
