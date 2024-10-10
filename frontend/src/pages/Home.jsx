@@ -4,6 +4,8 @@ import About from '../components/core/About';
 import Contact from '../components/core/Contact';
 import { Features } from '../components/core/Features';
 import Placements from '../components/core/Placements';
+import Testimonials from '../components/core/Testimonials';
+import Team from '../components/core/Team';
 
 const Home = () => {
   return (
@@ -42,6 +44,8 @@ const Home = () => {
 
       <Placements/>
 
+      <Testimonials/>
+      <Team/>
       
       <Contact/>
 
