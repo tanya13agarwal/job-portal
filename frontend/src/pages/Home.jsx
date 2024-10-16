@@ -5,6 +5,8 @@ import Contact from '../components/core/Contact';
 import { Features } from '../components/core/Features';
 import Placements from '../components/core/Placements';
 import Navbar from '../components/common/Navbar';
+import Testimonials from '../components/core/Testimonials';
+import Team from '../components/core/Team';
 
 const Home = () => {
   return (
@@ -45,6 +47,8 @@ const Home = () => {
 
       <Placements/>
 
+      <Testimonials/>
+      <Team/>
       
       <Contact/>
 
