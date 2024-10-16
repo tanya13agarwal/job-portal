@@ -4,11 +4,14 @@ import About from '../components/core/About';
 import Contact from '../components/core/Contact';
 import { Features } from '../components/core/Features';
 import Placements from '../components/core/Placements';
+import Navbar from '../components/common/Navbar';
 import Testimonials from '../components/core/Testimonials';
 import Team from '../components/core/Team';
 
 const Home = () => {
   return (
+    <>
+    <Navbar/>
     <div className='w-11/12 mx-auto'>
       <div className='flex flex-col-reverse md:flex-row justify-between items-center p-9' id='home'>
         {/* Left Section */}
@@ -51,6 +54,7 @@ const Home = () => {
 
       
     </div>
+    </>
   );
 }
 

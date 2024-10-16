@@ -22,28 +22,28 @@ const Navbar = () => {
         <img src = {logo} alt='Logo' className='m-2 w-[30%] h-[20%]'/>
       </div>
       <div className='flex items-center gap-4'>
-        <a href="#home" onClick={(e) => handleScroll(e, 'home')} className='transition-all scroll-smooth'>
+        <a href="#home" onClick={(e) => handleScroll(e, 'home')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Home
         </a>
-        <a href="#about" onClick={(e) => handleScroll(e, 'about')} className='transition-all scroll-smooth'>
+        <a href="#about" onClick={(e) => handleScroll(e, 'about')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           About
         </a>
-        <a href="#features" onClick={(e) => handleScroll(e, 'features')} className='transition-all scroll-smooth'>
+        <a href="#features" onClick={(e) => handleScroll(e, 'features')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Features
         </a>
-        <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className='transition-all scroll-smooth'>
+        <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Testimonials
         </a>
-        <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className='transition-all scroll-smooth'>
+        <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Contact
         </a>
-        <a href="#placements" onClick={(e) => handleScroll(e, 'placements')} className='transition-all scroll-smooth'>
+        <a href="#placements" onClick={(e) => handleScroll(e, 'placements')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Placements
         </a>
       </div>
       <div className='flex gap-3 items-center mr-4 ml-auto'>
         <Link to={"/login"} className='px-4 py-2 rounded active:scale-90 transition-all duration-200 border border-customDarkBlue hover:bg-customDarkBlue hover:text-[#fff]'>Login</Link>
-        <Link to={"/signup"} className='px-4 py-2 rounded active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border hover:border-customDarkBlue'>Signup</Link>
+        <Link to={"/signup"} className='px-4 py-2 border border-transparent rounded active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border hover:border-customDarkBlue'>Signup</Link>
       </div>
     </div>
   )

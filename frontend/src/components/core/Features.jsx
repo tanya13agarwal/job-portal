@@ -48,7 +48,7 @@ export const Features = () => {
                 image = ""
                 heading = "On-Campus Drives" 
                 para = "Network with top recruiters on campus through our exclusive on-campus drive feature."
-                link = "/"
+                link = "/on-campus"
             />
             <Card
                 image = ""
