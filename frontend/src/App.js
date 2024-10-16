@@ -9,6 +9,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 // import { Features } from "./components/core/Features";
 // import Placements from "./components/core/Placements";
 import OnCampus from "./pages/OnCampus";
+import Test from "./pages/Test";
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
         <Route path="verify-email" element = {<VerifyEmail/>}/>
         
         <Route path="on-campus" element = {<OnCampus/>}/>
+        
+        <Route path="test" element = {<Test/>}/>
 
        
         
