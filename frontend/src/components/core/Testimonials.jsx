@@ -47,7 +47,7 @@ const Testimonials =()=>{
                         
                     </div>
                 </div> 
-                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-white dark:border-gray-300">
+                {/* <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-white dark:border-gray-300">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src={assistant} alt="Michael Avatar"/>
                     </a>
@@ -59,7 +59,7 @@ const Testimonials =()=>{
                         <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Consistent excellence in placements reflects our institution's commitment to nurturing employable talent. Employers consistently laud our graduates for their skills and readiness for the workforce, affirming our status as a preferred recruitment hub. </p>
                        
                     </div>
-                </div> 
+                </div>  */}
 
                 <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-white dark:border-gray-300">
                     <a href="#">
