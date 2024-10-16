@@ -10,6 +10,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 // import Placements from "./components/core/Placements";
 import OnCampus from "./pages/OnCampus";
 import Test from "./pages/Test";
+import MockTest from "./pages/MockTest";
 
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
         <Route path="on-campus" element = {<OnCampus/>}/>
         
         <Route path="test" element = {<Test/>}/>
+        {/* <Switch> */}
+        <Route path="/mock-test" element={<MockTest/>} />
+          {/* <Route path="/test" component={Test} /> */}
+        {/* </Switch> */}
 
        
         
