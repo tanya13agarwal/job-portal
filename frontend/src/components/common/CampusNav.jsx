@@ -6,7 +6,7 @@ import logo from "../../assets/images/logo.jpeg"
 
 const CampusNav = ({para1 , link1 , para2 , link2 , para3 , link3 , para4 , link4 , para5 , link5 , para6 , link6 , button1 , btnLink1 , button2 , btnLink2 }) => {
   return (
-    <div className='flex items-center bg-[#fff] gap-36 rounded shadow-xl '>
+    <div className='text-nowrap flex items-center bg-[#fff] gap-36 rounded shadow-xl '>
       <div>
         <img src = {logo} alt='Logo' className='m-2 w-[30%] h-[20%]'/>
       </div>
