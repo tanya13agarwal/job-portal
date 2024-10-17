@@ -40,7 +40,6 @@ const Testimonials =()=>{
                                 transform students into professionals and technocrats who will stand tall amongst the crowd </p>
                         </div>
                     </div>
-                </div> 
                 {/* <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-white dark:border-gray-300">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src={assistant} alt="Michael Avatar"/>
