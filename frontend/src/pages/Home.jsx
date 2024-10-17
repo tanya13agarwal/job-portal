@@ -48,6 +48,7 @@ const Home = () => {
       <Placements/>
 
       <Testimonials/>
+      
       <Team/>
       
       <Contact/>
