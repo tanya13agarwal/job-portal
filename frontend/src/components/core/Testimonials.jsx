@@ -25,8 +25,7 @@ const Testimonials =()=>{
                             <p class="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">The synergy between our students and placement support team yields remarkable placement records. Employers 
                             commend our graduates' adaptability and competence, reinforcing our standing as a top choice for recruiting top-tier talent </p>
                         </div>
-                    </div>
-                    
+                    </div>                  
                     <div class=" bg-white h-fit border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
                             <img class="rounded-t-lg " src={tnpHead} alt="" />
@@ -41,6 +40,20 @@ const Testimonials =()=>{
                                 transform students into professionals and technocrats who will stand tall amongst the crowd </p>
                         </div>
                     </div>
+                </div> 
+                {/* <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-white dark:border-gray-300">
+                    <a href="#">
+                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src={assistant} alt="Michael Avatar"/>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-600">
+                            <a href="#">Rajesh Kumar Upadhyay</a>
+                        </h3>
+                        <span class="text-gray-500 dark:text-gray-400">Placement Asst</span>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Consistent excellence in placements reflects our institution's commitment to nurturing employable talent. Employers consistently laud our graduates for their skills and readiness for the workforce, affirming our status as a preferred recruitment hub. </p>
+                       
+                    </div>
+                </div>  */}
 
                     <div class=" bg-white h-fit border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
