@@ -11,6 +11,7 @@ import {toast} from "react-hot-toast"
 const {
     SENDOTP_API,
     SIGNUP_API,
+    ADMIN_SIGNUP_API,
     LOGIN_API,
     RESETPASSWORDTOKEN_API,
     RESETPASSWORD_API,
@@ -72,6 +73,47 @@ export function signup(firstName , lastName , email , password , confirmPassword
             }
 
             toast.success("Signup Successful");
+
+            //signup ho gya toh login page prr navigate krrdo
+            navigate("/login");
+
+        }
+        catch(error) {
+            console.log("SIGNUP API ERROR..." , error);
+            toast.error("Signup Fail");
+            //signup fail ho gyaa toh ussi page prr rho
+            navigate("/signup");
+        }
+
+        dispatch(setLoading(false));
+    }
+}
+
+
+export function adminSignup(firstName , lastName , email , password , confirmPassword , accountType , secret , navigate) {
+    return async(dispatch) => {
+        dispatch(setLoading(true));
+
+        try {
+            console.log("authAPI WAALA : " , secret);
+            //call the backend controller by sending request
+            const response = await apiConnector("POST" , ADMIN_SIGNUP_API , {
+                firstName,
+                lastName,
+                email,
+                password,
+                confirmPassword,
+                accountType,
+                secret
+            });
+
+            console.log("SIGNUP API RESPONSE..." , response);
+
+            if(!response.data.success) {
+                throw new Error(response.data.message);
+            }
+
+            toast.success(`${accountType} Signup Successful`);
 
             //signup ho gya toh login page prr navigate krrdo
             navigate("/login");

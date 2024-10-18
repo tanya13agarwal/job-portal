@@ -5,6 +5,7 @@ const router = express.Router()
 // Import the required controllers and middleware functions
 const {
   login,
+  adminSignup,
   signup,
   sendotp,
   changePassword,
@@ -30,6 +31,9 @@ router.post("/login", login)
 // Route for user signup
 router.post("/signup", signup)
 
+// Route for user signup
+router.post("/adminsignup", adminSignup)
+
 // Route for sending OTP to the user's email
 router.post("/sendotp", sendotp)
 
@@ -47,4 +51,4 @@ router.post("/reset-password-token", resetPasswordToken)
 router.post("/reset-password", resetPassword)
 
 // Export the router for use in the main application
-module.exports = router
+module.exports = router;
