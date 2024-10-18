@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { login } from '../../../services/operations/authAPI';
 
 function LoginForm() {
 
@@ -13,14 +15,14 @@ function LoginForm() {
     });
 
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {email , password} = formData;
 
     const handleOnSubmit = (event) => {
         event.preventDefault()
-        // dispatch(login(email , password , navigate));
+        dispatch(login(email , password , navigate));
     }
     
     const handleOnChange = (event) => {

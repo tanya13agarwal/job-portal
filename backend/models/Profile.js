@@ -72,20 +72,20 @@ const ProfileSchema = new Schema({
     default: null 
   },
   
-  dp_img: { 
-    type: String, 
-    default: null 
-  }, // Store URL to the uploaded image
+  // dp_img: { 
+  //   type: String, 
+  //   default: null 
+  // }, // Store URL to the uploaded image
   
   resume: { 
     type: String, 
     default: null 
   }, // Store URL to the uploaded document
   
-  isCordinator: { 
-    type: Boolean,
-     default: false 
-  }
+  // isCordinator: { 
+  //   type: Boolean,
+  //    default: false 
+  // }
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
