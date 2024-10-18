@@ -55,8 +55,11 @@ const SignupForm = () => {
         dispatch(setSignupData(signupData));
         
         //send OTP to user for verification
-        if(signupData.accountType != "Student") {
-          navigate("/secret");
+        if(signupData.accountType === "Admin") {
+          navigate("/admin");
+        }
+        else if(signupData.accountType === "Placement") {
+          navigate("/placement");
         }
         else {
           dispatch(sendotp(email , navigate));

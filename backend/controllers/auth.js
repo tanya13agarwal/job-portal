@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mailSender = require("../utils/mailSender");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
+const { SECRET_KEY } = require("../utils/secretKey");
 require("dotenv").config();
 
 // Send OTP For Email Verification
@@ -183,85 +184,106 @@ exports.signup = async(req , res) => {
    }
 }
 
-// exports.signup = async (req, res) => {
-//   try {
-//     const {
-//       firstName,
-//       lastName,
-//       email,
-//       password,
-//       confirmPassword,
-//       accountType,
-//       otp,
-//       contactNumber,
-//     } = req.body;
 
-//     // Validate all required fields
-//     if (!firstName || !lastName || !email || !password || !confirmPassword || !otp) {
-//       return res.status(403).json({
-//         success: false,
-//         message: "All fields are required",
-//       });
-//     }
+exports.adminSignup = async(req , res) => {
+    
+   try {
+        // Destructure fields from the request body
+        const {
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+            accountType,
+            secret,
+            contactNumber,
+        } = req.body;
 
-//     // Validate passwords match
-//     if (password !== confirmPassword) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Password and ConfirmPassword values do not match",
-//       });
-//     }
+        // Check if All Details are there or not
+        if(!firstName || !lastName || !email || !password || !confirmPassword || !secret) {
+            //console.log(firstName , "/n" , lastName , "/n" , email , "/n" , password , "/n" ,confirmPassword , "/n" , otp);
+            return res.status(403).json({
+                success : false,
+                message : "All fields are required",
+            })
+        }
 
-//     // Check if user already exists
-//     const existingUser = await User.findOne({ email });
-//     if (existingUser) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "User already exists. Please sign in to continue.",
-//       });
-//     }
+        console.log("SECRET : " , secret);
 
-//     // Hash the password
-//     const hashedPassword = await bcrypt.hash(password, 10);
+        //dono passwords ko match krrlo
+        if(password !== confirmPassword) {
+            return res.status(400).json({
+                success:false,
+                message:"Password and ConfirmPassword values does not match , please try again",
+            });
+        }
 
-//     // Step 1: Create the user without the additionalDetails field initially
-//     const user = await User.create({
-//       firstName,
-//       lastName,
-//       email,
-//       password: hashedPassword,
-//       accountType,
-//       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
-//     });
-//     console.log("user : " , user);
-//     // Step 2: Create the user's profile and associate it with the user
-//     const profileDetails = await Profile.create({
-//       user: user._id,  // Reference the user here
-//       ph_num: contactNumber,
-//     });
+        //check user already exists or not
+        const existingUser = await User.findOne({email});
 
-//     // Step 3: Update the user with the profile's reference
-//     user.additionalDetails = profileDetails._id;
-//     await user.save();  // Save the updated user with additionalDetails
+        if(existingUser) {
+            return res.status(400).json({
+                success:false,
+                message:"User already exists. Please sign in to continue.",
+            });
+        }
 
-//     // Return success response
-//     return res.status(200).json({
-//       success: true,
-//       message: "User registered successfully",
-//       user,
-//     });
+        //validate Secret key
+        console.log("ENTERED: " , SECRET_KEY.PLACEMENT_CELL);
+        console.log(accountType)
+        if(accountType === "Admin" && secret !== SECRET_KEY.ADMIN) {
+            return res.status(400).json({
+                success:false,
+                message:'invalid secret key',
+            });
+        }
+        
+        if(accountType === "Placement" && secret !== SECRET_KEY.PLACEMENT_CELL) {
+            return res.status(400).json({
+                success:false,
+                message:'invalid secret key',
+            });
+        }
+        
+        //Hash Password
+        const hashedPassword = await bcrypt.hash(password , 10);
 
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({
-//       success: false,
-//       message: "User registration failed",
-//     });
-//   }
-// };
+        //entry create in DB
+        const user = await User.create({
+            firstName,
+            lastName,
+            email,
+            password:hashedPassword,
+            accountType,
+            image:`https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
+        })
+        
+        // Create the Additional Profile For User
+        const profileDetails = await Profile.create({
+            user: user._id,
+            ph_num : contactNumber,
+        });
+        
+        user.additionalDetails = profileDetails._id;
+        // console.log("Profile: " , profileDetails)
 
 
-// Login controller for authenticating users
+        //return respose
+        return res.status(200).json({
+            success:true,
+            message:'User is registered successfully',
+            user,
+        })
+   }
+   catch(error) {
+        console.log(error);
+        return res.status(500).json({
+            success:false,
+            message:'User cannot be registered. Please try again',
+        })
+   }
+}
 
 exports.login = async (req , res) => {
     try {

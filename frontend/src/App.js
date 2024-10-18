@@ -11,6 +11,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import OnCampus from "./pages/OnCampus";
 import Test from "./pages/Test";
 import MockTest from "./pages/MockTest";
+import AdminLogin from "./pages/Admin/AdminLogin";
 
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
         {/* <Route path="catalog/:catalogName" element = {<Catalog/>}/> */}
         
         <Route path="login" element = {<Login/>}/>
+
+        <Route path="admin" element = {<AdminLogin/>}/>
+        
+        <Route path="placement" element = {<AdminLogin/>}/>
         
         <Route path="signup" element = {<Signup/>}/>
         
