@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import OtpInput from "react-otp-input";
 import { Link, useNavigate } from 'react-router-dom';
-// import { sendotp } from '../services/operations/authAPI';
-// import { signup } from '../services/operations/authAPI';
+import { sendotp } from '../services/operations/authAPI';
+import { signup } from '../services/operations/authAPI';
 
 import { BiArrowBack } from "react-icons/bi";
 import { RxCountdownTimer } from "react-icons/rx";
@@ -12,45 +12,45 @@ import { RxCountdownTimer } from "react-icons/rx";
 export default function VerifyEmail() {
 
     const [otp , setOtp] = useState("");
-    const [loading , setLoading] = useState("");
+    // const [loading , setLoading] = useState("");
 
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // const {signupData , loading} = useSelector( (state) => state.auth );
+    const {signupData , loading} = useSelector( (state) => state.auth );
 
-    // useEffect( () => { // agar signupData epmty hua toh usko signup page prr bhej do
-    //     if(!signupData) {
-    //         navigate("/signup");
-    //     }
-    // } , [])
+    useEffect( () => { // agar signupData epmty hua toh usko signup page prr bhej do
+        if(!signupData) {
+            navigate("/signup");
+        }
+    } , [])
 
     
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        // const {
-        //     firstName,
-        //     lastName,
-        //     email,
-        //     password,
-        //     confirmPassword,
-        //     accountType,
-        // } = signupData;
+        const {
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+            accountType,
+        } = signupData;
  
         console.log("Change ho gyaa bhai: ",otp);
-        // dispatch(
-        //     signup(
-        //         firstName,
-        //         lastName,
-        //         email,
-        //         password,
-        //         confirmPassword,
-        //         accountType,
-        //         otp,
-        //         navigate
-        //     ));
+        dispatch(
+            signup(
+                firstName,
+                lastName,
+                email,
+                password,
+                confirmPassword,
+                accountType,
+                otp,
+                navigate
+            ));
 
         //email verify krne ke baad signup hi krrna hai issliye signUp call hoga
     }
@@ -69,7 +69,7 @@ export default function VerifyEmail() {
                     <form onSubmit={handleOnSubmit}>
                     <OtpInput
                         value={otp}
-                        // onChange={setOtp}
+                        onChange={setOtp}
                         numInputs={6}
                         renderInput={(props) => (
                             <input
@@ -104,7 +104,7 @@ export default function VerifyEmail() {
 
                         <button 
                         className='flex items-center text-customBlue gap-x-2'
-                        // onClick={() => dispatch(sendotp(signupData.email , navigate))} //agar otp dobaara bhejna ho toh iss function ko dobaraa call krna padega
+                        onClick={() => dispatch(sendotp(signupData.email , navigate))} //agar otp dobaara bhejna ho toh iss function ko dobaraa call krna padega
                         >
                             <RxCountdownTimer />
                             Resend it

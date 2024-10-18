@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import toast from 'react-hot-toast';
+
+import { sendotp } from '../../../services/operations/authAPI';
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { ACCOUNT_TYPE } from '../../../utils/accoutnType';
 import Tab from './Tab';
+
+import { setSignupData } from '../../../slices/authSlice';
 
 
 const SignupForm = () => {
@@ -13,7 +18,7 @@ const SignupForm = () => {
     const [showPassword , setShowPassword] = useState(false);
     const [showConfirmPassword , setShowConfirmPassword] = useState(false);
     
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const [formData , setFormData] = useState({
@@ -48,10 +53,15 @@ const SignupForm = () => {
 
         //setting Signup data to state
         //to be used after otp verification
-        // dispatch(setSignupData(signupData));
+        dispatch(setSignupData(signupData));
         
         //send OTP to user for verification
-        // dispatch(sendotp(email , navigate));
+        if(signupData.accountType != "Student") {
+          navigate("/secret");
+        }
+        else {
+          dispatch(sendotp(email , navigate));
+        }
 
         //Reset
         setFormData({
