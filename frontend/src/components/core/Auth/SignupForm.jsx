@@ -14,7 +14,6 @@ import { setSignupData } from '../../../slices/authSlice';
 const SignupForm = () => {
 
     const [accountType , setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
-
     const [showPassword , setShowPassword] = useState(false);
     const [showConfirmPassword , setShowConfirmPassword] = useState(false);
     
