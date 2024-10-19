@@ -39,7 +39,7 @@ export default function MyProfile() {
             <button
                 // text="Edit"
                 className='flex text-richblack-300 items-center justify-center'
-                onclick={() => {
+                onClick={() => {
                     navigate("/dashboard/settings")
             }}>
                 <p>Edit</p>
@@ -60,7 +60,7 @@ export default function MyProfile() {
                 <button
                 // text="Edit"
                     className='flex text-richblack-300 items-center justify-center'
-                    onclick={() => {
+                    onClick={() => {
                         navigate("/dashboard/settings")
                 }}>
                     <p>Edit</p>
@@ -90,7 +90,7 @@ export default function MyProfile() {
                 <button
                 // text="Edit"
                     className='flex text-richblack-300 items-center justify-center'
-                    onclick={() => {
+                    onClick={() => {
                         navigate("/dashboard/settings")
                 }}>
                     <p>Edit</p>
@@ -145,7 +145,7 @@ export default function MyProfile() {
                 <button
                 // text="Edit"
                     className='flex text-richblack-300 items-center justify-center'
-                    onclick={() => {
+                    onClick={() => {
                         navigate("/dashboard/settings")
                 }}>
                     <p>Edit</p>

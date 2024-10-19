@@ -43,11 +43,9 @@ function App() {
         
         <Route path="verify-email" element = {<VerifyEmail/>}/>
         
-        <Route path="on-campus" element = {<OnCampus/>}/>
         
-        <Route path="test" element = {<Test/>}/>
+        
         {/* <Switch> */}
-        <Route path="/mock-test" element={<MockTest/>} />
           {/* <Route path="/test" component={Test} /> */}
         {/* </Switch> */}
 
@@ -76,15 +74,29 @@ function App() {
           {
             user?.accountType === ACCOUNT_TYPE.STUDENT && (
               <>
-                {/* <Route path="dashboard/cart" element = {<Cart/>}/>
-                <Route path="dashboard/enrolled-courses" element = {<EnrolledCourses/>}/>      */}
+                
+                <Route path="/dashboard/mock-test" element={<MockTest/>} />
+                <Route path="/dashboard/on-campus" element = {<OnCampus/>}/>
+                <Route path="/dashboard/on-campus/test" element = {<Test/>}/>
+                
               </>
             )
           }
           
           
           {
-            user?.accountType === ACCOUNT_TYPE.PLACEMENT && (
+            user?.accountType === ACCOUNT_TYPE.PLACEMENT_CELL && (
+              <>
+                {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
+                <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
+                <Route path="dashboard/edit-course/:courseId" element = {<EditCourse/>}/>      */}
+              </>
+            )
+          }
+          
+          
+          {
+            user?.accountType === ACCOUNT_TYPE.ADMIN && (
               <>
                 {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
