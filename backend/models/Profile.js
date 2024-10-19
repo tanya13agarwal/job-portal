@@ -8,23 +8,28 @@ const ProfileSchema = new Schema({
     required: true, 
     unique: true 
   },
-  
+  dateOfBirth : {
+    type : String,
+  },
   ph_num: { 
     type: String, 
     maxlength: 10, 
     default: null 
   },
-  
+  about : {
+    type : String,
+    trim : true,
+  },
   addr: { 
     type: String, 
     default: null 
   },
   
-  clg_name: { 
-    type: String, 
-    maxlength: 50, 
-    default: null 
-  },
+  // clg_name: { 
+  //   type: String, 
+  //   maxlength: 50, 
+  //   default: null 
+  // },
   
   sem: { 
     type: String, 
@@ -68,6 +73,11 @@ const ProfileSchema = new Schema({
   },
   
   codechef: { 
+    type: String, 
+    default: null 
+  },
+  
+  leetcode: { 
     type: String, 
     default: null 
   },
