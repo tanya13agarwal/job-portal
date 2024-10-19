@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import logo from "../assets/images/logo.jpeg";
 
 import OtpInput from "react-otp-input";
 import { Link, useNavigate } from 'react-router-dom';
@@ -59,7 +60,10 @@ export default function VerifyEmail() {
     <div className='min-h-[calc(100vh-3.5rem)] flex justify-center items-center'>
         {
             loading ? (
-                <div className='spinner'></div>
+                <div className='w-full h-screen flex flex-col items-center justify-center'>
+                    <img src={logo} alt="logo"/>
+                    <p className='font-semibold text-2xl mt-6'>Please Wait while the page is loading...</p>
+                </div>
             ) : (
                 <div className='max-w-[500px] p-4 lg:p-8 bg-white rounded-lg shadow-xl'>
                     <h1 className='font-semibold text-[1.875rem] leading-[2.375rem]'>Verify Email</h1>

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { adminSignup } from "../../services/operations/authAPI";
-// import { bgGradient } from "../../constants/color";
-// import { adminLogin, getAdmin } from "../../redux/thunks/admin";
-// import adminbg from "../../constants/data/adminbg.jpeg";
+import logo from "../../assets/images/logo.jpeg"
 
 
 const AdminLogin = () => {
   const { signupData } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
   const { isAdmin } = useSelector((state) => state.auth);
   const { isPlacement } = useSelector((state) => state.auth);
 
@@ -56,39 +55,50 @@ const AdminLogin = () => {
 
   return (
     <div className="flex items-center justify-center my-auto">
-      <div
-        className="w-[400px] flex items-center justify-center rounded-lg shadow-xl bg-white p-8"
-      >
-        <div
-          className="flex items-center justify-center flex-col gap-6 w-full"
-        >
-          <div className="text-2xl">Admin/Tnp Login!</div>
-          <form
-            
-            className="flex items-center justify-center flex-col gap-3 w-full"
-            onSubmit={submitHandler}
-          >
-            <input
-              required
-              placeholder="Secret Key"
-              type="password"
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className='w-full rounded-[0.5rem] p-[12px]'
-              value={secretKey}
-              onChange={(e) => setSecretKey(e.target.value)}
-            />
-
-            <button
-              className='px-4 w-[50%] py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue '
-              type="submit"
+      <>
+        {
+          loading ? (
+            <div className='w-full h-screen flex flex-col items-center justify-center'>
+            <img src={logo} alt="logo"/>
+            <p className='font-semibold text-2xl mt-6'>Please Wait while the page is loading...</p>
+          </div>
+          ) : (
+            <div
+              className="w-[400px] flex items-center justify-center rounded-lg shadow-xl bg-white p-8"
             >
-              Login
-            </button>
-          </form>
-        </div>
-      </div>
+              <div
+                className="flex items-center justify-center flex-col gap-6 w-full"
+              >
+                <div className="text-2xl">Admin/Tnp Login!</div>
+                <form
+                  
+                  className="flex items-center justify-center flex-col gap-3 w-full"
+                  onSubmit={submitHandler}
+                >
+                  <input
+                    required
+                    placeholder="Secret Key"
+                    type="password"
+                    style={{
+                      boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    }}
+                    className='w-full rounded-[0.5rem] p-[12px]'
+                    value={secretKey}
+                    onChange={(e) => setSecretKey(e.target.value)}
+                  />
+
+                  <button
+                    className='px-4 w-[50%] py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue '
+                    type="submit"
+                  >
+                    Login
+                  </button>
+                </form>
+              </div>
+            </div>
+          )
+        }
+      </>
     </div>
   );
 };

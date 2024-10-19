@@ -3,7 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import toast from 'react-hot-toast';
 
 import { sendotp } from '../../../services/operations/authAPI';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { ACCOUNT_TYPE } from '../../../utils/accoutnType';
 import Tab from './Tab';
