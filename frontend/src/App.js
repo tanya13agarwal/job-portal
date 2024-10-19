@@ -1,22 +1,27 @@
 import React from "react";
 import {Routes , Route} from "react-router-dom";
-import Navbar from "./components/common/Navbar";
+// import Navbar from "./components/common/Navbar";
+import { ACCOUNT_TYPE } from "./utils/accoutnType";
+import { useSelector } from "react-redux";
 // import About from "./components/core/About";
+
+
+// import { Features } from "./components/core/Features";
+// import Placements from "./components/core/Placements";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
-// import { Features } from "./components/core/Features";
-// import Placements from "./components/core/Placements";
-import OnCampus from "./pages/OnCampus";
 import Test from "./pages/Test";
+import OnCampus from "./pages/OnCampus";
 import MockTest from "./pages/MockTest";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from "./components/core/Dashboard/MyProfile";
-import { ACCOUNT_TYPE } from "./utils/accoutnType";
-import { useSelector } from "react-redux";
+import Settings from "./components/core/Dashboard/Settings";
+
+
 
 
 
@@ -69,7 +74,7 @@ function App() {
         }>
 
           <Route path="dashboard/my-profile" element = {<MyProfile/>}/>
-          
+          <Route path="dashboard/Settings" element={<Settings />} />
 
           {
             user?.accountType === ACCOUNT_TYPE.STUDENT && (
