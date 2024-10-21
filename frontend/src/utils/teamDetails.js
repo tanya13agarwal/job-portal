@@ -1,39 +1,37 @@
+import tanya from '../assets/images/tanya.jpeg';
+import chandni from '../assets/images/chandni.jpeg';
+import divyanshu from '../assets/images/divyanshu.jpeg';
+import saumya from '../assets/images/saumya.jpeg';
+
 const teamDetails = [
-    {
-      id: 1,
-      name: "Pranay Gupta",
-      job: "Software Engineer",
-      image: "https://aeccc.targettechnology.in/static/media/PranayGupta.f3c530b7630ba8efb2ab.jpg",
-      text: "I have had the pleasure of working with this team on several projects, and I am consistently impressed with their technical expertise and ability to deliver quality solutions on time and within budget. They are a true partner and an asset to any project.",
-    },
-    {
-      id: 2,
-      name: "Abir Pal",
-      job: "Graphic Designer",
-      image: "https://aeccc.targettechnology.in/static/media/AbirPal.574a09ad7cb325853b29.jpg",
-      text: "I have been working with this company for several years now, and I have always been impressed with their creativity and attention to detail. They are true professionals who take pride in their work and always go above and beyond to deliver exceptional results.",
-    },
-    {
-      id: 3,
-      name: "Soumya Banerjee",
-      job: "Marketing Manager",
-      image: "https://aeccc.targettechnology.in/static/media/SoumyaBanerjee.2e2521d6029842435080.jpg",
-      text: "I am thrilled with the results of our recent marketing campaign, and it wouldn't have been possible without the hard work and dedication of the entire team. Thank you for your exceptional work!",
-    },
-    {
-      id: 4,
-      name: "Saikat Mukherjee",
-      job: "Content Strategist",
-      image: "https://aeccc.targettechnology.in/static/media/SaikatMukherjee.033310703edff52d0532.jpg",
-      text: "I have worked with many content creators over the years, but none have impressed me as much as this team. They have a knack for crafting compelling and engaging content that resonates with our audience and drives real results. I highly recommend them!",
-    },
-    {
-      id: 5,
-      name: "Aritra Biswas",
-      job: "Data Analyst",
-      image: "https://avatars.githubusercontent.com/u/93366359?v=4",
-      text: "I had the opportunity to work with this team on a data analysis project, and I was impressed with their attention to detail and their ability to work with complex datasets. They provided valuable insights that helped us make informed business decisions. It was a pleasure working with them.",
-    },
-  ];
-  
-  export default teamDetails;
+  {
+    id: 1,
+    name: "Tanya Agarwal",
+    job: "AI/ML Engineer",
+    image: tanya,
+    text: "As an AI/ML Engineer, I focus on building intelligent models that drive automation and provide valuable insights. I am passionate about leveraging data and algorithms to create innovative solutions that address real-world challenges. Known for my disciplined approach and being punctual, I believe that consistency is key to achieving project goals. Working on projects like OpportuNest has honed my teamwork skills, enabling me to collaborate effectively with cross-functional teams.",
+  },
+  {
+    id: 2,
+    name: "Chandni Kalwani",
+    job: "AI/ML Engineer",
+    image: chandni,
+    text: "My role as an AI/ML Engineer involves developing machine learning models that enhance our product capabilities. I am a strong team player, always ready to collaborate and share knowledge with my peers. My disciplined work ethic and punctuality ensure that I meet deadlines consistently. Contributing to projects like OpportuNest has helped me understand the importance of aligning AI models with user needs, making data-driven decisions more impactful.",
+  },
+  {
+    id: 3,
+    name: "Divyanshu Pathak",
+    job: "Full Stack Web Developer",
+    image: divyanshu,
+    text: "As a Full Stack Web Developer, I am responsible for designing and developing end-to-end web applications. I strive to create seamless user experiences by combining modern frontend frameworks with robust backend services. I am known for my punctuality and my ability to work efficiently within a team. Working on OpportuNest has allowed me to refine my skills in building scalable and secure systems, ensuring smooth functionality for users.",
+  },
+  {
+    id: 4,
+    name: "Saumya Sachan",
+    job: "Frontend Web Developer",
+    image: saumya,
+    text: "Being a Frontend Web Developer, I focus on crafting intuitive and responsive interfaces. My goal is to ensure that our users have a smooth and visually appealing experience across all devices and platforms. I am dedicated to my work, always punctual, and take pride in delivering high-quality results. Collaborating on the OpportuNest project has been a rewarding experience, enhancing my ability to translate user requirements into engaging UI designs.",
+  },
+];
+
+export default teamDetails;
