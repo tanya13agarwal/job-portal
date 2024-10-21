@@ -10,6 +10,7 @@ const ProfileSchema = new Schema({
   },
   dateOfBirth : {
     type : String,
+    default : new Date().toISOString().split('T')[0],
   },
   ph_num: { 
     type: String, 
@@ -20,6 +21,9 @@ const ProfileSchema = new Schema({
     type : String,
     trim : true,
   },
+  gender: {
+		type: String,
+	},
   addr: { 
     type: String, 
     default: null 

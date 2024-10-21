@@ -165,7 +165,8 @@ exports.signup = async(req , res) => {
         });
         
         user.additionalDetails = profileDetails._id,
-        console.log("Profile: " , profileDetails)
+        await user.save();
+        // console.log("Profile: " , profileDetails)
 
 
         //return respose
@@ -266,6 +267,7 @@ exports.adminSignup = async(req , res) => {
         });
         
         user.additionalDetails = profileDetails._id;
+        await user.save();
         // console.log("Profile: " , profileDetails)
 
 

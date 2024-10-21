@@ -26,6 +26,8 @@ export default function EditProfile() {
       console.log("ERROR MESSAGE - ", error.message)
     }
   }
+
+  
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
