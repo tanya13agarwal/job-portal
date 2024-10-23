@@ -20,7 +20,9 @@ import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import Settings from "./components/core/Dashboard/Settings";
-import JobPosting from "./components/core/Dashboard/Job posting/components/JobPosting"
+// import JobPosting from "./components/core/Dashboard/Job posting/components/JobPosting"
+import JobPosting from "./components/core/Dashboard/jobPosting"
+
 
 
 

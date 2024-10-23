@@ -6,7 +6,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 const About = () => {
   return (
     <div id='about' className="min-h-screen flex flex-col items-center justify-center">
-      <div className='bg-[#fff] shadow-lg p-6'>
+      <div className='bg-[#fff] shadow-lg rounded-lg p-6'>
       {/* Container */}
       <div className="flex flex-col md:flex-row max-w-7xl w-full items-center  rounded overflow-hidden ">
         

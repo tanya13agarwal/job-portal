@@ -12,6 +12,7 @@ const {cloudinaryConnect} = require("./config/cloudinary");
 //Import all Routes
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
+const jobRoutes = require("./routes/Job");
 
 //Import Dotenv for accessing env file
 const dotenv = require("dotenv");
@@ -50,6 +51,7 @@ cloudinaryConnect();
 //Routes ko mount kroo
 app.use("/api/v1/auth" , userRoutes);
 app.use("/api/v1/profile" , profileRoutes);
+app.use("/api/v1/job", jobRoutes);
 
 //Default Route
 app.get("/" , (req , res) => {
