@@ -26,7 +26,7 @@ export default function CourseBuilderForm() {
     formState: { errors },
   } = useForm()
 
-  const { course , editCourse } = useSelector((state) => state.course);
+  const { job , editJob } = useSelector((state) => state.jobPost);
   // const { course, editCourse } = useSelector((state) => state.course)
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
@@ -74,25 +74,25 @@ export default function CourseBuilderForm() {
   }
 
   const handleChangeEditSectionName = (sectionId, sectionName) => {
-    if (editSectionName === sectionId) {
-      cancelEdit()
-      return
-    }
-    setEditSectionName(sectionId)
-    setValue("sectionName", sectionName)
+  //   if (editSectionName === sectionId) {
+  //     cancelEdit()
+  //     return
+  //   }
+  //   setEditSectionName(sectionId)
+  //   setValue("sectionName", sectionName)
   }
 
   const goToNext = () => {
-    if (course?.courseContent?.length === 0) {
-      toast.error("Please add atleast one section")
-      return
-    }
-    if (
-      course?.courseContent?.some((section) => section?.subSection?.length === 0)
-    ) {
-      toast.error("Please add atleast one lecture in each section")
-      return
-    }
+  //   if (course?.courseContent?.length === 0) {
+  //     toast.error("Please add atleast one section")
+  //     return
+  //   }
+  //   if (
+  //     course?.courseContent?.some((section) => section?.subSection?.length === 0)
+  //   ) {
+  //     toast.error("Please add atleast one lecture in each section")
+  //     return
+  //   }
     dispatch(setStep(3))
   }
 
@@ -129,7 +129,7 @@ export default function CourseBuilderForm() {
         register={register}
         setValue={setValue}
         errors={errors}
-        editData={editCourse ? course?.thumbnail : null}
+        editData={editJob ? job?.thumbnail : null}
         />
 
         <div className="flex flex-col space-y-2">
@@ -188,9 +188,9 @@ export default function CourseBuilderForm() {
           )}
         </div>
       </form>
-      {course?.courseContent?.length > 0 && (
+      {/* {course?.courseContent?.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
-      )}
+      )} */}
       {/* Next Prev Button */}
       <div className="flex justify-end gap-x-3">
         <button

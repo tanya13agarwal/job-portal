@@ -15,7 +15,7 @@ export default function ChipInput({
   setValue,
   getValues,
 }) {
-  const { editCourse, course } = useSelector((state) => state.course)
+  // const { editCourse, course } = useSelector((state) => state.course)
   const { editJob, job } = useSelector((state) => state.jobPost)
 
   // Setting up state for managing chips array
