@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 // import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI"
-import { resetCourseState, setStep } from "../../../../../slices/courseSlice"
+import { resetJobState, setStep } from "../../../../../slices/jobPostSlice"
 import { JOB_STATUS } from "../../../../../utils/constants"
 import IconBtn from "../../../../common/IconBtn"
 import { editJobDetails } from "../../../../../services/operations/jobDetailsAPI"
@@ -15,11 +15,11 @@ export default function PublishCourse() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { token } = useSelector((state) => state.auth)
-  const { course } = useSelector((state) => state.course)
+  const { job } = useSelector((state) => state.jobPost)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (course?.status === JOB_STATUS.PUBLISHED) {
+    if (job?.status === JOB_STATUS.PUBLISHED) {
       setValue("public", true)
     }
   }, [])
@@ -29,16 +29,16 @@ export default function PublishCourse() {
   }
 
   const goToCourses = () => {
-    dispatch(resetCourseState())
+    dispatch(resetJobState())
     navigate("/dashboard/my-courses")
   }
 
   const handleCoursePublish = async () => {
     // check if form has been updated or not
     if (
-      (course?.status === JOB_STATUS.PUBLISHED &&
+      (job?.status === JOB_STATUS.PUBLISHED &&
         getValues("public") === true) ||
-      (course?.status === JOB_STATUS.DRAFT && getValues("public") === false)
+      (job?.status === JOB_STATUS.DRAFT && getValues("public") === false)
     ) {
       // form has not been updated
       // no need to make api call
@@ -46,7 +46,7 @@ export default function PublishCourse() {
       return
     }
     const formData = new FormData()
-    formData.append("courseId", course._id)
+    formData.append("courseId", job._id)
     const courseStatus = getValues("public")
       ? JOB_STATUS.PUBLISHED
       : JOB_STATUS.DRAFT
