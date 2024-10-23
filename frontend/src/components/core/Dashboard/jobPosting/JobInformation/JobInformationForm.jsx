@@ -19,7 +19,7 @@ import ChipInput from "./ChipInput"
 import RequirementsField from "./RequirementField";
 import job_types from "../../../../../data/jobCategories.json"
 
-export default function CourseInformationForm() {
+export default function JobInformationForm() {
   const {
     register,
     handleSubmit,
@@ -60,6 +60,7 @@ export default function CourseInformationForm() {
     if (
       currentValues.jobTitle !== job.jobName ||
       currentValues.jobShortDesc !== job.jobDescription ||
+      currentValues.jobLocation !== job.jobLocation || 
       currentValues.minSalary !== job.minSalary ||
       currentValues.maxSalary !== job.maxSalary ||
       currentValues.branchTags.toString() !== job.branch.toString() ||
