@@ -18,7 +18,7 @@ import {
 import IconBtn from "../../../../common/IconBtn"
 import NestedView from "./NestedView"
 
-export default function CourseBuilderForm() {
+export default function CompanyInformationForm() {
   const {
     register,
     handleSubmit,

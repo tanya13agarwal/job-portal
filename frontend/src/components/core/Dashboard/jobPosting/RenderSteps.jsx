@@ -1,9 +1,9 @@
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux"
 
-import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm"
-import CourseInformationForm from "./CourseInformation/CourseInformationForm"
-import PublishCourse from "./PublishCourse"
+import PublishJob from "./PublishJob"
+import CompanyInformationForm from "./CompanyInformation/CompanyInformationForm"
+import JobInformationForm from "./JobInformation/JobInformationForm"
 
 
 export default function RenderSteps() {
@@ -82,9 +82,9 @@ export default function RenderSteps() {
         ))}
       </div>
       {/* Render specific component based on current step */}
-      {step === 1 && <CourseInformationForm />}
-      {step === 2 && <CourseBuilderForm />}
-      {step === 3 &&  <PublishCourse /> }
+      {step === 1 && <JobInformationForm />}
+      {step === 2 && <CompanyInformationForm />}
+      {step === 3 &&  <PublishJob /> }
     </>
   )
 }
