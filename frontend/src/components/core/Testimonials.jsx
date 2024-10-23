@@ -14,6 +14,7 @@ const Testimonials =()=>{
                     <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Hear from our management and faculties about outstanding placements records</p>
                 </div> 
                 <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 col-span-1 gap-10 justify-between mb-10">
+                    
                     <div class="cursor-pointer bg-customDarkBlue border  border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
                         <a href="" >
                             <img class="rounded-t-lg " src={headcoordinator} alt="" />
@@ -27,6 +28,7 @@ const Testimonials =()=>{
                             commend our graduates' adaptability and competence, reinforcing our standing as a top choice for recruiting top-tier talent </p>
                         </div>
                     </div>                  
+                    
                     <div class=" bg-customDarkBlue border  border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
                         <a href="#" className=''>
                             <img class="rounded-t-lg" src={tnpHead} alt="" />

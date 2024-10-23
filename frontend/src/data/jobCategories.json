@@ -1,0 +1,32 @@
+{
+  "job_types": [
+    {
+      "id": 1,
+      "category": "Technical"
+    },
+    {
+      "id": 2,
+      "category": "Sales"
+    },
+    {
+      "id": 3,
+      "category": "Finance"
+    },
+    {
+      "id": 4,
+      "category": "Consulting"
+    },
+    {
+      "id": 5,
+      "category": "Human Resources"
+    },
+    {
+      "id": 6,
+      "category": "Marketing"
+    },
+    {
+      "id": 7,
+      "category": "Operations"
+    }
+  ]
+}

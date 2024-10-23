@@ -28,11 +28,11 @@ const TeamDetails = (props) => {
   }
 
   // using this button randomly any testimonial will be displayed : we need between 0 to reviews.length
-  function surpriseHandler() {
-    // value needed in int
-    let randomIndex = Math.floor(Math.random() * reviews.length);
-    setIndex(randomIndex);   
-  }
+  // function surpriseHandler() {
+  //   // value needed in int
+  //   let randomIndex = Math.floor(Math.random() * reviews.length);
+  //   setIndex(randomIndex);   
+  // }
  
   return (
     <div className="flex bg-white flex-col w-[85vw] md:w-[700px]  justify-center items-center mt-10 p-10 transition-all duration-700 hover:shadow-xl rounded-md">
