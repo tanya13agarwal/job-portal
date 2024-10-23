@@ -16,7 +16,7 @@ const {
 } = require("../controllers/Job")
 
 // Importing Middlewares
-const { auth, isPlacement, isStudent, isAdmin } = require("../middlewares/auth")
+const { auth, isPlacement, isStudent, isAdmin } = require("../middlewares/Auth")
 
 // ********************************************************************************************************
 //                                      Course routes
