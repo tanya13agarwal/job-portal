@@ -28,13 +28,6 @@ const ProfileSchema = new Schema({
     type: String, 
     default: null 
   },
-  
-  // clg_name: { 
-  //   type: String, 
-  //   maxlength: 50, 
-  //   default: null 
-  // },
-  
   sem: { 
     type: String, 
     maxlength: 10, 
@@ -85,21 +78,18 @@ const ProfileSchema = new Schema({
     type: String, 
     default: null 
   },
-  
-  // dp_img: { 
-  //   type: String, 
-  //   default: null 
-  // }, // Store URL to the uploaded image
+  jobEnrolled: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			// required: true,
+			ref: "job",
+		},
+	],
   
   resume: { 
     type: String, 
     default: null 
   }, // Store URL to the uploaded document
-  
-  // isCordinator: { 
-  //   type: Boolean,
-  //    default: false 
-  // }
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);

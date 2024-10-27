@@ -2,96 +2,71 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 // const CourseProgress = require("../models/CourseProgress")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
 const Job = require("../models/Job")
+const Company = require("../models/Company")
 
-// Function to create a new course
-exports.createJob = async (req, res) => {
+// Function to create a new Company
+exports.createCompany = async (req, res) => {
   try {
-    // Get user ID from request object
-    const userId = req.user.id
-
-    // Get all required fields from request body
+    // Extract fields from request body
     let {
-      jobName,
-      jobDescription,
-      whatYouWillGet,
-      jobLocation,
-      minSalary,
-      maxSalary,
-      branch: _branch,
-      batch: _batch,
-      category,
-      status,
-      instructions: _instructions,
-    } = req.body
+      companyName,
+      companyDescription,
+      companyWebsite,
+      companyLocation,
+      jobId
+    } = req.body;
 
-    console.log("req body : " ,req.body);
-    // Convert the tag and instructions from stringified Array to Array
-    const branch = JSON.parse(_branch)
-    const batch = JSON.parse(_batch)
-    const instructions = JSON.parse(_instructions)
-
-    console.log("branch", branch)
-    console.log("instructions", instructions)
-
-    // Check if any of the required fields are missing
-    if (
-      !jobName ||
-      !jobLocation ||
-      !jobDescription ||
-      !whatYouWillGet ||
-      !maxSalary ||
-      !branch.length ||
-      !batch.length ||
-    //   !thumbnail ||
-      !category ||
-      !instructions.length
-    ) {
+    if (!companyName || !companyLocation || !companyDescription || !companyWebsite) {
       return res.status(400).json({
         success: false,
         message: "All Fields are Mandatory",
-      })
+      });
     }
-    if (!status || status === undefined) {
-      status = "Draft"
-    }
-    
-    // Create a new course with the given details
-    const newJob = await Job.create({
-        jobName,
-        jobLocation,
-        jobDescription,
-        //   instructor: instructorDetails._id,
-        whatYouWillGet: whatYouWillGet,
-        minSalary : minSalary ? minSalary : 0,
-        maxSalary,
-        branch,
-        batch,
-        category,
-        // thumbnail: thumbnailImage.secure_url,
-        status: status,
-        instructions,
-    })
 
-    
-    // Return the new course and a success message
+    // Check if company exists
+    let company = await Company.findOne({ companyName: companyName });
+
+    if (company) {
+      // If company exists, push the new job ID
+      if (!company.jobs.includes(jobId)) {
+        company.jobs.push(jobId);
+        await company.save();
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "Job already associated with this company",
+        });
+      }
+    } else {
+      // If company does not exist, create it and add the job ID
+      company = await Company.create({
+        companyName,
+        companyDescription: companyDescription,
+        companyWebsite,
+        companyLocation,
+        jobs: [jobId]
+      });
+    }
+
+    // Return a success response
     res.status(200).json({
       success: true,
-      data: newJob,
-      message: "job Created Successfully",
-    })
+      data: company,
+      message: "Company and job association updated successfully",
+    });
   } catch (error) {
-    // Handle any errors that occur during the creation of the course
-    console.error(error)
+    console.error(error);
     res.status(500).json({
       success: false,
-      message: "Failed to create job",
+      message: "Failed to create or update company",
       error: error.message,
-    })
+    });
   }
-}
+};
+
 
 // Edit Course Details
-exports.editJob = async (req, res) => {
+exports.editCompany = async (req, res) => {
   try {
     const { jobId } = req.body
     const updates = req.body
@@ -240,7 +215,7 @@ exports.getAllCourses = async (req, res) => {
 //     })
 //   }
 // }
-exports.getJobDetails = async (req, res) => {
+exports.getCompanyDetails = async (req, res) => {
   try {
     const { jobId } = req.body
     const jobDetails = await Job.findOne({
@@ -401,7 +376,7 @@ exports.getInstructorCourses = async (req, res) => {
   }
 }
 // Delete the Course
-exports.deleteJob = async (req, res) => {
+exports.deleteCompany = async (req, res) => {
   try {
     const { jobId } = req.body
 

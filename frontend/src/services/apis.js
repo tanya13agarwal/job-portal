@@ -38,3 +38,11 @@ export const jobEndpoints = {
     // LECTURE_COMPLETION_API: BASE_URL + "/job/updatejobProgress",
     // CREATE_RATING_API: BASE_URL + "/job/createRating",
   }
+
+  // company ENDPOINTS
+export const companyEndpoints = {
+    COMPANY_DETAILS_API: BASE_URL + "/company/getCompanyDetails",
+    EDIT_COMPANY_API: BASE_URL + "/company/editCompany",
+    CREATE_COMPANY_API: BASE_URL + "/company/createCompany",
+    DELETE_COMPANY_API: BASE_URL + "/company/deleteCompany",
+  }
