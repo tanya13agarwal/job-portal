@@ -4,6 +4,7 @@ import authReducer from "../slices/authSlice"
 import profileReducer from "../slices/profileSlice";
 import applicationReducer from "../slices/applicationSlice";
 import jobPostReducer from "../slices/jobPostSlice";
+import companyPostReducer from "../slices/companyPostSlice";
 import viewCourseReducer from "../slices/viewCourseSlice"
 
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     profile: profileReducer,
     application: applicationReducer,
     jobPost : jobPostReducer,
+    companyPost : companyPostReducer,
     viewCourse:viewCourseReducer,
 })
 
