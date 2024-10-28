@@ -6,7 +6,7 @@ import { MdNavigateNext } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
 import Upload from "../Upload"
 
-import {setStep} from "../../../../../slices/jobPostSlice"
+import {setEditJob, setStep} from "../../../../../slices/jobPostSlice"
 import { setCompany , setEditCompany, } from "../../../../../slices/companyPostSlice"
 import {
   addCompanyDetails,
@@ -39,11 +39,11 @@ export default function CompanyInformationForm() {
     console.log("data populated", company)
     if (editCompany) {
       setValue("companyName", company?.companyName)
-      setValue("companyDescription", company?.companyShortDesc)
+      setValue("companyShortDesc", company?.companyDescription)
       setValue("companyLocation", company?.companyLocation)
       setValue("companyWebsite", company?.companyWebsite)
-      setValue("thumbnail", company?.companyImage)
-      setValue("jobId", job?._id)
+      setValue("companyImage", company?.thumbnail)
+      // setValue("jobId", job?._id)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -63,6 +63,7 @@ export default function CompanyInformationForm() {
     }
     return false
   }
+
 
   // handle form submission
   const onSubmit = async (data) => {
@@ -126,14 +127,15 @@ export default function CompanyInformationForm() {
       dispatch(setStep(3))
       dispatch(setCompany(result))
     }
-
-    dispatch(setStep(2))
+    else {
+      dispatch(setStep(2))
+    }
     setLoading(false)
   }
 
   const cancelEdit = () => {
-    setEditCompanyName(null)
-    setValue("sectionName", "")
+    dispatch(setEditCompany(false))
+    dispatch(setStep(3))
   }
 
   const goToNext = () => {
@@ -143,7 +145,7 @@ export default function CompanyInformationForm() {
 
   const goBack = () => {
     dispatch(setStep(1))
-    dispatch(setEditCompany(true))
+    dispatch(setEditJob(true))
   }
 
   return (
@@ -235,12 +237,12 @@ export default function CompanyInformationForm() {
           <IconBtn
             type="submit"
             disabled={loading}
-            text={editCompanyName ? "Edit Company Details" : "Next"}
+            text={editCompany ? "Edit Company Details" : "Next"}
             outline={true}
           >
             <MdNavigateNext size={20} className="text-yellow-50" />
           </IconBtn>
-          {editCompanyName && (
+          {editCompany && (
             <button
               type="button"
               onClick={cancelEdit}
@@ -249,17 +251,18 @@ export default function CompanyInformationForm() {
               Cancel Edit
             </button>
           )}
-          {!editCompanyName && (
-            <div className="flex justify-end gap-x-3">
-            <button
-              onClick={goBack}
-              className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
-            >
-              Back
-            </button>
-          </div>
-          )}
-          </div>
+          
+        </div>
+        <div className={`${editCompany ? "ml-auto" : "flex justify-end gap-x-3"}`}>
+          <button
+            type="button"
+            onClick={goBack}
+            className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+          >
+            Back
+          </button>
+        </div>
+          
       </form>
       {/* Next Prev Button */}
       {/* <div className="flex justify-end gap-x-3">

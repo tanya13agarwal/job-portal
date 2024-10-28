@@ -13,7 +13,7 @@ const companySchema = new mongoose.Schema({
 	companyDescription: { 
         type: String 
     },
-	companyLoaction: {
+	companyLocation: {
 		type: String,
 	},
 	jobs: [

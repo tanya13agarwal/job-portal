@@ -37,18 +37,18 @@ export default function JobInformationForm() {
 
   useEffect(() => {
     // if form is in edit mode
-    console.log("data populated", job)
-    if (editJob) {
+    console.log("data populated: ", job)
+    if (true) {
       setValue("jobTitle", job?.jobName)
       setValue("jobShortDesc", job?.jobDescription)
       setValue("minSalary", job?.minSalary)
       setValue("maxSalary", job?.maxSalary)
       setValue("jobLocation", job?.jobLocation)
-      setValue("branchTags", job?.branch)
-      setValue("batchTags", job?.batch)
+      setValue("branchTags", job?.branch.toString())
+      setValue("batchTags", job?.batch.toString())
       setValue("jobBenefits", job?.whatYouWillGet)
       setValue("jobCategory", job?.category)
-      setValue("jobRequirements", job?.instructions)
+      setValue("jobRequirements", job?.instructions.toString())
       // setValue("jobImage", job?.thumbnail)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
