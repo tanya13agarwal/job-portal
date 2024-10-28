@@ -8,6 +8,7 @@ import { resetJobState, setStep } from "../../../../../slices/jobPostSlice"
 import { JOB_STATUS } from "../../../../../utils/constants"
 import IconBtn from "../../../../common/IconBtn"
 import { editJobDetails } from "../../../../../services/operations/jobDetailsAPI"
+import { setEditCompany } from "../../../../../slices/companyPostSlice"
 
 export default function PublishCourse() {
   const { register, handleSubmit, setValue, getValues } = useForm()
@@ -25,15 +26,16 @@ export default function PublishCourse() {
   }, [])
 
   const goBack = () => {
+    dispatch(setEditCompany(true))
     dispatch(setStep(2))
   }
 
-  const goToCourses = () => {
+  const goToJobs = () => {
     dispatch(resetJobState())
-    navigate("/dashboard/my-courses")
+    navigate("/dashboard/job")
   }
 
-  const handleCoursePublish = async () => {
+  const handleJobPublished = async () => {
     // check if form has been updated or not
     if (
       (job?.status === JOB_STATUS.PUBLISHED &&
@@ -42,26 +44,26 @@ export default function PublishCourse() {
     ) {
       // form has not been updated
       // no need to make api call
-      goToCourses()
+      goToJobs()
       return
     }
     const formData = new FormData()
-    formData.append("courseId", job._id)
-    const courseStatus = getValues("public")
+    formData.append("jobId", job._id)
+    const jobStatus = getValues("public")
       ? JOB_STATUS.PUBLISHED
       : JOB_STATUS.DRAFT
-    formData.append("status", courseStatus)
+    formData.append("status", jobStatus)
     setLoading(true)
     const result = await editJobDetails(formData, token)
     if (result) {
-      goToCourses()
+      goToJobs()
     }
     setLoading(false)
   }
 
   const onSubmit = (data) => {
     // console.log(data)
-    handleCoursePublish()
+    handleJobPublished()
   }
 
   return (
@@ -95,7 +97,7 @@ export default function PublishCourse() {
           >
             Back
           </button>
-          <IconBtn disabled={loading} text="Save Changes" />
+          <IconBtn type="submit" disabled={loading} text="Save Changes" />
         </div>
       </form>
     </div>

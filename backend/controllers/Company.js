@@ -16,12 +16,16 @@ exports.createCompany = async (req, res) => {
       jobId
     } = req.body;
 
-    if (!companyName || !companyLocation || !companyDescription || !companyWebsite) {
+    const thumbnail = req.files.thumbnail
+
+    if (!companyName || !companyLocation || !companyDescription || !companyWebsite || !jobId) {
       return res.status(400).json({
         success: false,
         message: "All Fields are Mandatory",
       });
     }
+
+    // console.log(req.files.)
 
     // Check if company exists
     let company = await Company.findOne({ companyName: companyName });
@@ -34,20 +38,30 @@ exports.createCompany = async (req, res) => {
       } else {
         return res.status(400).json({
           success: false,
+          data: company,
           message: "Job already associated with this company",
         });
       }
     } else {
+      // Upload the Thumbnail to Cloudinary
+      const thumbnailImage = await uploadImageToCloudinary(
+        thumbnail,
+        process.env.FOLDER_NAME
+      )
+      console.log(companyLocation)
+
       // If company does not exist, create it and add the job ID
       company = await Company.create({
         companyName,
         companyDescription: companyDescription,
+        thumbnail: thumbnailImage.secure_url,
         companyWebsite,
-        companyLocation,
+        companyLocation : companyLocation,
         jobs: [jobId]
       });
     }
 
+    console.log(company)
     // Return a success response
     res.status(200).json({
       success: true,
