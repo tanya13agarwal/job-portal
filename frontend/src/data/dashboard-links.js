@@ -43,14 +43,14 @@ export const sidebarLinks = [
   },
   {
     id: 7,
-    name: "Analysis",
+    name: "Analytics",
     path: "/dashboard/analysis",
     type: ACCOUNT_TYPE.ADMIN,
     icon: "VscServer",
   },
   {
     id: 8,
-    name: "Analysis",
+    name: "Analytics",
     path: "/dashboard/analysis",
     type: ACCOUNT_TYPE.PLACEMENT_CELL,
     icon: "VscServer",
@@ -67,7 +67,7 @@ export const sidebarLinks = [
     name: "On-Campus",
     path: "/dashboard/on-campus",
     type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscHistory",
+    icon: "VscMortarBoard",
   },
   {
     id: 11,

@@ -176,6 +176,51 @@ exports.getAllCompany = async (req, res) => {
 };
 
 
+// Get Course List
+exports.getPublishedCompanyDetails = async (req, res) => {
+  try {
+    const companiesWithPublishedJobs = await Company.aggregate([
+      {
+        $lookup: {
+          from: "jobs",
+          localField: "jobs",
+          foreignField: "_id",
+          as: "jobs",
+        },
+      },
+      {
+        $addFields: {
+          jobs: {
+            $filter: {
+              input: "$jobs",
+              as: "job",
+              cond: { $eq: ["$$job.status", "Published"] },
+            },
+          },
+        },
+      },
+      {
+        $match: {
+          "jobs.0": { $exists: true }, // Ensures there's at least one published job
+        },
+      },
+    ]);
+
+    return res.status(200).json({
+      success: true,
+      data: companiesWithPublishedJobs,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({
+      success: false,
+      message: `Can't Fetch Company Data`,
+      error: error.message,
+    });
+  }
+};
+
+
 // Get One Single Course Details
 // exports.getCourseDetails = async (req, res) => {
 //   try {
@@ -365,30 +410,6 @@ exports.deleteCompany = async (req, res) => {
     if (!job) {
       return res.status(404).json({ message: "Job not found" })
     }
-
-    // Unenroll students from the course
-    // const studentsEnrolled = course.studentsEnroled
-    // for (const studentId of studentsEnrolled) {
-    //   await User.findByIdAndUpdate(studentId, {
-    //     $pull: { courses: courseId },
-    //   })
-    // }
-
-    // Delete sections and sub-sections
-    // const courseSections = course.courseContent
-    // for (const sectionId of courseSections) {
-    //   // Delete sub-sections of the section
-    //   const section = await Section.findById(sectionId)
-    //   if (section) {
-    //     const subSections = section.subSection
-    //     for (const subSectionId of subSections) {
-    //       await SubSection.findByIdAndDelete(subSectionId)
-    //     }
-    //   }
-
-    //   // Delete the section
-    //   await Section.findByIdAndDelete(sectionId)
-    // }
 
     // Delete the course
     await Job.findByIdAndDelete(jobId)

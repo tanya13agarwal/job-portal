@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import Test from "./pages/Test";
-import OnCampus from "./pages/OnCampus";
+import OnCampus from "./components/core/Dashboard/Student Dashboard/OnCampus";
 import MockTest from "./pages/MockTest";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";

@@ -42,6 +42,7 @@ export const jobEndpoints = {
   // company ENDPOINTS
 export const companyEndpoints = {
     COMPANY_DETAILS_API: BASE_URL + "/company/getCompanyDetails",
+    PUBLISHED_COMPANY_DETAILS_API: BASE_URL + "/company/getPublishedCompanyDetails",
     EDIT_COMPANY_API: BASE_URL + "/company/editCompany",
     CREATE_COMPANY_API: BASE_URL + "/company/createCompany",
     DELETE_COMPANY_API: BASE_URL + "/company/deleteCompany",

@@ -11,6 +11,7 @@ const {
     editCompany,
     deleteCompany,
     getAllCompany,
+    getPublishedCompanyDetails,
 } = require("../controllers/Company")
 
 // Importing Middlewares
@@ -30,5 +31,7 @@ router.post("/editCompany", auth, isPlacement, editCompany)
 router.delete("/deleteCompany", deleteCompany)
 //Get all company
 router.get("/getAllCompany", getAllCompany)
+//Get all published company
+router.get("/getPublishedCompanyDetails", getPublishedCompanyDetails)
 
 module.exports = router
