@@ -2,6 +2,7 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 // const CourseProgress = require("../models/CourseProgress")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
 const Job = require("../models/Job")
+const Company = require("../models/Company")
 
 // Function to create a new course
 exports.createJob = async (req, res) => {
@@ -101,17 +102,6 @@ exports.editJob = async (req, res) => {
       return res.status(404).json({ error: "Job not found" })
     }
 
-    // If Thumbnail Image is found, update it
-    // if (req.files) {
-    //   console.log("thumbnail update")
-    //   const thumbnail = req.files.thumbnailImage
-    //   const thumbnailImage = await uploadImageToCloudinary(
-    //     thumbnail,
-    //     process.env.FOLDER_NAME
-    //   )
-    //   course.thumbnail = thumbnailImage.secure_url
-    // }
-
     // Update only the fields that are present in the request body
     for (const key in updates) {
       if (updates.hasOwnProperty(key)) {
@@ -128,21 +118,6 @@ exports.editJob = async (req, res) => {
     const updatedJob = await Job.findOne({
       _id: jobId,
     })
-    //   .populate({
-    //     path: "instructor",
-    //     populate: {
-    //       path: "additionalDetails",
-    //     },
-    //   })
-    //   .populate("category")
-    //   .populate("ratingAndReviews")
-    //   .populate({
-    //     path: "courseContent",
-    //     populate: {
-    //       path: "subSection",
-    //     },
-    //   })
-    //   .exec()
 
     res.json({
       success: true,
@@ -163,17 +138,7 @@ exports.getAllJobs = async (req, res) => {
   try {
     const allJobs = await Job.find(
       { status: "Published" },
-      // {
-      //   jobName: true,
-      //   price: true,
-      //   thumbnail: true,
-      //   instructor: true,
-      //   ratingAndReviews: true,
-      //   studentsEnrolled: true,
-      // }
     )
-      // .populate("instructor")
-      // .exec()
 
     return res.status(200).json({
       success: true,
@@ -246,22 +211,6 @@ exports.getJobDetails = async (req, res) => {
     const jobDetails = await Job.findOne({
       _id: jobId,
     })
-    //   .populate({
-    //     path: "instructor",
-    //     populate: {
-    //       path: "additionalDetails",
-    //     },
-    //   })
-    //   .populate("category")
-    //   .populate("ratingAndReviews")
-    //   .populate({
-    //     path: "courseContent",
-    //     populate: {
-    //       path: "subSection",
-    //       select: "-videoUrl",
-    //     },
-    //   })
-    //   .exec()
 
     if (!jobDetails) {
       return res.status(400).json({
@@ -269,30 +218,10 @@ exports.getJobDetails = async (req, res) => {
         message: `Could not find course with id: ${courseId}`,
       })
     }
-
-    // if (courseDetails.status === "Draft") {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: `Accessing a draft course is forbidden`,
-    //   });
-    // }
-
-    // let totalDurationInSeconds = 0
-    // courseDetails.courseContent.forEach((content) => {
-    //   content.subSection.forEach((subSection) => {
-    //     const timeDurationInSeconds = parseInt(subSection.timeDuration)
-    //     totalDurationInSeconds += timeDurationInSeconds
-    //   })
-    // })
-
-    // const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
-
+    
     return res.status(200).json({
       success: true,
-      data: {
-        jobDetails,
-        // totalDuration,
-      },
+      data:jobDetails,
     })
   } catch (error) {
     return res.status(500).json({
@@ -400,54 +329,45 @@ exports.getInstructorCourses = async (req, res) => {
     })
   }
 }
-// Delete the Course
+
+
+// Delete the JOB
 exports.deleteJob = async (req, res) => {
   try {
-    const { jobId } = req.body
+    const { jobId } = req.body;
 
-    // Find the course
-    const job = await Job.findById(jobId)
+    // Find the job by ID
+    const job = await Job.findById(jobId);
     if (!job) {
-      return res.status(404).json({ message: "Job not found" })
+      return res.status(404).json({ message: "Job not found" });
     }
 
-    // Unenroll students from the course
-    // const studentsEnrolled = course.studentsEnroled
-    // for (const studentId of studentsEnrolled) {
-    //   await User.findByIdAndUpdate(studentId, {
-    //     $pull: { courses: courseId },
-    //   })
-    // }
+    // Find the company that has this job in its jobs array
+    const company = await Company.findOne({ jobs: jobId });
+    if (company) {
+      // Remove the jobId from the company's jobs array
+      company.jobs = company.jobs.filter((id) => id.toString() !== jobId);
+      await company.save();
+    }
 
-    // Delete sections and sub-sections
-    // const courseSections = course.courseContent
-    // for (const sectionId of courseSections) {
-    //   // Delete sub-sections of the section
-    //   const section = await Section.findById(sectionId)
-    //   if (section) {
-    //     const subSections = section.subSection
-    //     for (const subSectionId of subSections) {
-    //       await SubSection.findByIdAndDelete(subSectionId)
-    //     }
-    //   }
+    // Delete the job
+    await Job.findByIdAndDelete(jobId);
 
-    //   // Delete the section
-    //   await Section.findByIdAndDelete(sectionId)
-    // }
-
-    // Delete the course
-    await Job.findByIdAndDelete(jobId)
+    // const updatedCompany = await Company.find({_id : company._id})
+    // .populate("jobs")
+    const updatedJob = await Job.find()
 
     return res.status(200).json({
       success: true,
       message: "Job deleted successfully",
-    })
+      data : updatedJob,
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Server error",
       error: error.message,
-    })
+    });
   }
-}
+};
