@@ -32,7 +32,7 @@ export default function PublishCourse() {
 
   const goToJobs = () => {
     dispatch(resetJobState())
-    navigate("/dashboard/job")
+    navigate("/dashboard/jobs")
   }
 
   const handleJobPublished = async () => {

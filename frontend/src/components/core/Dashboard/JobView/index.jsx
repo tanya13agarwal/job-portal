@@ -1,13 +1,27 @@
 import React, { useEffect , useState} from 'react'
-import { useSelector } from 'react-redux'
-import { fetchAllCompanyDetails } from '../../../../services/operations/companyDetailsAPI'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAllCompanyDetails, fetchCompanyDetails } from '../../../../services/operations/companyDetailsAPI'
 import logo from "../../../../assets/images/logo.jpeg"
 import CompanyCard from '../../../common/CompanyCard'
+import ConfirmationModal from '../../../common/ConfirmationModal'
+import { deleteJob, fetchJobDetails } from '../../../../services/operations/jobDetailsAPI'
+import { setEditJob, setJob } from '../../../../slices/jobPostSlice'
+import { setCompany, setEditCompany } from '../../../../slices/companyPostSlice'
+import { useNavigate } from 'react-router-dom'
 
 const JobView = () => {
 
   const [loading ,  setLoading] = useState()
   const [allCompany ,  setAllCompany] = useState([])
+  const [allJob ,  setAllJob] = useState([])
+  const [confirmationModal , setConfirmationModal] = useState(false)
+  const [specificJob , setSpecificJob] = useState()
+
+  const {token} = useSelector((state) => state.auth)
+  const {job , editJob} = useSelector((state) => state.jobPost)
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     ;(async () => {
@@ -20,7 +34,34 @@ const JobView = () => {
       console.log("allCompany: " , allCompany)
       setLoading(false)
     })()
-  } , [])
+  } , [allJob])
+
+  const editJobDetails = async(jobId , companyId) => {
+    const jobDetail = await fetchJobDetails(jobId)
+    if(jobDetail.success) {
+      dispatch(setJob(jobDetail.data))
+    }
+    const companyDetail = await fetchCompanyDetails(companyId)
+    if(companyDetail.success) {
+      dispatch(setCompany(companyDetail.data))
+    }
+    dispatch(setEditJob(true));
+    dispatch(setEditCompany(true));
+    navigate("/dashboard/job-posting")
+  }
+
+  const handleDeleleJob = async (jobId) => {
+    const result = await deleteJob({
+      jobId,
+      token,
+    })
+
+    if (result) {
+      console.log(result)
+      setAllJob(result)
+    }
+    setConfirmationModal(null)
+  }
 
   return (
     <div className='mx-auto w-full mt-10 mb-10'>
@@ -49,6 +90,17 @@ const JobView = () => {
                           status={job.status}
                           compbtn1='Edit Job'
                           compbtn2='Delete Job'
+                          btn1Handler={() => editJobDetails(job._id , company._id)}
+                          btn2Handler={() =>
+                            setConfirmationModal({
+                              text1: "Delete this Job?",
+                              text2: "All the details in this job will be deleted",
+                              btn1Text: "Delete",
+                              btn2Text: "Cancel",
+                              btn1Handler: () => handleDeleleJob(job._id),
+                              btn2Handler: () => setConfirmationModal(null),
+                            })
+                          }
                         />
                       </div>
                       ))
@@ -59,6 +111,9 @@ const JobView = () => {
             </div>
           </div>
         )
+        }
+        {
+          confirmationModal && <ConfirmationModal modalData={confirmationModal}/>
         }
     </div>
   )

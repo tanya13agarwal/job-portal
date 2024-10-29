@@ -47,11 +47,11 @@ export const fetchJobDetails = async (jobId) => {
     if (!response.data.success) {
       throw new Error(response.data.message)
     }
-    result = response.data
+    result = response?.data
   } catch (error) {
     console.log("JOB_DETAILS_API API ERROR............", error)
-    result = error.response.data
-    // toast.error(error.response.data.message);
+    result = error?.response?.data
+    toast.error(error.response.data.message);
   }
   toast.dismiss(toastId)
   //   dispatch(setLoading(false));
@@ -281,6 +281,7 @@ export const editJobDetails = async (data, token) => {
 // delete a course
 export const deleteJob = async (data, token) => {
   const toastId = toast.loading("Loading...")
+  let result;
   try {
     const response = await apiConnector("DELETE", DELETE_JOB_API, data, {
       Authorization: `Bearer ${token}`,
@@ -289,12 +290,15 @@ export const deleteJob = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Delete Job")
     }
+
+    result = response?.data?.data;
     toast.success("Job Deleted")
   } catch (error) {
     console.log("DELETE JOB API ERROR............", error)
     toast.error(error.message)
-  }
+  } 
   toast.dismiss(toastId)
+  return result;
 }
 
 // get full details of a course

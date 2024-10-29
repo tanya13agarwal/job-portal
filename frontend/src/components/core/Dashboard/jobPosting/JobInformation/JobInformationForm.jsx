@@ -38,17 +38,21 @@ export default function JobInformationForm() {
   useEffect(() => {
     // if form is in edit mode
     console.log("data populated: ", job)
-    if (true) {
+    if (editJob) {
       setValue("jobTitle", job?.jobName)
       setValue("jobShortDesc", job?.jobDescription)
       setValue("minSalary", job?.minSalary)
       setValue("maxSalary", job?.maxSalary)
       setValue("jobLocation", job?.jobLocation)
-      setValue("branchTags", job?.branch.toString())
-      setValue("batchTags", job?.batch.toString())
+      setValue("branchTags", job?.branch ? job.branch.toString() : "");
+      setValue("batchTags", job?.batch ? job.batch.toString() : "");
+      setValue("jobRequirements", job?.instructions ? job.instructions.toString() : "");
+      // setValue("branchTags", job?.branch?.toString() || job?.branch)
+      // setValue("batchTags", job?.batch?.toString() || job?.batch)
       setValue("jobBenefits", job?.whatYouWillGet)
       setValue("jobCategory", job?.category)
-      setValue("jobRequirements", job?.instructions.toString())
+      // setValue("jobRequirements", job?.instructions.toString())
+      setValue("jobId", job?._id)
       // setValue("jobImage", job?.thumbnail)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +67,7 @@ export default function JobInformationForm() {
       currentValues.jobLocation !== job.jobLocation || 
       currentValues.minSalary !== job.minSalary ||
       currentValues.maxSalary !== job.maxSalary ||
-      currentValues.branchTags.toString() !== job.branch.toString() ||
+      currentValues.branchTags.toString() !== job?.branch?.toString() ||
       currentValues.batchTags.toString() !== job.batch.toString() ||
       currentValues.jobBenefits !== job.whatYouWillGet ||
       currentValues.jobCategory !== job.category ||
