@@ -159,31 +159,31 @@ exports.editJob = async (req, res) => {
   }
 }
 // Get Course List
-exports.getAllCourses = async (req, res) => {
+exports.getAllJobs = async (req, res) => {
   try {
-    const allCourses = await Course.find(
+    const allJobs = await Job.find(
       { status: "Published" },
-      {
-        courseName: true,
-        price: true,
-        thumbnail: true,
-        instructor: true,
-        ratingAndReviews: true,
-        studentsEnrolled: true,
-      }
+      // {
+      //   jobName: true,
+      //   price: true,
+      //   thumbnail: true,
+      //   instructor: true,
+      //   ratingAndReviews: true,
+      //   studentsEnrolled: true,
+      // }
     )
-      .populate("instructor")
-      .exec()
+      // .populate("instructor")
+      // .exec()
 
     return res.status(200).json({
       success: true,
-      data: allCourses,
+      data: allJobs,
     })
   } catch (error) {
     console.log(error)
     return res.status(404).json({
       success: false,
-      message: `Can't Fetch Course Data`,
+      message: `Can't Fetch Job Data`,
       error: error.message,
     })
   }

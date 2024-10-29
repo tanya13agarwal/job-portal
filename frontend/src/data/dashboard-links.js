@@ -104,4 +104,11 @@ export const sidebarLinks = [
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscHistory",
   },
+  {
+    id: 16,
+    name: "Job-View",
+    path: "/dashboard/jobs",
+    type: ACCOUNT_TYPE.PLACEMENT_CELL,
+    icon: "VscServer",
+  },
 ];

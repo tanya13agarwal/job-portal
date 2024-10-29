@@ -82,61 +82,44 @@ exports.createCompany = async (req, res) => {
 // Edit Course Details
 exports.editCompany = async (req, res) => {
   try {
-    const { jobId } = req.body
+    const { companyId } = req.body
     const updates = req.body
-    const job = await Job.findById(jobId)
+    const company = await Company.findById(companyId)
 
-    if (!job) {
-      return res.status(404).json({ error: "Job not found" })
+    if (!company) {
+      return res.status(404).json({ error: "Company not found" })
     }
 
     // If Thumbnail Image is found, update it
-    // if (req.files) {
-    //   console.log("thumbnail update")
-    //   const thumbnail = req.files.thumbnailImage
-    //   const thumbnailImage = await uploadImageToCloudinary(
-    //     thumbnail,
-    //     process.env.FOLDER_NAME
-    //   )
-    //   course.thumbnail = thumbnailImage.secure_url
-    // }
+    if (req.files) {
+      console.log("thumbnail update")
+      const thumbnail = req.files.thumbnail
+      const thumbnailImage = await uploadImageToCloudinary(
+        thumbnail,
+        process.env.FOLDER_NAME
+      )
+      company.thumbnail = thumbnailImage.secure_url
+    }
 
     // Update only the fields that are present in the request body
     for (const key in updates) {
       if (updates.hasOwnProperty(key)) {
-        if (key === "branch" || key === "batch" || key === "instructions") {
-          job[key] = JSON.parse(updates[key])
-        } else {
-          job[key] = updates[key]
-        }
+        company[key] = updates[key]
       }
     }
 
-    await job.save()
+    await company.save()
 
-    const updatedJob = await Job.findOne({
-      _id: jobId,
+    const updatedCompany = await Company.findOne({
+      _id: companyId,
     })
-    //   .populate({
-    //     path: "instructor",
-    //     populate: {
-    //       path: "additionalDetails",
-    //     },
-    //   })
-    //   .populate("category")
-    //   .populate("ratingAndReviews")
-    //   .populate({
-    //     path: "courseContent",
-    //     populate: {
-    //       path: "subSection",
-    //     },
-    //   })
-    //   .exec()
+      .populate("jobs")
+      .exec()
 
     res.json({
       success: true,
-      message: "Job updated successfully",
-      data: updatedJob,
+      message: "Company updated successfully",
+      data: updatedCompany,
     })
   } catch (error) {
     console.error(error)
@@ -147,36 +130,52 @@ exports.editCompany = async (req, res) => {
     })
   }
 }
+
 // Get Course List
-exports.getAllCourses = async (req, res) => {
+exports.getAllCompany = async (req, res) => {
   try {
-    const allCourses = await Course.find(
-      { status: "Published" },
+    const companiesWithPublishedJobs = await Company.aggregate([
       {
-        courseName: true,
-        price: true,
-        thumbnail: true,
-        instructor: true,
-        ratingAndReviews: true,
-        studentsEnrolled: true,
-      }
-    )
-      .populate("instructor")
-      .exec()
+        $lookup: {
+          from: "jobs",
+          localField: "jobs",
+          foreignField: "_id",
+          as: "jobs",
+        },
+      },
+      // {
+      //   $addFields: {
+      //     jobs: {
+      //       $filter: {
+      //         input: "$jobs",
+      //         as: "job",
+      //         cond: { $eq: ["$$job.status", "Published"] },
+      //       },
+      //     },
+      //   },
+      // },
+      {
+        $match: {
+          "jobs.0": { $exists: true }, // Ensures there's at least one published job
+        },
+      },
+    ]);
 
     return res.status(200).json({
       success: true,
-      data: allCourses,
-    })
+      data: companiesWithPublishedJobs,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(404).json({
       success: false,
-      message: `Can't Fetch Course Data`,
+      message: `Can't Fetch Company Data`,
       error: error.message,
-    })
+    });
   }
-}
+};
+
+
 // Get One Single Course Details
 // exports.getCourseDetails = async (req, res) => {
 //   try {
