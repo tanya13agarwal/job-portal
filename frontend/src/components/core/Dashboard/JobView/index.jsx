@@ -15,10 +15,8 @@ const JobView = () => {
   const [allCompany ,  setAllCompany] = useState([])
   const [allJob ,  setAllJob] = useState([])
   const [confirmationModal , setConfirmationModal] = useState(false)
-  const [specificJob , setSpecificJob] = useState()
 
   const {token} = useSelector((state) => state.auth)
-  const {job , editJob} = useSelector((state) => state.jobPost)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
