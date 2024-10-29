@@ -45,4 +45,5 @@ export const companyEndpoints = {
     EDIT_COMPANY_API: BASE_URL + "/company/editCompany",
     CREATE_COMPANY_API: BASE_URL + "/company/createCompany",
     DELETE_COMPANY_API: BASE_URL + "/company/deleteCompany",
+    GET_ALL_COMPANY_API: BASE_URL + "/company/getAllCompany",
   }

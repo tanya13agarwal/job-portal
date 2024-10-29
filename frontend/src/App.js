@@ -22,7 +22,7 @@ import MyProfile from "./components/core/Dashboard/MyProfile";
 import Settings from "./components/core/Dashboard/Settings";
 // import JobPosting from "./components/core/Dashboard/Job posting/components/JobPosting"
 import JobPosting from "./components/core/Dashboard/jobPosting"
-
+import JobView from "./components/core/Dashboard/JobView"
 
 
 
@@ -96,6 +96,7 @@ function App() {
             user?.accountType === ACCOUNT_TYPE.PLACEMENT_CELL && (
               <>
                 <Route path="/dashboard/job-posting" element={<JobPosting/>} />
+                <Route path="/dashboard/jobs" element={<JobView/>} />
                 {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
                 <Route path="dashboard/edit-course/:courseId" element = {<EditCourse/>}/>      */}

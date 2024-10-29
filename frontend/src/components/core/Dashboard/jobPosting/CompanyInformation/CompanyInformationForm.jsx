@@ -252,15 +252,15 @@ export default function CompanyInformationForm() {
             </button>
           )}
           
-        </div>
-        <div className={`${editCompany ? "ml-auto" : "flex justify-end gap-x-3"}`}>
-          <button
-            type="button"
-            onClick={goBack}
-            className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
-          >
-            Back
-          </button>
+          <div className={`${editCompany ? "ml-auto" : "flex justify-end gap-x-3"}`}>
+            <button
+              type="button"
+              onClick={goBack}
+              className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+            >
+              Back
+            </button>
+          </div>
         </div>
           
       </form>

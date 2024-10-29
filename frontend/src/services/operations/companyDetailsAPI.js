@@ -9,6 +9,7 @@ const {
   CREATE_COMPANY_API ,
   EDIT_COMPANY_API,
   DELETE_COMPANY_API,
+  GET_ALL_COMPANY_API,
 } = companyEndpoints
 
 export const fetchCompanyDetails = async (companyId) => {
@@ -25,6 +26,29 @@ export const fetchCompanyDetails = async (companyId) => {
       throw new Error(response.data.message)
     }
     result = response.data
+  } catch (error) {
+    console.log("COMPANY_DETAILS_API API ERROR............", error)
+    result = error.response.data
+    // toast.error(error.response.data.message);
+  }
+  toast.dismiss(toastId)
+  //   dispatch(setLoading(false));
+  return result
+}
+
+export const fetchAllCompanyDetails = async () => {
+  const toastId = toast.loading("Loading...")
+  //   dispatch(setLoading(true));
+  let result = null
+  try {
+    const response = await apiConnector("GET", GET_ALL_COMPANY_API)
+    console.log("COMPANY_DETAILS_API API RESPONSE............", response)
+
+    if (!response.data.success) {
+      throw new Error(response.data.message)
+    }
+    // console.log("ALL COMPANY DETAILS API RESPONSE: " , result)
+    result = response.data.data
   } catch (error) {
     console.log("COMPANY_DETAILS_API API ERROR............", error)
     result = error.response.data
