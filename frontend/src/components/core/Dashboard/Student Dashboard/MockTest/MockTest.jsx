@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate instead of useHistory
-import CampusNav from '../components/common/CampusNav';
-import TestCard from '../components/common/TestCard';
+import CampusNav from '../../../../common/CampusNav';
+import TestCard from '../../../../common/TestCard';
 
 const MockTest = () => {
   const navigate = useNavigate(); // useNavigate hook for navigation
@@ -23,25 +23,7 @@ const MockTest = () => {
 
   return (
     <>
-      <CampusNav
-            para1={"Mock Test"}
-            link1={"/test"}
-            para2={"Courses"}
-            link2={""}
-            para3={"Hackathons"}
-            link3={""}
-            para4={"Internships"}
-            link4={""}
-            para5={"Resume"}
-            link5={""}
-            para6={"Seminar"}
-            link6={""}
-            button1={"Feedback"}
-            btnLink1={""}
-            button2={"Help"}
-            btnLink2={""}
-        />
-      <div className='w-11/12 mx-auto mt-10 mb-10 flex flex-col gap-4'>
+      <div className='mt-10 mb-10 flex flex-col gap-4'>
         <div className='text-4xl mb-4 font-bold flex items-center justify-center font-edu-sa'>Mock Test</div>
         <div className=' grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 col-span-1 gap-10 justify-between'>
           {topics.map((topic) => (

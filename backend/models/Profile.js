@@ -24,6 +24,9 @@ const ProfileSchema = new Schema({
   gender: {
 		type: String,
 	},
+  course: {
+		type: String,
+	},
   addr: { 
     type: String, 
     default: null 
@@ -49,7 +52,7 @@ const ProfileSchema = new Schema({
     default: null 
   },
   
-  website: { 
+  bklgs: { 
     type: String, 
     default: null 
   },

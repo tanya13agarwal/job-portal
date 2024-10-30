@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     application : null,
+    editApplication : false,
     loading: false,
 };
   
@@ -14,10 +15,13 @@ const applicationSlice = createSlice({
             state.loading = value.payload;
         },
         setApplication(state , value) {
-            state.signupData = value.payload;
+            state.application = value.payload;
+        },
+        setEditApplication(state , value) {
+            state.editApplication = value.payload;
         },
     },
 })
 
-export const {setApplication , setLoading} = applicationSlice.actions;
+export const {setApplication , setEditApplication , setLoading} = applicationSlice.actions;
 export default applicationSlice.reducer;
