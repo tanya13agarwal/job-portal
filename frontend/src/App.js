@@ -14,7 +14,7 @@ import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
 import Test from "./pages/Test";
 import OnCampus from "./components/core/Dashboard/Student Dashboard/OnCampus";
-import MockTest from "./pages/MockTest";
+import MockTest from "./components/core/Dashboard/Student Dashboard/MockTest/MockTest";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
@@ -23,6 +23,7 @@ import Settings from "./components/core/Dashboard/Settings";
 // import JobPosting from "./components/core/Dashboard/Job posting/components/JobPosting"
 import JobPosting from "./components/core/Dashboard/jobPosting"
 import JobView from "./components/core/Dashboard/JobView"
+import { ApplyJob } from "./components/core/Dashboard/Student Dashboard/ApplyJob";
 
 
 
@@ -86,6 +87,7 @@ function App() {
                 <Route path="/dashboard/mock-test" element={<MockTest/>} />
                 <Route path="/dashboard/on-campus" element = {<OnCampus/>}/>
                 <Route path="/dashboard/on-campus/test" element = {<Test/>}/>
+                <Route path="/dashboard/on-campus/apply/:jobId" element = {<ApplyJob/>}/>
                 
               </>
             )

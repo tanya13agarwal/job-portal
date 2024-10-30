@@ -2,6 +2,7 @@ import React, { useEffect , useState} from 'react'
 import logo from "../../../../../assets/images/logo.jpeg"
 import { fetchAllPublishedCompanyDetails } from '../../../../../services/operations/companyDetailsAPI';
 import CompanyCard from '../../../../common/CompanyCard';
+import { useNavigate } from 'react-router-dom';
 
 const OnCampus = () => {
   
@@ -9,6 +10,8 @@ const OnCampus = () => {
     const [allCompany ,  setAllCompany] = useState([])
     const [allJob ,  setAllJob] = useState([])
     const [confirmationModal , setConfirmationModal] = useState(false)
+
+    const navigate = useNavigate();
   
     useEffect(() => {
       ;(async () => {
@@ -24,7 +27,7 @@ const OnCampus = () => {
     } , [allJob])
   
     const handleApplyJob = async(jobId) => {
-
+      navigate(`/dashboard/on-campus/apply/${jobId}`)
     }
   
     const handleTakeTest = async () => {
@@ -55,7 +58,7 @@ const OnCampus = () => {
                             Position={job?.jobName}
                             description={job.jobDescription}
                             jobDesc={""}
-                            btn1Handler={handleApplyJob(job._id)}
+                            btn1Handler={() => handleApplyJob(job._id)}
                             btn2Handler={handleTakeTest}
                           />
                         </div>
