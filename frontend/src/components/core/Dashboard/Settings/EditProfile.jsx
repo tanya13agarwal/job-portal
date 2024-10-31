@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
 
 export const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
+export const branches = ["CSE", "CS", "Civil", "ME", "EN", "IT", "CS/IT", "AIML", "CSE-AIML", "CSE-DS"]
+export const courses = ["B-Tech", "BCA", "MCA"]
 
 export default function EditProfile() {
   const { user } = useSelector((state) => state.profile)

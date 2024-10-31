@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { toast } from "react-hot-toast"
 import { HiOutlineCurrencyRupee } from "react-icons/hi"
@@ -9,8 +9,10 @@ import { useDispatch, useSelector } from "react-redux"
 
 // import { setCourse, setStep } from "../../../../../slices/courseSlice"
 import IconBtn from "../../../../common/IconBtn"
-import { genders } from '../../Settings/EditProfile';
+import { genders , courses , branches } from '../../Settings/EditProfile';
 import { setEditApplication } from '../../../../../slices/applicationSlice';
+import { applyForJob } from '../../../../../services/operations/jobDetailsAPI';
+import { setUser } from '../../../../../slices/profileSlice';
 // import Upload from "../Upload"
 // import ChipInput from "./ChipInput"
 // import RequirementsField from "./RequirementField";
@@ -34,7 +36,8 @@ export const ApplyJob = () => {
     const { editApplication } = useSelector((state) => state.application)
     const [loading, setLoading] = useState(false)
     // const [editCompanyName, setEditCompanyName] = useState(null)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     
     useEffect(() => {
@@ -65,17 +68,30 @@ export const ApplyJob = () => {
   
     const isFormUpdated = () => {
       const currentValues = getValues()
-      // console.log("changes after editing form values:", currentValues)
-      // if (
-      //   currentValues.companyName !== company.companyName ||
-      //   currentValues.companyShortDesc !== company.companyDescription ||
-      //   currentValues.companyLocation !== company.companyLocation || 
-      //   currentValues.companyWebsite !== company.companyWebsite ||
-      //   currentValues.companyImage !== company.thumbnail
-      // ) {
-      //   return true
-      // }
-      // return false
+      console.log("changes after editing form values:", currentValues)
+      if (
+        currentValues.firstName !== user.firstName ||
+        currentValues.lastName !== user?.lastName ||
+        currentValues.email !== user?.email || 
+        currentValues.dateOfBirth !== user?.additionalDetails?.dateOfBirth ||
+        currentValues.gender !== user?.additionalDetails?.gender ||
+        currentValues.contactNumber !== user?.additionalDetails?.ph_num ||
+        currentValues.address !== user?.additionalDetails?.addr ||
+        currentValues.semester !== user?.additionalDetails?.sem ||
+        currentValues.branch !== user?.additionalDetails?.brch ||
+        currentValues.portfolio !== user?.additionalDetails?.website ||
+        currentValues.backlogs !== user?.additionalDetails?.bklgs ||
+        currentValues.github !== user?.additionalDetails?.github ||
+        currentValues.linkedIn !== user?.additionalDetails?.linkedin ||
+        currentValues.stackOverflow !== user?.additionalDetails?.stkoflw ||
+        currentValues.codechef !== user?.additionalDetails?.codechef ||
+        currentValues.leetcode !== user?.additionalDetails?.leetcode ||
+        currentValues.course !== user?.additionalDetails?.course ||
+        currentValues.resume !== user?.additionalDetails?.resume 
+      ) {
+        return true
+      }
+      return false
     }
   
   
@@ -138,11 +154,11 @@ export const ApplyJob = () => {
           if (currentValues.stackOverflow !== user?.additionalDetails?.stkoflw) {
             formData.append("stkoflw", data.stackOverflow)
           }
-          if (currentValues.companyImage !== user?.thumbnail) {
-            formData.append("codechef", user?.additionalDetails?.codechef)
+          if (currentValues.codechef !== user?.additionalDetails?.codechef) {
+            formData.append("codechef", data.codechef)
           }
-          if (currentValues.companyImage !== user?.thumbnail) {
-            formData.append("leetcode", user?.additionalDetails?.leetcode)
+          if (currentValues.leetcode !== user?.additionalDetails?.leetcode) {
+            formData.append("leetcode", data.leetcode)
           }
           if (currentValues.course !== user?.additionalDetails?.course) {
             formData.append("course", data.course)
@@ -154,16 +170,18 @@ export const ApplyJob = () => {
             formData.append("jobId", params.jobId)
           }
           console.log("Edit Form data: ", formData)
-          // setLoading(true)
-          // const result = await editCompanyDetails(formData, token)
-          // setLoading(false)
-          // if (result) {
-          //   dispatch(setStep(3))
-          //   dispatch(setCompany(result))
-          // }
-        } else {
-          toast.error("No changes made to the form")
-        }
+          setLoading(true)
+  
+          const result = await applyForJob(formData, token)
+          console.log(result)
+          if (result) {
+            dispatch(setUser(result))
+            navigate("/dashboard/on-campus")
+          }
+          setLoading(false)
+          } else {
+            toast.error("No changes made to the form")
+          }
         return
       }
   
@@ -188,18 +206,16 @@ export const ApplyJob = () => {
       formData.append("resume", data.resume)
       formData.append("course", data.course)
       formData.append("jobId", params?.jobId)
+      formData.append("userId", user._id)
   
-      // setLoading(true)
+      setLoading(true)
   
-      // const result = await addCompanyDetails(formData, token)
-      // console.log(result)
-      // if (result) {
-      //   dispatch(setStep(3))
-      //   dispatch(setCompany(result))
-      // }
-      // else {
-      //   dispatch(setStep(2))
-      // }
+      const result = await applyForJob(formData, token)
+      console.log(result)
+      if (result) {
+        dispatch(setUser(result))
+        navigate("/dashboard/on-campus")
+      }
       setLoading(false)
     }
   
@@ -276,7 +292,7 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="dateOfBirth" className="lable-style">
-                  Date of Birth
+                  Date of Birth <sup className="text-pink-600">*</sup>
                 </label>
                 <input
                   type="date"
@@ -304,7 +320,7 @@ export const ApplyJob = () => {
                 
               <div className="flex flex-col w-full gap-2">
                 <label htmlFor="gender" className="lable-style">
-                  Gender
+                  Gender <sup className="text-pink-600">*</sup>
                 </label>
                 <select
                   type="text"
@@ -334,7 +350,7 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col w-full gap-2 ">
                 <label htmlFor="contactNumber" className="lable-style">
-                Phone Number
+                Phone Number <sup className="text-pink-600">*</sup>
                 </label>
                 <input
                   type="tel"
@@ -361,7 +377,7 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col w-full gap-2 ">
                 <label htmlFor="semester" className="lable-style">
-                  Semester
+                  Semester <sup className="text-pink-600">*</sup>
                 </label>
                 <input
                   type="number"
@@ -383,7 +399,7 @@ export const ApplyJob = () => {
             
             <div className="flex w-full flex-col gap-2">
               <label htmlFor="email" className="lable-style">
-                Email
+                Email <sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="email"
@@ -403,7 +419,7 @@ export const ApplyJob = () => {
             
             <div className="flex w-full flex-col gap-2">
               <label htmlFor="about" className="lable-style">
-                Address
+                Address <sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
@@ -433,7 +449,7 @@ export const ApplyJob = () => {
                   id="portfolio"
                   placeholder="Enter portfolio link"
                   className="form-style"
-                  {...register("portfolio", { required: true })}
+                  {...register("portfolio" , {required : false})}
                   defaultValue={user?.additionalDetails?.website}
                 />
                 {errors.portfolio && (
@@ -448,9 +464,9 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="course" className="lable-style">
-                  Course
+                  Course <sup className="text-pink-600">*</sup>
                 </label>
-                <input
+                {/* <input
                   type="text"
                   name="course"
                   id="course"
@@ -458,7 +474,24 @@ export const ApplyJob = () => {
                   className="form-style"
                   {...register("course", { required: true })}
                   defaultValue={user?.additionalDetails?.course}
-                />
+                /> */}
+                <select
+                  type="text"
+                  name="course"
+                  id="course"
+                  placeholder="Choose your course"
+                  className="form-style"
+                  {...register("course", { required: true })}
+                  defaultValue={user?.additionalDetails?.course}
+                >
+                  {courses.map((ele, i) => {
+                    return (
+                      <option key={i} value={ele}>
+                        {ele}
+                      </option>
+                    )
+                  })}
+                </select>
                 {errors.course && (
                   <span className="-mt-1 text-[12px] text-yellow-100">
                     Please enter your course.
@@ -468,9 +501,9 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="branch" className="lable-style">
-                  Branch
+                  Branch <sup className="text-pink-600">*</sup>
                 </label>
-                <input
+                {/* <input
                   type="text"
                   name="branch"
                   id="branch"
@@ -478,7 +511,24 @@ export const ApplyJob = () => {
                   className="form-style"
                   {...register("branch", { required: true })}
                   defaultValue={user?.additionalDetails?.brch}
-                />
+                /> */}
+                <select
+                  type="text"
+                  name="branch"
+                  id="branch"
+                  placeholder="Choose your branch"
+                  className="form-style"
+                  {...register("branch", { required: true })}
+                  defaultValue={user?.additionalDetails?.brch}
+                >
+                  {branches.map((ele, i) => {
+                    return (
+                      <option key={i} value={ele}>
+                        {ele}
+                      </option>
+                    )
+                  })}
+                </select>
                 {errors.branch && (
                   <span className="-mt-1 text-[12px] text-yellow-100">
                     Please enter your branch.
@@ -491,7 +541,7 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="cgpa" className="lable-style">
-                  CGPA
+                  CGPA <sup className="text-pink-600">*</sup>
                 </label>
                 <input
                   type="number"
@@ -511,7 +561,7 @@ export const ApplyJob = () => {
               
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="backlogs" className="lable-style">
-                  Backlogs
+                  Backlogs <sup className="text-pink-600">*</sup>
                 </label>
                 <input
                   type="number"
@@ -541,7 +591,7 @@ export const ApplyJob = () => {
                 id="stackOverflow"
                 placeholder="Enter stack overflow link"
                 className="form-style"
-                {...register("stackOverflow", { required: true })}
+                {...register("stackOverflow" , {required : false})}
                 defaultValue={user?.additionalDetails?.stkoflw}
               />
               {errors.stackOverflow && (
@@ -552,7 +602,7 @@ export const ApplyJob = () => {
             </div>
             <div className="flex flex-col gap-2 w-full">
               <label htmlFor="github" className="lable-style">
-                Github
+                Github <sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
@@ -582,7 +632,7 @@ export const ApplyJob = () => {
                   id="linkedIn"
                   placeholder="Enter linkedIn link"
                   className="form-style"
-                  {...register("linkedIn", { required: true })}
+                  {...register("linkedIn" , {required : false})}
                   defaultValue={user?.additionalDetails?.linkedIn}
                 />
                 {errors.linkedIn && (
@@ -606,7 +656,7 @@ export const ApplyJob = () => {
                   id="leetcode"
                   placeholder="Enter your leetcode link"
                   className="form-style"
-                  {...register("leetcode", { required: true })}
+                  {...register("leetcode" , {required : false})}
                   defaultValue={user?.additionalDetails?.leetcode}
                 />
                 {errors.leetcode && (
@@ -627,7 +677,7 @@ export const ApplyJob = () => {
                 id="codechef"
                 placeholder="Enter codechef link"
                 className="form-style"
-                {...register("codechef", { required: true })}
+                {...register("codechef" , {required : false})}
                 defaultValue={user?.additionalDetails?.codechef}
               />
               {errors.codechef && (
@@ -640,7 +690,7 @@ export const ApplyJob = () => {
             <div className="flex flex-col gap-5 lg:flex-row">
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="resume" className="lable-style">
-                  Resume
+                  Resume <sup className="text-pink-600">*</sup>
                 </label>
                 <input
                   type="text"
@@ -662,7 +712,7 @@ export const ApplyJob = () => {
 
             {/* Next Button */}
             <div className="flex justify-end gap-x-2">
-              {false && (
+              {/* {false && (
                 <button
                   // onClick={() => dispatch(setStep(2))}
                   disabled={loading}
@@ -670,9 +720,10 @@ export const ApplyJob = () => {
                 >
                   Continue Wihout Saving
                 </button>
-              )}
+              )} */}
               <IconBtn
                 disabled={loading}
+                type={"submit"}
                 text={!true ? "Next" : "Apply"}
               >
                 <MdNavigateNext />

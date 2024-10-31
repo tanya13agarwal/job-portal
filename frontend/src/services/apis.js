@@ -23,6 +23,7 @@ export const jobEndpoints = {
     // GET_ALL_job_API: BASE_URL + "/job/getAlljobs",
     JOB_DETAILS_API: BASE_URL + "/job/getJobDetails",
     EDIT_JOB_API: BASE_URL + "/job/editJob",
+    APPLY_FOR_A_JOB_API: BASE_URL + "/job/applyForJob",
     // job_CATEGORIES_API: BASE_URL + "/job/showAllCategories",
     CREATE_JOB_API: BASE_URL + "/job/createJob",
     // CREATE_SECTION_API: BASE_URL + "/job/addSection",

@@ -3,6 +3,8 @@ import logo from "../../../../../assets/images/logo.jpeg"
 import { fetchAllPublishedCompanyDetails } from '../../../../../services/operations/companyDetailsAPI';
 import CompanyCard from '../../../../common/CompanyCard';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { JOB_STATUS } from '../../../../../utils/constants';
 
 const OnCampus = () => {
   
@@ -10,7 +12,8 @@ const OnCampus = () => {
     const [allCompany ,  setAllCompany] = useState([])
     const [allJob ,  setAllJob] = useState([])
     const [confirmationModal , setConfirmationModal] = useState(false)
-
+    const { user } = useSelector((state) => state.profile)
+    console.log("COMPANY CARD: " , user?.additionalDetails?.jobEnrolled?.includes("671e5f79fbda65ad2bf2f680"))
     const navigate = useNavigate();
   
     useEffect(() => {
@@ -25,6 +28,7 @@ const OnCampus = () => {
         setLoading(false)
       })()
     } , [allJob])
+    
   
     const handleApplyJob = async(jobId) => {
       navigate(`/dashboard/on-campus/apply/${jobId}`)
@@ -51,15 +55,17 @@ const OnCampus = () => {
                     <div key={index}>
                       {
                         company.jobs.map((job) => (
-                          <div className={``}>
+                          <div key={job._id} className={``}>
                             <CompanyCard 
                             image = {company.thumbnail}
                             CompanyName={company.companyName}
                             Position={job?.jobName}
                             description={job.jobDescription}
                             jobDesc={""}
+                            status = {user?.additionalDetails?.jobEnrolled?.includes(job?._id) ? JOB_STATUS.PUBLISHED : JOB_STATUS.DRAFT}
                             btn1Handler={() => handleApplyJob(job._id)}
                             btn2Handler={handleTakeTest}
+                            compbtn1 = {user?.additionalDetails?.jobEnrolled?.includes(job?._id) ? "Edit Application" : "Apply Now"}
                           />
                         </div>
                         ))

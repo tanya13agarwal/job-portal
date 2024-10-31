@@ -11,6 +11,7 @@ const {
   // GET_ALL_COURSE_API,
   CREATE_JOB_API,
   EDIT_JOB_API,
+  APPLY_FOR_A_JOB_API,
   DELETE_JOB_API,
   // GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   // CREATE_RATING_API,
@@ -115,6 +116,29 @@ export const editJobDetails = async (data, token) => {
     result = response?.data?.data
   } catch (error) {
     console.log("EDIT JOB API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+// edit the course details
+export const applyForJob = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Loading...")
+  try {
+    const response = await apiConnector("POST", APPLY_FOR_A_JOB_API, data, {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("APPLY FOR A JOB API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Apply For Job")
+    }
+    toast.success("Job Applied Successfully")
+    result = response?.data?.data
+  } catch (error) {
+    console.log("APPLY FOR A JOB API ERROR............", error)
     toast.error(error.message)
   }
   toast.dismiss(toastId)
