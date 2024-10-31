@@ -3,6 +3,7 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
 const Job = require("../models/Job")
 const Company = require("../models/Company")
+const User = require("../models/User")
 
 // Function to create a new course
 exports.createJob = async (req, res) => {
@@ -133,6 +134,59 @@ exports.editJob = async (req, res) => {
     })
   }
 }
+
+
+exports.applyForJob = async (req, res) => {
+  try {
+    const { jobId } = req.body;
+    const { userId } = req.body;
+    const updates = req.body;
+
+    // Fetch the user profile based on userId
+    const user = await User.findById(userId).populate('additionalDetails');
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Fetch job details to verify job exists
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    // Update user details if they are provided in the request
+    for (const key in updates) {
+      if (user.additionalDetails[key] !== undefined && updates[key] !== user.additionalDetails[key]) {
+        user.additionalDetails[key] = updates[key];
+      }
+    }
+
+    // Save updated user profile details
+    await user.additionalDetails.save();
+
+    // Add jobId to user's jobEnrolled array if not already enrolled
+    if (!user.additionalDetails.jobEnrolled.includes(jobId)) {
+      user.additionalDetails.jobEnrolled.push(jobId);
+      await user.additionalDetails.save();
+    }
+
+    res.json({
+      success: true,
+      message: "Application submitted successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+};
+
+
+
 // Get Course List
 exports.getAllJobs = async (req, res) => {
   try {

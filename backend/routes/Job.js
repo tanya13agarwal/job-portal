@@ -11,6 +11,7 @@ const {
   getJobDetails,
   getFullCourseDetails,
   editJob,
+  applyForJob,
   getInstructorCourses,
   deleteJob,
 } = require("../controllers/Job")
@@ -44,6 +45,8 @@ router.post("/getJobDetails", getJobDetails)
 // router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // Edit Course routes
 router.post("/editJob", auth, isPlacement, editJob)
+//Apply For A Job
+router.post("/applyForJob", auth, isStudent, applyForJob)
 // Get all Courses Under a Specific Instructor
 // router.get("/getInstructorCourses", auth, isPlacement, getInstructorCourses)
 // Delete a Course
