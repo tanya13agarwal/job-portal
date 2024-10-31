@@ -35,7 +35,7 @@ const OnCampus = () => {
     }
   
     const handleTakeTest = async () => {
-      
+      navigate("/dashboard/on-campus/test");
     }
   
     return (

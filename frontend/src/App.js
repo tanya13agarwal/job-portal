@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import VerifyEmail from "./pages/VerifyEmail";
-import Test from "./pages/Test";
+import Test from "./components/core/Dashboard/Student Dashboard/OnCampus/Test";
 import OnCampus from "./components/core/Dashboard/Student Dashboard/OnCampus";
 import MockTest from "./components/core/Dashboard/Student Dashboard/MockTest/MockTest";
 import AdminLogin from "./pages/Admin/AdminLogin";
@@ -24,6 +24,7 @@ import Settings from "./components/core/Dashboard/Settings";
 import JobPosting from "./components/core/Dashboard/jobPosting"
 import JobView from "./components/core/Dashboard/JobView"
 import { ApplyJob } from "./components/core/Dashboard/Student Dashboard/ApplyJob";
+import Resume from "./components/core/Dashboard/Student Dashboard/resume";
 
 
 
@@ -88,6 +89,7 @@ function App() {
                 <Route path="/dashboard/on-campus" element = {<OnCampus/>}/>
                 <Route path="/dashboard/on-campus/test" element = {<Test/>}/>
                 <Route path="/dashboard/on-campus/apply/:jobId" element = {<ApplyJob/>}/>
+                <Route path="/dashboard/resume" element = {<Resume/>}/>
                 
               </>
             )
