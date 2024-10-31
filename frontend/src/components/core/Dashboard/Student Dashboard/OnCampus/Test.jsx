@@ -18,7 +18,7 @@ const Test = () => {
   const navigate = useNavigate();
 
   const backBtn = () => {
-    navigate("/on-campus")
+    navigate("/dashboard/on-campus")
   }
 
   // Fetch a question from the API and start the timer
@@ -97,7 +97,7 @@ const Test = () => {
                 <IoMdArrowRoundBack className='text-2xl'/>
             </button>
             
-            <div className="p-6 w-11/12 mx-auto bg-white mt-10 rounded-lg font mb-10">
+            <div className="p-6  mx-auto bg-white mt-10 rounded-lg font mb-10">
                 <h1 className="text-2xl font-bold mb-4 flex items-center justify-center font-edu-sa">Test Finished</h1>
                 <p className="text-xl font-semibold mb-4 flex items-center justify-center font-edu-sa">Your Score: {score} / 30</p>
             </div>
@@ -107,11 +107,11 @@ const Test = () => {
 
   return (
     <>
-        <button  onClick={backBtn} className='bg-customDarkBlue text-white w-[50px] px-3 py-3 mt-3 mx-5 rounded-full'>
+        <button  onClick={backBtn} className='bg-customDarkBlue text-white w-[50px] px-3 py-3 mt-3  rounded-full'>
             <IoMdArrowRoundBack className='text-2xl'/>
         </button>
 
-        <div className="p-6 w-11/12 mx-auto bg-white mt-10 rounded-lg font mb-10">
+        <div className="p-6  mx-auto bg-white mt-10 rounded-lg font mb-10">
         <h1 className="text-2xl font-bold mb-4 flex items-center justify-center font-edu-sa">Aptitude Mock Test</h1>
         <div className='flex items-center justify-between my-4'>
             <div className=" mb-4 bg-transparent border border-customDarkBlue px-4 py-2 rounded-md">
