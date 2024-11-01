@@ -9,6 +9,7 @@ const {
   UPDATE_DISPLAY_PICTURE_API,
   UPDATE_PROFILE_API,
   CHANGE_PASSWORD_API,
+  GET_ALL_PROFILE_API,
   DELETE_PROFILE_API,
 } = settingsEndpoints
 
@@ -73,6 +74,35 @@ export function updateProfile(token, formData) {
     }
     toast.dismiss(toastId)
   }
+}
+
+
+export async function getAllUser(token) {
+    const toastId = toast.loading("Loading...")
+    let result;
+    try {
+      const response = await apiConnector("GET", GET_ALL_PROFILE_API, {
+        Authorization: `Bearer ${token}`,
+      })
+      console.log("GET_ALL_PROFILE_API API RESPONSE............", response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+      
+      // console.log("sdfsd" , response?.data?.data)
+      result = response?.data?.data;
+      // localStorage.removeItem("user");
+      // localStorage.setItem("user", JSON.stringify(response?.data?.updatedUserDetails));
+
+      // console.log(""response.data)
+      toast.success("Students fetched Successfully")
+    } catch (error) {
+      console.log("GET_ALL_PROFILE_API API ERROR............", error)
+      toast.error("Could Not Fetch Students")
+    }
+    toast.dismiss(toastId)
+    return result;
 }
 
 export async function changePassword(token, formData) {
