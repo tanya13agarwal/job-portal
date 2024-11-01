@@ -147,6 +147,25 @@ exports.getAllUserDetails = async (req, res) => {
   }
 }
 
+exports.getAllUser = async (req, res) => {
+  try {
+    const userDetails = await User.find({accountType : "Student"})
+      .populate("additionalDetails")
+      .exec()
+    console.log(userDetails)
+    res.status(200).json({
+      success: true,
+      message: "User Data fetched successfully",
+      data: userDetails,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    })
+  }
+}
+
 exports.updateDisplayPicture = async (req, res) => {
   try {
     const displayPicture = req.files.displayPicture

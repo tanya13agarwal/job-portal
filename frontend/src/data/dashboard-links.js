@@ -9,7 +9,7 @@ export const sidebarLinks = [
   {
     id: 2,
     name: "Dashboard",
-    path: "/dashboard/instructor",
+    path: "/dashboard/placement",
     type: ACCOUNT_TYPE.PLACEMENT_CELL,
     icon: "VscDashboard",
   },
