@@ -737,16 +737,15 @@ export const ApplyJob = () => {
       </div>
       
       <div className="sticky top-10 hidden max-w-[400px] flex-1 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 xl:block">
-          <p className="mb-8 text-lg text-richblack-5">⚡ Apply Job Tips</p>
+          <p className="mb-8 text-lg text-richblack-5">⚡ Job Application Tips</p>
           <ul className="ml-5 list-item list-disc space-y-4 text-xs text-richblack-5">
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing.</li>
+            <li>Tailor your resume: Customize your resume for each job application and focus on the most relevant information. Keep it to one page so that hiring managers can quickly assess your qualifications. </li>
+            <li>Follow directions: Pay close attention to the application instructions and follow them carefully. Recruiters and hiring managers often reject candidates who don't follow directions. </li>
+            <li>Research the company: Learn about the company by reading the job posting, visiting their website, and checking out their blog. You can also read about the people who work there and learn about the company's news.  </li>
+            <li>Proofread: Review your resume for grammar, punctuation, and spelling errors. Proofreading shows that you are diligent and meticulous, and that you can communicate information in a professional and concise manner.</li>
+            <li>Use a professional name and email address. </li>
+            <li>Tidy your social media profiles. </li>
+            <li>Review before submitting. </li>
           </ul>
         </div>
     </div>
