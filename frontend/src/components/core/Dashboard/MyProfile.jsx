@@ -185,9 +185,10 @@ export default function MyProfile() {
                             <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
                         </div>
                         <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
+                            <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
+                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number Link"}</p>
                         </div>
+                        
                         <div>
                             <p className='mb-2 text-sm text-richblack-600'>Github</p>
                             <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.github ?? "Add Github"}</p>
@@ -199,6 +200,10 @@ export default function MyProfile() {
                         <div>
                             <p className='mb-2 text-sm text-richblack-600'>Codechef</p>
                             <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
+                        </div>
+                        <div>
+                            <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
+                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
                         </div>
                     </div>
                 </div>

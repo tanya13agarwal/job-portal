@@ -30,6 +30,7 @@ exports.updateProfile = async (req, res) => {
       codechef = "",
       leetcode = "",
       resume = "",
+      rollNo = "",
     } = req.body
 
     console.log("REQ BODY : ", req.body)
@@ -65,6 +66,7 @@ exports.updateProfile = async (req, res) => {
     profile.stkoflw = stackOverflow || profile.stkoflw
     profile.codechef = codechef || profile.codechef
     profile.leetcode = leetcode || profile.leetcode
+    profile.rollNo = rollNo || profile.rollNo
     profile.resume = resume || profile.resume
 
     // Save the updated profile
@@ -105,13 +107,13 @@ exports.deleteAccount = async (req, res) => {
     await Profile.findByIdAndDelete({
       _id: new mongoose.Types.ObjectId(user.additionalDetails),
     })
-    for (const courseId of user.courses) {
-      await Course.findByIdAndUpdate(
-        courseId,
-        { $pull: { studentsEnroled: id } },
-        { new: true }
-      )
-    }
+    // for (const courseId of user.courses) {
+    //   await Course.findByIdAndUpdate(
+    //     courseId,
+    //     { $pull: { studentsEnroled: id } },
+    //     { new: true }
+    //   )
+    // }
     // Now Delete User
     await User.findByIdAndDelete({ _id: id })
     res.status(200).json({

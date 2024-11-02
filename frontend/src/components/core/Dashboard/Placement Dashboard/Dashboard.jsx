@@ -80,22 +80,83 @@ const lineChartOptions = {
       {
         label: 'Students Enrolled',
         data: processedStudentData.map(item => item.count),
-        borderColor: '#4F46E5',
-        backgroundColor: '#A5B4FC',
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
         tension: 0.3,
       },
     ],
   };
 
+  // Preprocess student placed per year data for the line chart
+  const preprocessPlacementData = (data) => {
+    const startYear = 2024;
+    const currentYear = new Date().getFullYear();
+    const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
+
+    const dataMap = new Map(data.map(item => [item._id, item.count || item.totalApplications || 0]));
+    
+    return yearsRange.map(year => ({
+      _id: year,
+      count: dataMap.get(year) || 0,
+    }));
+  };
+
+  const processedPlacementData = preprocessPlacementData(stats?.studentPlacedPerYear || []);
+
+  // Line chart data for students placed per year
+  const linedChartData = {
+    labels: processedPlacementData.map(item => item._id),
+    datasets: [
+      {
+        label: 'Students Placed',
+        data: processedPlacementData.map(item => item.count),
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+        tension: 0.3,
+      },
+    ],
+  };
+
+  // Line Chart Options for integer-only y-axis
+  const linedChartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          precision: 0,
+          callback: function(value) {
+            if (Number.isInteger(value)) {
+              return value;
+            }
+          }
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top'
+      }
+    },
+    maintainAspectRatio: false
+  };
+
   // Job Applications per Year Chart Data
-const jobApplicationsChartData = {
+  const jobApplicationsChartData = {
     labels: stats?.studentJobEnrollments.map(item => item.studentName), // Student names
     datasets: [
       {
         label: 'Jobs Enrolled',
         data: stats?.studentJobEnrollments.map(item => item.jobCount), // Job counts per student
-        borderColor: '#4F46E5',
-        backgroundColor: '#A5B4FC',
+        fill : true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
         tension: 0.3,
       },
     ],
@@ -145,7 +206,7 @@ const jobApplicationsChartData = {
       {
         label: 'Number of Jobs',
         data: stats?.companyData?.map(item => item.jobCount) || [],
-        backgroundColor: '#4F46E5',
+        backgroundColor: "rgba(75,192,192,1)",
       },
     ],
   };
@@ -193,6 +254,13 @@ const jobApplicationsChartData = {
             <Line data={lineChartData} options={lineChartOptions} />
           </div>
         </div>
+
+        <section className="bg-white p-6 rounded-xl shadow-lg h-[300px] ">
+          <h3 className="text-xl font-semibold mb-4">Students Placed per Year</h3>
+          <div className="h-[200px]">
+            <Line data={linedChartData} options={linedChartOptions} />
+          </div>
+        </section>
       </section>
       {/* Line Chart for Job Applications per Year */}
       <div className="bg-white mt-6 p-6 rounded-xl shadow-lg h-[300px]">
