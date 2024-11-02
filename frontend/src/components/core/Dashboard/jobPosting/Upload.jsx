@@ -21,22 +21,40 @@ export default function Upload({
   const [previewSource, setPreviewSource] = useState(
     viewData ? viewData : editData ? editData : ""
   );
+  const [validationError, setValidationError] = useState("");
   const inputRef = useRef(null);
 
-  const onDrop = (acceptedFiles) => {
+  const onDrop = (acceptedFiles, rejectedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
-      previewFile(file);
-      setSelectedFile(file);
+      if (validateFile(file)) {
+        previewFile(file);
+        setSelectedFile(file);
+        setValidationError(""); // Clear any previous validation error
+      }
+    } else if (rejectedFiles.length > 0) {
+      setValidationError("Invalid file format or size exceeded 5MB.");
     }
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: !video
-      ? { "image/*": [".jpeg", ".jpg", ".png"] }
-      : { "video/*": [".mp4"] },
+    accept: { "image/*": [".jpeg", ".jpg", ".png"] },
+    maxSize: 5 * 1024 * 1024, // 5MB size limit
     onDrop,
   });
+
+  const validateFile = (file) => {
+    const validFormats = ["image/jpeg", "image/jpg", "image/png"];
+    if (!validFormats.includes(file.type)) {
+      setValidationError("Invalid file format. Only JPEG, JPG, or PNG allowed.");
+      return false;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setValidationError("File size exceeds the 5MB limit.");
+      return false;
+    }
+    return true;
+  };
 
   const previewFile = (file) => {
     const reader = new FileReader();
@@ -72,15 +90,11 @@ export default function Upload({
       >
         {previewSource ? (
           <div className="flex w-full flex-col p-6">
-            {!video ? (
-              <img
-                src={previewSource}
-                alt="Preview"
-                className="h-full w-full rounded-md object-cover"
-              />
-            ) : (
-              <Player aspectRatio="16:9" playsInline src={previewSource} />
-            )}
+            <img
+              src={previewSource}
+              alt="Preview"
+              className="h-full w-full rounded-md object-cover"
+            />
             {!viewData && (
               <button
                 type="button"
@@ -88,6 +102,7 @@ export default function Upload({
                   setPreviewSource("");
                   setSelectedFile(null);
                   setValue(name, null);
+                  setValidationError("");
                 }}
                 className="mt-3 text-richblack-400 underline"
               >
@@ -99,26 +114,34 @@ export default function Upload({
           <div
             className="flex w-full flex-col items-center p-6"
             {...getRootProps()}
+            onClick={handleBrowseClick}
           >
             <input {...getInputProps()} ref={inputRef} />
-            <div
-              className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800"
-              onClick={handleBrowseClick}
-            >
+            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
               <FiUploadCloud className="text-2xl text-yellow-50" />
             </div>
             <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
-              Drag and drop an {!video ? "image" : "video"}, or click to{" "}
-              <span className="font-semibold text-yellow-50">Browse</span> a
-              file
+              Drag and drop an image, or click to{" "}
+              <span
+                className="font-semibold text-yellow-50 cursor-pointer"
+                onClick={handleBrowseClick}
+              >
+                Browse
+              </span>{" "}
+              a file
             </p>
-            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center  text-xs text-richblack-200">
+            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-richblack-200">
               <li>Aspect ratio 16:9</li>
               <li>Recommended size 1024x576</li>
             </ul>
           </div>
         )}
       </div>
+      {validationError && (
+        <span className="ml-2 text-xs tracking-wide text-red-500">
+          {validationError}
+        </span>
+      )}
       {errors[name] && (
         <span className="ml-2 text-xs tracking-wide text-pink-200">
           {label} is required
