@@ -11,7 +11,7 @@ OpportuNest is an AI-powered job portal designed to streamline the placement pro
 
 <h2>🚀 Live </h2>
 
-[Opportunest](https://job-portal-beige-three.vercel.app/)
+[Opportunest](https://job-portal-2ouddu1v8-tanya13agarwals-projects.vercel.app/)
 
 <br></br>
   
