@@ -4,6 +4,10 @@ import { FaBell } from 'react-icons/fa';
 import { Line, Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { Chart, registerables } from 'chart.js';
+import { useSelector } from 'react-redux';
+import logo from "../../../../assets/images/logo.jpeg";
+import { MdAdminPanelSettings } from "react-icons/md";
+
 
 // Register the necessary components
 Chart.register(...registerables);
@@ -13,6 +17,9 @@ const DashboardLayout = () => {
   const currentDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
   });
+
+  const { user } = useSelector((state) => state.profile)
+  console.log("user",user)
 
   useEffect(() => {
     // Fetch the dashboard data
@@ -228,17 +235,18 @@ const lineChartOptions = {
     <div className="flex flex-col p-6">
       {/* Header */}
       <header className="flex p-4 rounded-xl shadow-lg bg-white items-center justify-between mb-6">
-        <div className="flex items-center rounded-full w-full max-w-md px-4 py-2">
-          <FiSearch className="text-gray-400 mr-2 text-2xl" />
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-full p-3 rounded-full bg-[#EAE4DD] border-none outline-none "
-          />
+        
+        <img src = {logo} alt = 'logo' className='w-[150px] '/>
+        
+        <div className='text-xl flex text-gray-700 items-center gap-2 '>
+          <MdAdminPanelSettings className='text-4xl'/>
+          {
+            user?.firstName + " " + user?.lastName
+          }
         </div>
         
         {/* Date and Notification */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
           <p>{currentDate}</p>
           <FaBell className="text-xl text-gray-500 cursor-pointer" />
         </div>
@@ -255,12 +263,12 @@ const lineChartOptions = {
           </div>
         </div>
 
-        <section className="bg-white p-6 rounded-xl shadow-lg h-[300px] ">
+        <div className="bg-white p-6 rounded-xl shadow-lg h-[300px]">
           <h3 className="text-xl font-semibold mb-4">Students Placed per Year</h3>
           <div className="h-[200px]">
             <Line data={linedChartData} options={linedChartOptions} />
           </div>
-        </section>
+        </div>
       </section>
       {/* Line Chart for Job Applications per Year */}
       <div className="bg-white mt-6 p-6 rounded-xl shadow-lg h-[300px]">
