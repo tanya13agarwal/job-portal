@@ -36,6 +36,16 @@ const ProfileSchema = new Schema({
     maxlength: 10, 
     default: null 
   },
+
+  rollNo: {
+    type: Number,
+    // default: true,
+  },
+
+  isPlaced : {
+      type: Boolean,
+      default: false,
+  },
   
   brch: { 
     type: String, 

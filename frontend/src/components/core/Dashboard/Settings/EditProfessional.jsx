@@ -98,21 +98,21 @@ export default function EditProfessional() {
               )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="stackOverflow" className="lable-style">
-                Stack Overflow
+              <label htmlFor="rollNo" className="lable-style">
+                Roll Number
               </label>
               <input
                 type="text"
-                name="stackOverflow"
-                id="stackOverflow"
-                placeholder="Enter stack overflow link"
+                name="rollNo"
+                id="rollNo"
+                placeholder="Enter Roll Number link"
                 className="form-style"
-                {...register("stackOverflow", { required: true })}
-                defaultValue={user?.additionalDetails?.stkoflw}
+                {...register("rollNo", { required: true })}
+                defaultValue={user?.additionalDetails?.rollNo}
               />
-              {errors.stackOverflow && (
+              {errors.rollNo && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your stack overflow link.
+                  Please enter your Roll Number.
                 </span>
               )}
             </div>
@@ -242,6 +242,25 @@ export default function EditProfessional() {
           </div>
 
           <div className="flex flex-col gap-5 lg:flex-row">
+            <div className="flex flex-col gap-2 lg:w-[48%]">
+              <label htmlFor="stackOverflow" className="lable-style">
+                Stack Overflow
+              </label>
+              <input
+                type="text"
+                name="stackOverflow"
+                id="stackOverflow"
+                placeholder="Enter stack overflow link"
+                className="form-style"
+                {...register("stackOverflow", { required: true })}
+                defaultValue={user?.additionalDetails?.stkoflw}
+              />
+              {errors.stackOverflow && (
+                <span className="-mt-1 text-[12px] text-yellow-100">
+                  Please enter your stack overflow link.
+                </span>
+              )}
+            </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="resume" className="lable-style">
                 Resume
