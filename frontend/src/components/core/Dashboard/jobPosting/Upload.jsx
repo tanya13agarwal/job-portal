@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
-// import { useSelector } from "react-redux";
-
-import "video-react/dist/video-react.css";
-import { Player } from "video-react";
 
 export default function Upload({
   name,
@@ -12,11 +8,11 @@ export default function Upload({
   register,
   setValue,
   errors,
-  video = false,
+  acceptedExtensions = [".jpeg", ".jpg", ".png"], // Default extensions
+  fileTypeLabel = "an image", // Default label
   viewData = null,
   editData = null,
 }) {
-  // const { job } = useSelector((state) => state.jobPost);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewSource, setPreviewSource] = useState(
     viewData ? viewData : editData ? editData : ""
@@ -24,11 +20,21 @@ export default function Upload({
   const [validationError, setValidationError] = useState("");
   const inputRef = useRef(null);
 
+  const isImageFile = (file) => {
+    const imageExtensions = [".jpeg", ".jpg", ".png"];
+    const fileExtension = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+    return imageExtensions.includes(fileExtension);
+  };
+
   const onDrop = (acceptedFiles, rejectedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
       if (validateFile(file)) {
-        previewFile(file);
+        if (isImageFile(file)) {
+          previewFile(file);
+        } else {
+          setPreviewSource(null); // Clear image preview for non-image files
+        }
         setSelectedFile(file);
         setValidationError(""); // Clear any previous validation error
       }
@@ -38,15 +44,14 @@ export default function Upload({
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: { "image/*": [".jpeg", ".jpg", ".png"] },
     maxSize: 5 * 1024 * 1024, // 5MB size limit
     onDrop,
   });
 
   const validateFile = (file) => {
-    const validFormats = ["image/jpeg", "image/jpg", "image/png"];
-    if (!validFormats.includes(file.type)) {
-      setValidationError("Invalid file format. Only JPEG, JPG, or PNG allowed.");
+    const fileExtension = file.name.slice(file.name.lastIndexOf("."));
+    if (!acceptedExtensions.includes(fileExtension.toLowerCase())) {
+      setValidationError(`Invalid file format. Only ${fileTypeLabel} allowed.`);
       return false;
     }
     if (file.size > 5 * 1024 * 1024) {
@@ -66,13 +71,11 @@ export default function Upload({
 
   useEffect(() => {
     register(name, { required: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [register]);
+  }, [register, name]);
 
   useEffect(() => {
     setValue(name, selectedFile);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFile, setValue]);
+  }, [selectedFile, setValue, name]);
 
   const handleBrowseClick = () => {
     inputRef.current.click();
@@ -87,52 +90,70 @@ export default function Upload({
         className={`${
           isDragActive ? "bg-richblack-600" : "bg-richblack-700"
         } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500`}
+        {...getRootProps()}
       >
-        {previewSource ? (
-          <div className="flex w-full flex-col p-6">
-            <img
-              src={previewSource}
-              alt="Preview"
-              className="h-full w-full rounded-md object-cover"
-            />
-            {!viewData && (
-              <button
-                type="button"
-                onClick={() => {
-                  setPreviewSource("");
-                  setSelectedFile(null);
-                  setValue(name, null);
-                  setValidationError("");
-                }}
-                className="mt-3 text-richblack-400 underline"
-              >
-                Cancel
-              </button>
-            )}
-          </div>
+        <input {...getInputProps()} ref={inputRef} />
+        {selectedFile ? (
+          isImageFile(selectedFile) ? (
+            <div className="flex w-full flex-col p-6">
+              <img
+                src={previewSource}
+                alt="Preview"
+                className="h-full w-full rounded-md object-cover"
+              />
+              {!viewData && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPreviewSource("");
+                    setSelectedFile(null);
+                    setValue(name, null);
+                    setValidationError("");
+                  }}
+                  className="mt-3 text-richblack-400 underline"
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center p-6">
+              <p className="text-sm text-richblack-200">
+                {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
+              </p>
+              {!viewData && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedFile(null);
+                    setValue(name, null);
+                    setValidationError("");
+                  }}
+                  className="mt-3 text-richblack-400 underline"
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          )
         ) : (
-          <div
-            className="flex w-full flex-col items-center p-6"
-            {...getRootProps()}
-            onClick={handleBrowseClick}
-          >
-            <input {...getInputProps()} ref={inputRef} />
+          <div className="flex w-full flex-col items-center p-6">
             <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
               <FiUploadCloud className="text-2xl text-yellow-50" />
             </div>
             <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
-              Drag and drop an image, or click to{" "}
+              Drag and drop {fileTypeLabel}, or{" "}
               <span
                 className="font-semibold text-yellow-50 cursor-pointer"
                 onClick={handleBrowseClick}
               >
                 Browse
               </span>{" "}
-              a file
+              to select a file
             </p>
             <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-richblack-200">
-              <li>Aspect ratio 16:9</li>
-              <li>Recommended size 1024x576</li>
+              <li>Max file size 5MB</li>
+              <li>Allowed formats: {acceptedExtensions.join(", ")}</li>
             </ul>
           </div>
         )}
