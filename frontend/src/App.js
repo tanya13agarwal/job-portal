@@ -26,6 +26,7 @@ import JobView from "./components/core/Dashboard/JobView"
 import { ApplyJob } from "./components/core/Dashboard/Student Dashboard/ApplyJob";
 import Resume from "./components/core/Dashboard/Student Dashboard/resume";
 import PlacementDashboard from "./components/core/Dashboard/Placement Dashboard/Dashboard"
+import StudentDashboard from "./components/core/Dashboard/Student Dashboard/StudentDashboard";
 
 
 
@@ -91,6 +92,7 @@ function App() {
                 <Route path="/dashboard/on-campus/test" element = {<Test/>}/>
                 <Route path="/dashboard/on-campus/apply/:jobId" element = {<ApplyJob/>}/>
                 <Route path="/dashboard/resume" element = {<Resume/>}/>
+                <Route path="/dashboard/student" element = {<StudentDashboard/>}/>
                 
               </>
             )
