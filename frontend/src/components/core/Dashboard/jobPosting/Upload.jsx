@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
+import { AiOutlineFile } from "react-icons/ai"; // Icon for non-image, non-PDF files
 
 export default function Upload({
   name,
@@ -8,8 +9,8 @@ export default function Upload({
   register,
   setValue,
   errors,
-  acceptedExtensions = [".jpeg", ".jpg", ".png"], // Default extensions
-  fileTypeLabel = "an image", // Default label
+  acceptedExtensions = [".jpeg", ".jpg", ".png", ".pdf", ".doc", ".docx"],
+  fileTypeLabel = "an image or document",
   viewData = null,
   editData = null,
 }) {
@@ -26,17 +27,22 @@ export default function Upload({
     return imageExtensions.includes(fileExtension);
   };
 
+  const isPdfFile = (file) => {
+    return file.name.slice(file.name.lastIndexOf(".")).toLowerCase() === ".pdf";
+  };
+
   const onDrop = (acceptedFiles, rejectedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
       if (validateFile(file)) {
         if (isImageFile(file)) {
           previewFile(file);
-        } else {
-          setPreviewSource(null); // Clear image preview for non-image files
+        } else if (isPdfFile(file)) {
+          const pdfUrl = URL.createObjectURL(file);
+          setPreviewSource(pdfUrl);
         }
         setSelectedFile(file);
-        setValidationError(""); // Clear any previous validation error
+        setValidationError("");
       }
     } else if (rejectedFiles.length > 0) {
       setValidationError("Invalid file format or size exceeded 5MB.");
@@ -94,48 +100,39 @@ export default function Upload({
       >
         <input {...getInputProps()} ref={inputRef} />
         {selectedFile ? (
-          isImageFile(selectedFile) ? (
-            <div className="flex w-full flex-col p-6">
+          <div className="flex w-full flex-col items-center p-6">
+            {isImageFile(selectedFile) ? (
               <img
                 src={previewSource}
                 alt="Preview"
-                className="h-full w-full rounded-md object-cover"
+                className="h-32 w-32 rounded-md object-cover"
               />
-              {!viewData && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setPreviewSource("");
-                    setSelectedFile(null);
-                    setValue(name, null);
-                    setValidationError("");
-                  }}
-                  className="mt-3 text-richblack-400 underline"
-                >
-                  Cancel
-                </button>
-              )}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center p-6">
-              <p className="text-sm text-richblack-200">
-                {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
-              </p>
-              {!viewData && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSelectedFile(null);
-                    setValue(name, null);
-                    setValidationError("");
-                  }}
-                  className="mt-3 text-richblack-400 underline"
-                >
-                  Cancel
-                </button>
-              )}
-            </div>
-          )
+            ) : isPdfFile(selectedFile) ? (
+              <iframe
+                src={previewSource}
+                title="PDF Preview"
+                className="h-32 w-full rounded-md"
+                style={{ border: "none" }}
+              />
+            ) : (
+              <div className="flex items-center space-x-2">
+                <AiOutlineFile className="text-4xl text-richblack-200" />
+                <p className="text-sm text-richblack-200">{selectedFile.name}</p>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={() => {
+                setPreviewSource("");
+                setSelectedFile(null);
+                setValue(name, null);
+                setValidationError("");
+              }}
+              className="mt-3 text-richblack-400 underline"
+            >
+              Cancel
+            </button>
+          </div>
         ) : (
           <div className="flex w-full flex-col items-center p-6">
             <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
