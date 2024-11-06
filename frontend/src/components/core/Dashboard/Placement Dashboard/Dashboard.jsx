@@ -13,6 +13,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 Chart.register(...registerables);
 
 const DashboardLayout = () => {
+  const [loading , setLoading] = useState(false) 
   const [stats, setStats] = useState(null);
   const currentDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
@@ -24,12 +25,14 @@ const DashboardLayout = () => {
   useEffect(() => {
     // Fetch the dashboard data
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard/dashboard-stats`);
         setStats(response.data.data);
       } catch (error) {
         console.error('Error fetching dashboard stats:', error);
       }
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -66,7 +69,7 @@ const lineChartOptions = {
   
   // Line Chart Data with preprocessing for 2024 as the starting year
   const preprocessStudentData = (data) => {
-    const startYear = 2024;
+    const startYear = 2023;
     const currentYear = new Date().getFullYear();
     const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
   
@@ -87,6 +90,7 @@ const lineChartOptions = {
       {
         label: 'Students Enrolled',
         data: processedStudentData.map(item => item.count),
+        fill : true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
         tension: 0.3,
@@ -117,6 +121,7 @@ const lineChartOptions = {
       {
         label: 'Students Placed',
         data: processedPlacementData.map(item => item.count),
+        fill : true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
         tension: 0.3,
@@ -164,7 +169,7 @@ const lineChartOptions = {
         fill : true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
-        tension: 0.3,
+        // tension: 0.3,
       },
     ],
   };
@@ -232,62 +237,74 @@ const lineChartOptions = {
   };
 
   return (
-    <div className="flex flex-col p-6">
-      {/* Header */}
-      <header className="flex p-4 rounded-xl shadow-lg bg-white items-center justify-between mb-6">
-        
-        <img src = {logo} alt = 'logo' className='w-[150px] '/>
-        
-        <div className='text-xl flex text-gray-700 items-center gap-2 '>
-          <MdAdminPanelSettings className='text-4xl'/>
-          {
-            user?.firstName + " " + user?.lastName
-          }
-        </div>
-        
-        {/* Date and Notification */}
-        <div className="flex items-center gap-4">
-          <p>{currentDate}</p>
-          <FaBell className="text-xl text-gray-500 cursor-pointer" />
-        </div>
-      </header>
-
-      {/* Charts Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Line Chart for Students Enrolled per Year */}
-        <div className="bg-white p-6 rounded-xl shadow-lg h-[300px]">
-          <h3 className="text-xl font-semibold mb-4">Students Enrolled per Year</h3>
-          <div className="h-[200px]">
-            {/* <Line data={lineChartData} options={{ maintainAspectRatio: false }} /> */}
-            <Line data={lineChartData} options={lineChartOptions} />
+    <>
+      {
+        loading ? (
+          <div className='w-full h-screen flex flex-col items-center justify-center'>
+            <img src={logo} alt="logo"/>
+            <p className='font-semibold text-2xl mt-6'>Please Wait while the page is loading...</p>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col p-6">
+            {/* Header */}
+            <header className="flex p-4 rounded-xl shadow-lg bg-white items-center justify-between mb-6">
+              
+              <img src = {logo} alt = 'logo' className='w-[150px] '/>
+              
+              <div className='text-xl flex text-gray-700 items-center gap-2 '>
+                <MdAdminPanelSettings className='text-4xl'/>
+                {
+                  user?.firstName + " " + user?.lastName
+                }
+              </div>
+              
+              {/* Date and Notification */}
+              <div className="flex items-center gap-4">
+                <p>{currentDate}</p>
+                <FaBell className="text-xl text-gray-500 cursor-pointer" />
+              </div>
+            </header>
 
-        <div className="bg-white p-6 rounded-xl shadow-lg h-[300px]">
-          <h3 className="text-xl font-semibold mb-4">Students Placed per Year</h3>
-          <div className="h-[200px]">
-            <Line data={linedChartData} options={linedChartOptions} />
+            {/* Charts Section */}
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Line Chart for Students Enrolled per Year */}
+              <div className="bg-white p-6 rounded-xl shadow-lg h-[300px]">
+                <h3 className="text-xl font-semibold mb-4">Students Enrolled per Year</h3>
+                <div className="h-[200px]">
+                  {/* <Line data={lineChartData} options={{ maintainAspectRatio: false }} /> */}
+                  <Line data={lineChartData} options={lineChartOptions} />
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl shadow-lg h-[300px]">
+                <h3 className="text-xl font-semibold mb-4">Students Placed per Year</h3>
+                <div className="h-[200px]">
+                  <Line data={linedChartData} options={linedChartOptions} />
+                </div>
+              </div>
+            </section>
+            {/* Line Chart for Job Applications per Year */}
+            <div className="bg-white mt-6 p-6 rounded-xl shadow-lg h-[300px]">
+              <h3 className="text-xl font-semibold mb-4">Job Applications per Year</h3>
+              <div className="h-[200px]">
+              {/* <Line data={jobApplicationsChartData} options={{ maintainAspectRatio: false }} /> */}
+              <Line data={jobApplicationsChartData} options={jobApplicationsChartOptions} />
+              </div>
+            </div>
+
+            {/* Bar Chart for Jobs Posted by Companies */}
+            <section className="bg-white p-6 rounded-xl shadow-lg h-[300px] mt-6">
+              <h3 className="text-xl font-semibold mb-4">Jobs Posted by Each Company</h3>
+              <div className="h-[200px]">
+                <Bar data={barChartData} options={barChartOptions} />
+              </div>
+            </section>
+
           </div>
-        </div>
-      </section>
-      {/* Line Chart for Job Applications per Year */}
-      <div className="bg-white mt-6 p-6 rounded-xl shadow-lg h-[300px]">
-        <h3 className="text-xl font-semibold mb-4">Job Applications per Year</h3>
-        <div className="h-[200px]">
-        {/* <Line data={jobApplicationsChartData} options={{ maintainAspectRatio: false }} /> */}
-        <Line data={jobApplicationsChartData} options={jobApplicationsChartOptions} />
-        </div>
-      </div>
-
-      {/* Bar Chart for Jobs Posted by Companies */}
-      <section className="bg-white p-6 rounded-xl shadow-lg h-[300px] mt-6">
-        <h3 className="text-xl font-semibold mb-4">Jobs Posted by Each Company</h3>
-        <div className="h-[200px]">
-          <Bar data={barChartData} options={barChartOptions} />
-        </div>
-      </section>
-
-    </div>
+        )
+      }
+    </>
+    
   );
 };
 
