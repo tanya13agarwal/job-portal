@@ -18,6 +18,7 @@ import IconBtn from "../../../../common/IconBtn"
 import ChipInput from "./ChipInput"
 import RequirementsField from "./RequirementField";
 import job_types from "../../../../../data/jobCategories.json"
+import Upload from "../Upload"
 
 export default function JobInformationForm() {
   const {
@@ -354,22 +355,25 @@ export default function JobInformationForm() {
       />
 
       {/* Upload JD */}
-      {/* <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="job">
-          Upload job Desciption<sup className="text-pink-600">*</sup>
-        </label>
-        <textarea
-          id="jobBenefits"
-          placeholder="Enter benefits of the job"
-          {...register("jobBenefits", { required: true })}
-          className="form-style resize-x-none min-h-[130px] w-full"
+      <div className="flex flex-col space-y-2">
+        {/* <label className="text-sm text-richblack-5" htmlFor="jobDescription">
+          Upload Job Description<sup className="text-pink-600">*</sup>
+        </label> */}
+        <Upload
+          name="jobDescription"
+          label="Upload Job Description File"
+          register={register}
+          setValue={setValue}
+          errors={errors}
+          acceptedExtensions={[".pdf", ".doc", ".docx"]}
+          fileTypeLabel="a PDF or DOC file"
         />
-        {errors.courseBenefits && (
+        {/* {errors.jobDescription && (
           <span className="ml-2 text-xs tracking-wide text-pink-600">
-            Benefits of the job is required
+            Job Description file is required
           </span>
-        )}
-      </div> */}
+        )} */}
+      </div>
 
       {/* Next Button */}
       <div className="flex justify-end gap-x-2">

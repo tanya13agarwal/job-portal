@@ -34,7 +34,7 @@ const CompanyCard = ({
     } , [])
 
   return (
-    <div className={`${status === JOB_STATUS.PUBLISHED ? "bg-green-300 " : "bg-white" } w-full transition-all hover:shadow-xl duration-200  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
+    <div className={`${status === JOB_STATUS.PUBLISHED ? "bg-[#93C572] " : "bg-white" } w-full transition-all hover:shadow-xl duration-200  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
 
         <div onClick={toggleHandler} className="flex  transition-all duration-200 cursor-pointer flex-col items-center px-4 pt-8 pb-10">
             <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={image} alt="Bonnie image"/>
