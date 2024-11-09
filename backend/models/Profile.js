@@ -91,6 +91,12 @@ const ProfileSchema = new Schema({
     type: String, 
     default: null 
   },
+
+  website: { 
+    type: String, 
+    default: null 
+  },
+
   jobEnrolled: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
