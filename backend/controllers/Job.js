@@ -26,7 +26,10 @@ exports.createJob = async (req, res) => {
       instructions: _instructions,
     } = req.body
 
-    console.log("req body : " ,req.body);
+    const jobDescriptionFile = req.files.jobDescriptionFile
+    // console.log(req.files)
+
+    // console.log("req body : " ,req.body);
     // Convert the tag and instructions from stringified Array to Array
     const branch = JSON.parse(_branch)
     const batch = JSON.parse(_batch)
@@ -44,7 +47,7 @@ exports.createJob = async (req, res) => {
       !maxSalary ||
       !branch.length ||
       !batch.length ||
-    //   !thumbnail ||
+      !jobDescriptionFile ||
       !category ||
       !instructions.length
     ) {
@@ -56,6 +59,12 @@ exports.createJob = async (req, res) => {
     if (!status || status === undefined) {
       status = "Draft"
     }
+
+    // Upload the jobDescriptionFile to Cloudinary
+    const jobDes = await uploadImageToCloudinary(
+      jobDescriptionFile,
+      process.env.FOLDER_NAME
+    )
     
     // Create a new course with the given details
     const newJob = await Job.create({
@@ -69,7 +78,7 @@ exports.createJob = async (req, res) => {
         branch,
         batch,
         category,
-        // thumbnail: thumbnailImage.secure_url,
+        jobDescriptionFile: jobDes.secure_url,
         status: status,
         instructions,
     })
@@ -101,6 +110,17 @@ exports.editJob = async (req, res) => {
 
     if (!job) {
       return res.status(404).json({ error: "Job not found" })
+    }
+
+    if (req.files) {
+      console.log("jobDescriptionFile update")
+      const jobDescriptionFile = req.files.jobDescriptionFile
+      const jobDes = await uploadImageToCloudinary(
+        jobDescriptionFile,
+        process.env.FOLDER_NAME
+      )
+      
+      job.jobDescriptionFile = jobDes.secure_url
     }
 
     // Update only the fields that are present in the request body

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FiSearch } from 'react-icons/fi';
 import { FaBell } from 'react-icons/fa';
 import { Line, Bar } from 'react-chartjs-2';
 import axios from 'axios';
@@ -20,7 +19,6 @@ const DashboardLayout = () => {
   });
 
   const { user } = useSelector((state) => state.profile)
-  console.log("user",user)
 
   useEffect(() => {
     // Fetch the dashboard data
@@ -38,7 +36,7 @@ const DashboardLayout = () => {
   }, []);
 
   // Line Chart Options for integer-only y-axis
-const lineChartOptions = {
+  const lineChartOptions = {
     scales: {
       y: {
         beginAtZero: true,
@@ -100,11 +98,12 @@ const lineChartOptions = {
 
   // Preprocess student placed per year data for the line chart
   const preprocessPlacementData = (data) => {
+    // console.log(data)
     const startYear = 2024;
     const currentYear = new Date().getFullYear();
     const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
 
-    const dataMap = new Map(data.map(item => [item._id, item.count || item.totalApplications || 0]));
+    const dataMap = new Map(data.map(item => [item._id, item.totalPlaced || item.totalApplications || 0]));
     
     return yearsRange.map(year => ({
       _id: year,
@@ -225,13 +224,15 @@ const lineChartOptions = {
 
   // Bar Chart Options
   const barChartOptions = {
+    responsive: true,  // Ensures responsiveness
+    maintainAspectRatio: false,  // Allows the chart to fill the container
     scales: {
       x: {
-        title: { display: true, text: 'Company' },
-        ticks: { autoSkip: false, maxRotation: 90, minRotation: 0 }
+        title: { display: true, text: 'Company'},
+        ticks: { maxRotation: 90, minRotation: 0 },
       },
       y: {
-        title: { display: true, text: 'Number of Jobs' }
+        title: { display: true, text: 'Number of Jobs' },
       }
     }
   };
@@ -296,7 +297,7 @@ const lineChartOptions = {
             <section className="bg-white p-6 rounded-xl shadow-lg h-[300px] mt-6">
               <h3 className="text-xl font-semibold mb-4">Jobs Posted by Each Company</h3>
               <div className="h-[200px]">
-                <Bar data={barChartData} options={barChartOptions} />
+                <Bar data={barChartData} options={barChartOptions} className='h-full w-full'/>
               </div>
             </section>
 
