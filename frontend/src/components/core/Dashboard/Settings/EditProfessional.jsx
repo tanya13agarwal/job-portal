@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
-
+import { branches } from "./EditProfile";
 
 export default function EditProfessional() {
   const { user } = useSelector((state) => state.profile)
@@ -18,13 +18,13 @@ export default function EditProfessional() {
   } = useForm()
 
   const submitProfileForm = async (data) => {
-    // console.log("Form Data - ", data)
     try {
       dispatch(updateProfile(token, data))
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
   }
+
   return (
     <>  
       <form 
@@ -39,18 +39,18 @@ export default function EditProfessional() {
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="semester" className="lable-style">
-                Semester
+                Semester<sup className="text-pink-600">*</sup>
               </label>
               <input
-                type="number"
+                type="text"
                 name="semester"
                 id="semester"
-                placeholder="Enter semester result"
+                placeholder="Enter semester"
                 className="form-style"
                 {...register("semester", { required: true })}
                 defaultValue={user?.additionalDetails?.sem}
               />
-              {errors.firstName && (
+              {errors.semester && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
                   Please enter your semester marks.
                 </span>
@@ -66,31 +66,32 @@ export default function EditProfessional() {
                 id="portfolio"
                 placeholder="Enter portfolio link"
                 className="form-style"
-                {...register("portfolio", { required: true })}
+                {...register("portfolio")}
                 defaultValue={user?.additionalDetails?.website}
               />
-              {errors.portfolio && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your last name.
-                </span>
-              )}
             </div>
           </div>
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="branch" className="lable-style">
-                Branch
+                Branch<sup className="text-pink-600">*</sup>
               </label>
-              <input
-                type="text"
-                name="branch"
-                id="branch"
-                placeholder="Enter semester result"
-                className="form-style"
-                {...register("branch", { required: true })}
-                defaultValue={user?.additionalDetails?.brch}
-              />
+              <select
+                  type="text"
+                  name="branch"
+                  id="branch"
+                  placeholder="Choose your branch"
+                  className="form-style"
+                  {...register("branch", { required: true })}
+                  defaultValue={user?.additionalDetails?.brch}
+                >
+                  {branches.map((ele, i) => (
+                    <option key={i} value={ele}>
+                      {ele}
+                    </option>
+                  ))}
+              </select>
               {errors.branch && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
                   Please enter your branch.
@@ -99,13 +100,13 @@ export default function EditProfessional() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="rollNo" className="lable-style">
-                Roll Number
+                Roll Number<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
                 name="rollNo"
                 id="rollNo"
-                placeholder="Enter Roll Number link"
+                placeholder="Enter Roll Number"
                 className="form-style"
                 {...register("rollNo", { required: true })}
                 defaultValue={user?.additionalDetails?.rollNo}
@@ -121,10 +122,10 @@ export default function EditProfessional() {
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="cgpa" className="lable-style">
-                CGPA
+                CGPA<sup className="text-pink-600">*</sup>
               </label>
               <input
-                type="number"
+                type="text"
                 name="cgpa"
                 id="cgpa"
                 placeholder="Enter CGPA"
@@ -140,7 +141,7 @@ export default function EditProfessional() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="github" className="lable-style">
-                Github
+                Github<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
@@ -162,10 +163,10 @@ export default function EditProfessional() {
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="backlogs" className="lable-style">
-                Backlogs
+                Backlogs<sup className="text-pink-600">*</sup>
               </label>
               <input
-                type="number"
+                type="text"
                 name="backlogs"
                 id="backlogs"
                 placeholder="Enter backlogs"
@@ -181,7 +182,7 @@ export default function EditProfessional() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="linkedIn" className="lable-style">
-                LinkedIn
+                LinkedIn<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
@@ -211,14 +212,9 @@ export default function EditProfessional() {
                 id="leetcode"
                 placeholder="Enter your leetcode link"
                 className="form-style"
-                {...register("leetcode", { required: true })}
+                {...register("leetcode")}
                 defaultValue={user?.additionalDetails?.leetcode}
               />
-              {errors.leetcode && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your leetcode link.
-                </span>
-              )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="codechef" className="lable-style">
@@ -230,14 +226,9 @@ export default function EditProfessional() {
                 id="codechef"
                 placeholder="Enter codechef link"
                 className="form-style"
-                {...register("codechef", { required: true })}
+                {...register("codechef")}
                 defaultValue={user?.additionalDetails?.codechef}
               />
-              {errors.codechef && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your codechef link.
-                </span>
-              )}
             </div>
           </div>
 
@@ -252,18 +243,13 @@ export default function EditProfessional() {
                 id="stackOverflow"
                 placeholder="Enter stack overflow link"
                 className="form-style"
-                {...register("stackOverflow", { required: true })}
+                {...register("stackOverflow")}
                 defaultValue={user?.additionalDetails?.stkoflw}
               />
-              {errors.stackOverflow && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your stack overflow link.
-                </span>
-              )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="resume" className="lable-style">
-                Resume
+                Resume<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"

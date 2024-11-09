@@ -186,7 +186,7 @@ export default function MyProfile() {
                         </div>
                         <div>
                             <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number Link"}</p>
+                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
                         </div>
                         
                         <div>

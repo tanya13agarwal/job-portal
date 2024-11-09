@@ -380,10 +380,10 @@ export const ApplyJob = () => {
                   Semester <sup className="text-pink-600">*</sup>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="semester"
                   id="semester"
-                  placeholder="Enter semester result"
+                  placeholder="Enter semester"
                   className="form-style"
                   {...register("semester", { required: true })}
                   defaultValue={user?.additionalDetails?.sem}
@@ -470,7 +470,7 @@ export const ApplyJob = () => {
                   type="text"
                   name="course"
                   id="course"
-                  placeholder="Enter semester result"
+                  placeholder="Enter course"
                   className="form-style"
                   {...register("course", { required: true })}
                   defaultValue={user?.additionalDetails?.course}
@@ -503,15 +503,7 @@ export const ApplyJob = () => {
                 <label htmlFor="branch" className="lable-style">
                   Branch <sup className="text-pink-600">*</sup>
                 </label>
-                {/* <input
-                  type="text"
-                  name="branch"
-                  id="branch"
-                  placeholder="Enter semester result"
-                  className="form-style"
-                  {...register("branch", { required: true })}
-                  defaultValue={user?.additionalDetails?.brch}
-                /> */}
+
                 <select
                   type="text"
                   name="branch"
@@ -544,7 +536,7 @@ export const ApplyJob = () => {
                   CGPA <sup className="text-pink-600">*</sup>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="cgpa"
                   id="cgpa"
                   placeholder="Enter CGPA"
@@ -564,7 +556,7 @@ export const ApplyJob = () => {
                   Backlogs <sup className="text-pink-600">*</sup>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="backlogs"
                   id="backlogs"
                   placeholder="Enter backlogs"
