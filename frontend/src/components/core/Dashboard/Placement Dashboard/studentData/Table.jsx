@@ -50,16 +50,17 @@ const Table = () => {
               <table className="min-w-full bg-white border border-gray-300">
                 <thead className="bg-customDarkBlue text-white sticky top-0 z-10">
                   <tr>
-                    <th className="py-3 px-6 border border-gray-300 text-left">S.No</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Name</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Gender</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Branch</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Semester</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Email</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Phone No.</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">CGPA</th>
-                    <th className="py-3 px-6 border border-gray-300 text-left">Backlogs</th>
-                    <th className="py-3 px-8 border border-gray-300 text-left">Is Placed</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">S.No</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Name</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Roll No.</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Gender</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Branch</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Semester</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Email</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Phone No.</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">CGPA</th>
+                    <th className="mx-auto py-3 px-6 border border-gray-300">Backlogs</th>
+                    <th className="mx-auto py-3 px-8 border border-gray-300">Is Placed</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,9 @@ const Table = () => {
                         <td className="py-3 px-6 border border-gray-300">{index + 1}</td>
                         <td className="py-3 px-6 border border-gray-300">
                           {student?.firstName} {student?.lastName}
+                        </td>
+                        <td className="py-3 px-6 border border-gray-300">
+                          {student?.additionalDetails?.rollNo}
                         </td>
                         <td className="py-3 px-6 border border-gray-300">
                           {student?.additionalDetails?.gender}

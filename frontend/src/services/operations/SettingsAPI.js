@@ -124,6 +124,7 @@ export async function changePassword(token, formData) {
   toast.dismiss(toastId)
 }
 
+
 export function deleteProfile(token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")

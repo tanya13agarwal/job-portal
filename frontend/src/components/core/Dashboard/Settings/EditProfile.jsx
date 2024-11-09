@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { updateProfile } from "../../../../services/operations/SettingsAPI"
 
 export const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
-export const branches = ["CSE", "CS", "Civil", "ME", "EN", "IT", "CS/IT", "AIML", "CSE-AIML", "CSE-DS"]
+export const branches = ["CSE", "CS", "CE", "ME", "EN", "IT", "CS/IT", "AI/ML", "CSE - AI/ML", "CSE - DS"]
 export const courses = ["B-Tech", "BCA", "MCA"]
 
 export default function EditProfile() {
@@ -21,7 +21,6 @@ export default function EditProfile() {
   } = useForm()
 
   const submitProfileForm = async (data) => {
-    // console.log("Form Data - ", data)
     try {
       dispatch(updateProfile(token, data))
     } catch (error) {
@@ -29,11 +28,9 @@ export default function EditProfile() {
     }
   }
 
-  
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
-        {/* Profile Information */}
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
           <h2 className="text-lg font-semibold text-richblack-5">
             Profile Information
@@ -41,7 +38,7 @@ export default function EditProfile() {
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="firstName" className="lable-style">
-                First Name
+                First Name<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
@@ -60,13 +57,13 @@ export default function EditProfile() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="lastName" className="lable-style">
-                Last Name
+                Last Name<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
                 name="lastName"
                 id="lastName"
-                placeholder="Enter first name"
+                placeholder="Enter last name"
                 className="form-style"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
@@ -82,7 +79,7 @@ export default function EditProfile() {
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="dateOfBirth" className="lable-style">
-                Date of Birth
+                Date of Birth<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="date"
@@ -109,7 +106,7 @@ export default function EditProfile() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="gender" className="lable-style">
-                Gender
+                Gender<sup className="text-pink-600">*</sup>
               </label>
               <select
                 type="text"
@@ -119,13 +116,11 @@ export default function EditProfile() {
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
-                {genders.map((ele, i) => {
-                  return (
-                    <option key={i} value={ele}>
-                      {ele}
-                    </option>
-                  )
-                })}
+                {genders.map((ele, i) => (
+                  <option key={i} value={ele}>
+                    {ele}
+                  </option>
+                ))}
               </select>
               {errors.gender && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -138,7 +133,7 @@ export default function EditProfile() {
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="contactNumber" className="lable-style">
-              Phone Number
+                Phone Number<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="tel"
@@ -164,7 +159,7 @@ export default function EditProfile() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="about" className="lable-style">
-                About
+                About<sup className="text-pink-600">*</sup>
               </label>
               <input
                 type="text"
@@ -182,25 +177,26 @@ export default function EditProfile() {
               )}
             </div>
           </div>
+
           <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="about" className="lable-style">
-                Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                placeholder="Enter Address"
-                className="form-style"
-                {...register("address", { required: true })}
-                defaultValue={user?.additionalDetails?.addr}
-              />
-              {errors.addr && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your Address.
-                </span>
-              )}
-            </div>
+            <label htmlFor="address" className="lable-style">
+              Address<sup className="text-pink-600">*</sup>
+            </label>
+            <input
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Enter Address"
+              className="form-style"
+              {...register("address", { required: true })}
+              defaultValue={user?.additionalDetails?.addr}
+            />
+            {errors.address && (
+              <span className="-mt-1 text-[12px] text-yellow-100">
+                Please enter your Address.
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex justify-end gap-2">
@@ -212,7 +208,12 @@ export default function EditProfile() {
           >
             Cancel
           </button>
-          <button type="submit" className="border cursor-pointer rounded-md py-2 px-5 font-semibold hover:bg-richblack-700 hover:text-richblack-50 transition-all duration-200 hover:scale-95 border-richblack-700">Save</button>
+          <button
+            type="submit"
+            className="border cursor-pointer rounded-md py-2 px-5 font-semibold hover:bg-richblack-700 hover:text-richblack-50 transition-all duration-200 hover:scale-95 border-richblack-700"
+          >
+            Save
+          </button>
         </div>
       </form>
     </>
