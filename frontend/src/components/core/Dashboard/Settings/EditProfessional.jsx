@@ -190,7 +190,7 @@ export default function EditProfessional() {
                 placeholder="Enter linkedIn link"
                 className="form-style"
                 {...register("linkedIn", { required: true })}
-                defaultValue={user?.additionalDetails?.linkedIn}
+                defaultValue={user?.additionalDetails?.linkedin}
               />
               {errors.linkedIn && (
                 <span className="-mt-1 text-[12px] text-yellow-100">

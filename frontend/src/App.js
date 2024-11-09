@@ -28,9 +28,7 @@ import Resume from "./components/core/Dashboard/Student Dashboard/resume";
 import PlacementDashboard from "./components/core/Dashboard/Placement Dashboard/Dashboard"
 import StudentDashboard from "./components/core/Dashboard/Student Dashboard/StudentDashboard";
 import StudentData from "./components/core/Dashboard/Placement Dashboard/studentData";
-
-
-
+import Table from "./components/core/Dashboard/Placement Dashboard/studentData/Table";
 
 
 function App() {
@@ -107,6 +105,7 @@ function App() {
                 <Route path="/dashboard/jobs" element={<JobView/>} />
                 <Route path="/dashboard/placement" element={<PlacementDashboard/>} />
                 <Route path="/dashboard/student-data" element={<StudentData/>} />
+                <Route path="/dashboard/student-data/all-students" element={<Table/>} />
                 {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
                 <Route path="dashboard/edit-course/:courseId" element = {<EditCourse/>}/>      */}
@@ -119,6 +118,7 @@ function App() {
             user?.accountType === ACCOUNT_TYPE.ADMIN && (
               <>
                 <Route path="/dashboard/student-data" element={<StudentData/>} />
+                <Route path="/dashboard/student-data/all-students" element={<Table/>} />
                 {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
                 <Route path="dashboard/edit-course/:courseId" element = {<EditCourse/>}/>      */}
