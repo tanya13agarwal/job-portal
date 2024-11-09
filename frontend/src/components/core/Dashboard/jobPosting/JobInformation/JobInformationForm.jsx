@@ -42,6 +42,7 @@ export default function JobInformationForm() {
     if (editJob) {
       setValue("jobTitle", job?.jobName)
       setValue("jobShortDesc", job?.jobDescription)
+      setValue("jobDescriptionFile", job?.jobDescriptionFile)
       setValue("minSalary", job?.minSalary)
       setValue("maxSalary", job?.maxSalary)
       setValue("jobLocation", job?.jobLocation)
@@ -65,6 +66,7 @@ export default function JobInformationForm() {
     if (
       currentValues.jobTitle !== job.jobName ||
       currentValues.jobShortDesc !== job.jobDescription ||
+      currentValues.jobDescriptionFile !== job.jobDescriptionFile ||
       currentValues.jobLocation !== job.jobLocation || 
       currentValues.minSalary !== job.minSalary ||
       currentValues.maxSalary !== job.maxSalary ||
@@ -97,6 +99,9 @@ export default function JobInformationForm() {
         }
         if (currentValues.jobShortDesc !== job.jobDescription) {
           formData.append("jobDescription", data.jobShortDesc)
+        }
+        if (currentValues.jobDescriptionFile !== job.jobDescriptionFile) {
+          formData.append("jobDescriptionFile", data.jobDescriptionFile)
         }
         if (currentValues.jobLocation !== job.jobLocation) {
           formData.append("jobLocation", data.jobLocation)
@@ -148,6 +153,7 @@ export default function JobInformationForm() {
     const formData = new FormData()
     formData.append("jobName", data.jobTitle)
     formData.append("jobDescription", data.jobShortDesc)
+    formData.append("jobDescriptionFile", data.jobDescriptionFile)
     formData.append("jobLocation", data.jobLocation)
     formData.append("minSalary", data.minSalary)
     formData.append("maxSalary", data.maxSalary)
@@ -360,10 +366,11 @@ export default function JobInformationForm() {
           Upload Job Description<sup className="text-pink-600">*</sup>
         </label> */}
         <Upload
-          name="jobDescription"
+          name="jobDescriptionFile"
           label="Upload Job Description File"
           register={register}
           setValue={setValue}
+          getValues = {getValues}
           errors={errors}
           acceptedExtensions={[".pdf", ".doc", ".docx"]}
           fileTypeLabel="a PDF or DOC file"

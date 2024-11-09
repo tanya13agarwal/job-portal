@@ -8,11 +8,9 @@ const jobSchema = new mongoose.Schema({
 	jobDescription: { 
         type: String 
     },
-	// instructor: {
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	required: true,
-	// 	ref: "user",
-	// },
+	jobDescriptionFile: { 
+        type: String 
+    },
 	whatYouWillGet: {
 		type: String,
 	},
@@ -53,13 +51,7 @@ const jobSchema = new mongoose.Schema({
 		type: String,
         required : true
 	},
-	// studentsEnrolled: [
-	// 	{
-	// 		type: mongoose.Schema.Types.ObjectId,
-	// 		required: true,
-	// 		ref: "user",
-	// 	},
-	// ],
+	
 	instructions: {
 		type: [String],
 	},
