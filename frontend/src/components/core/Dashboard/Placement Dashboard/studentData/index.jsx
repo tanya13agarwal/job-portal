@@ -6,22 +6,21 @@ import { getAllUser } from "../../../../../services/operations/SettingsAPI";
 const StudentData = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const {token} = useSelector((state) => state.auth); // Replace with actual token management
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchStudents = async () => {
       setLoading(true);
       const data = await getAllUser(token);
       if (data) {
-        setStudents(data);
-        console.log("student::::", data);
+        const sortedData = data.sort((a, b) => a?.additionalDetails?.sem - b?.additionalDetails?.sem);
+        setStudents(sortedData);
+        console.log("student::::", sortedData);
       }
       setLoading(false);
     };
     fetchStudents();
-  }, []);
-
-  
+  }, [token]);
 
   return (
     <div className="container mx-auto py-6">
@@ -29,37 +28,74 @@ const StudentData = () => {
       {loading ? (
         <p className="text-center">Loading...</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            <thead>
-              <tr>
-                <th className="py-2 px-4 border-b">Name</th>
-                <th className="py-2 px-4 border-b">Branch</th>
-                <th className="py-2 px-4 border-b">Semester</th>
-                <th className="py-2 px-4 border-b">Email</th>
-                <th className="py-2 px-4 border-b">Phone No.</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.length > 0 ? (
-                students.map((student) => (
-                  <tr key={student.id} className="text-center">
-                    <td className="py-2 px-4 border-b">{student.name}</td>
-                    <td className="py-2 px-4 border-b">{student.branch}</td>
-                    <td className="py-2 px-4 border-b">{student.semester}</td>
-                    <td className="py-2 px-4 border-b">{student.email}</td>
-                    <td className="py-2 px-4 border-b">{student.phone}</td>
-                  </tr>
-                ))
-              ) : (
+        <div className="overflow-x-auto shadow-xl">
+          <div className="max-h-[612px] overflow-y-auto rounded-lg">
+            <table className="min-w-full bg-white border border-gray-300">
+              <thead className="bg-customDarkBlue text-white sticky top-0 z-10">
                 <tr>
-                  <td colSpan="5" className="py-2 px-4 text-center">
-                    No students found.
-                  </td>
+                  <th className="py-3 px-6 border border-gray-300 text-left">S.No</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Name</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Gender</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Branch</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Semester</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Email</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Phone No.</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">CGPA</th>
+                  <th className="py-3 px-6 border border-gray-300 text-left">Backlogs</th>
+                  <th className="py-3 px-8 border border-gray-300 text-left">Is Placed</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {students.length > 0 ? (
+                  students.map((student, index) => (
+                    <tr key={student?.id} className="text-center hover:bg-gray-50">
+                      <td className="py-3 px-6 border border-gray-300">{index + 1}</td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.firstName} {student?.lastName}
+                      </td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.additionalDetails?.gender}
+                      </td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.additionalDetails?.brch}
+                      </td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.additionalDetails?.sem}
+                      </td>
+                      <td className="py-3 px-6 border border-gray-300">{student?.email}</td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.additionalDetails?.ph_num}
+                      </td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.additionalDetails?.cgpa}
+                      </td>
+                      <td className="py-3 px-6 border border-gray-300">
+                        {student?.additionalDetails?.bklgs}
+                      </td>
+                      <td className="py-3 px-8 border border-gray-300">
+                        <button
+                          className={`py-2 px-4 rounded border border-transparent active:scale-90 transition-all duration-200 ${
+                            student?.additionalDetails?.isPlaced
+                              ? "text-gray-400 bg-gray-200 cursor-not-allowed"
+                              : "text-[#fff] bg-customDarkBlue hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue"
+                          }`}
+                          disabled={student?.additionalDetails?.isPlaced}
+                        >
+                          Placed
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="10" className="py-3 px-6 text-center">
+                      No students found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
