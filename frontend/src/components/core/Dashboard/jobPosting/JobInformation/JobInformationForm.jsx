@@ -389,10 +389,11 @@ export default function JobInformationForm() {
           label="Upload Job Description File"
           register={register}
           setValue={setValue}
-          getValues = {getValues}
+          pdf = {true}
           errors={errors}
           acceptedExtensions={[".pdf", ".doc", ".docx"]}
           fileTypeLabel="a PDF or DOC file"
+          editData={editJob ? job?.jobDescriptionFile : null}
         />
         {/* {errors.jobDescription && (
           <span className="ml-2 text-xs tracking-wide text-pink-600">
