@@ -31,15 +31,16 @@ const Navbar = () => {
         <a href="#features" onClick={(e) => handleScroll(e, 'features')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Features
         </a>
+        <a href="#placements" onClick={(e) => handleScroll(e, 'placements')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
+          Placements
+        </a>
         <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Testimonials
         </a>
         <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
           Contact
         </a>
-        <a href="#placements" onClick={(e) => handleScroll(e, 'placements')} className='transition-all duration-200 scroll-smooth hover:bg-customDarkBlue p-2 rounded hover:text-white'>
-          Placements
-        </a>
+
       </div>
       <div className='flex gap-3 items-center mr-4 ml-auto'>
         <Link to={"/login"} className='px-4 py-2 rounded active:scale-90 transition-all duration-200 border border-customDarkBlue hover:bg-customDarkBlue hover:text-[#fff]'>Login</Link>
