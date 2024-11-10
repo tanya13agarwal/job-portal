@@ -83,6 +83,8 @@ const JobView = () => {
                           image = {company.thumbnail}
                           CompanyName={company.companyName}
                           Position={job?.jobName}
+                          description={job.jobDescription}
+                          jobDesc={""}
                           Batch={job?.batch}
                           Branch={job?.branch}
                           Stipend={job?.stipend}
