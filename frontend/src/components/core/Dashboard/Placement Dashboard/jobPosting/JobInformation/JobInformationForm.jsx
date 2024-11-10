@@ -9,15 +9,15 @@ import {
   fetchCourseCategories,
   addJobDetails,
   editJobDetails,
-} from "../../../../../services/operations/jobDetailsAPI"
+} from "../../../../../../services/operations/jobDetailsAPI"
 // import { setCourse, setStep } from "../../../../../slices/courseSlice"
-import { setJob, setStep } from "../../../../../slices/jobPostSlice"
-import { JOB_STATUS } from "../../../../../utils/constants"
-import IconBtn from "../../../../common/IconBtn"
+import { setJob, setStep } from "../../../../../../slices/jobPostSlice"
+import { JOB_STATUS } from "../../../../../../utils/constants"
+import IconBtn from "../../../../../common/IconBtn"
 // import Upload from "../Upload"
 import ChipInput from "./ChipInput"
 import RequirementsField from "./RequirementField";
-import job_types from "../../../../../data/jobCategories.json"
+import job_types from "../../../../../../data/jobCategories.json"
 import Upload from "../Upload"
 
 export default function JobInformationForm() {
