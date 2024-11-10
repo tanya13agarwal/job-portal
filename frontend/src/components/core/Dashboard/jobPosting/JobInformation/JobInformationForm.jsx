@@ -34,6 +34,7 @@ export default function JobInformationForm() {
   const { job, editJob } = useSelector((state) => state.jobPost)
   const [loading, setLoading] = useState(false)
   const [jobCategories, setJobCategories] = useState(job_types.job_types)
+  
   // console.log(job_types.job_types)
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function JobInformationForm() {
     if (editJob) {
       setValue("jobTitle", job?.jobName)
       setValue("jobShortDesc", job?.jobDescription)
-      setValue("jobDescriptionFile", job?.jobDescriptionFile)
+      setValue("stipend", job?.stipend)
       setValue("minSalary", job?.minSalary)
       setValue("maxSalary", job?.maxSalary)
       setValue("jobLocation", job?.jobLocation)
@@ -66,8 +67,8 @@ export default function JobInformationForm() {
     if (
       currentValues.jobTitle !== job.jobName ||
       currentValues.jobShortDesc !== job.jobDescription ||
-      currentValues.jobDescriptionFile !== job.jobDescriptionFile ||
       currentValues.jobLocation !== job.jobLocation || 
+      currentValues.stipend !== job.stipend || 
       currentValues.minSalary !== job.minSalary ||
       currentValues.maxSalary !== job.maxSalary ||
       currentValues.branchTags.toString() !== job?.branch?.toString() ||
@@ -100,11 +101,11 @@ export default function JobInformationForm() {
         if (currentValues.jobShortDesc !== job.jobDescription) {
           formData.append("jobDescription", data.jobShortDesc)
         }
-        if (currentValues.jobDescriptionFile !== job.jobDescriptionFile) {
-          formData.append("jobDescriptionFile", data.jobDescriptionFile)
-        }
         if (currentValues.jobLocation !== job.jobLocation) {
           formData.append("jobLocation", data.jobLocation)
+        }
+        if (currentValues.stipend !== job.stipend) {
+          formData.append("stipend", data.stipend)
         }
         if (currentValues.minSalary !== job.minSalary) {
           formData.append("minSalary", data.minSalary)
@@ -153,8 +154,8 @@ export default function JobInformationForm() {
     const formData = new FormData()
     formData.append("jobName", data.jobTitle)
     formData.append("jobDescription", data.jobShortDesc)
-    formData.append("jobDescriptionFile", data.jobDescriptionFile)
     formData.append("jobLocation", data.jobLocation)
+    formData.append("stipend",data.stipend)
     formData.append("minSalary", data.minSalary)
     formData.append("maxSalary", data.maxSalary)
     formData.append("branch", JSON.stringify(data.branchTags))
@@ -213,6 +214,17 @@ export default function JobInformationForm() {
             Job Description is required
           </span>
         )}
+      </div>
+      <div className="flex flex-col space-y-2">
+        <label className="text-sm text-richblack-5" htmlFor="stipend">
+          Stipend <sup className="text-pink-600">*</sup>
+        </label>
+        <input
+          id="stipend"
+          placeholder="Enter stipend"
+          {...register("stipend")}
+          className="form-style w-full"
+        />
       </div>
       {/* Course Price */}
       <div className="flex items-center gap-4">
@@ -366,11 +378,10 @@ export default function JobInformationForm() {
           Upload Job Description<sup className="text-pink-600">*</sup>
         </label> */}
         <Upload
-          name="jobDescriptionFile"
+          name="jobDescription"
           label="Upload Job Description File"
           register={register}
           setValue={setValue}
-          getValues = {getValues}
           errors={errors}
           acceptedExtensions={[".pdf", ".doc", ".docx"]}
           fileTypeLabel="a PDF or DOC file"
