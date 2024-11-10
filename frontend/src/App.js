@@ -29,6 +29,7 @@ import Table from "./components/core/Dashboard/Placement Dashboard/studentData/T
 import Companies from "./components/core/Companies";
 import JobView from "./components/core/Dashboard/Placement Dashboard/JobView";
 import JobPosting from "./components/core/Dashboard/Placement Dashboard/jobPosting";
+import PlacementRecords from "./components/core/PlacementRecords";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         
         <Route path="/" element = {<Home/>}/> 
         <Route path="/companies" element = {<Companies/>}/> 
+        <Route path="/placement-records" element = {<PlacementRecords/>}/> 
 
 
         {/* <Route path="catalog/:catalogName" element = {<Catalog/>}/> */}

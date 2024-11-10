@@ -8,6 +8,10 @@ const Placements = () => {
     navigate('/companies');
   };
 
+  const handlePlacementRecordsClick = () => {
+    navigate('/placement-records');
+  };
+
   return (
     <div id="placements" className='p-10'>
       <div className='border-white flex flex-col items-center gap-6 p-6'>
@@ -26,13 +30,12 @@ const Placements = () => {
           >
             Alumni
           </a>
-          <a
-            href='https://www.akgec.ac.in/placements/placement-records/'
-            target='_blank'
+          <button
+            onClick={handlePlacementRecordsClick}
             className='hover:bg-customDarkBlue rounded hover:text-white px-2 py-1 transition-all border border-customDarkBlue duration-200 hover:scale-105'
           >
             Placement Records
-          </a>
+          </button>
         </div>
       </div>
     </div>
