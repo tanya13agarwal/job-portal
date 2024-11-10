@@ -15,6 +15,9 @@ const OnCampus = () => {
     const { user } = useSelector((state) => state.profile)
     console.log("COMPANY CARD: " , user?.additionalDetails?.jobEnrolled?.includes("671e5f79fbda65ad2bf2f680"))
     const navigate = useNavigate();
+
+    console.log(allCompany);
+    console.log("hellloooooooooo",allJob);
   
     useEffect(() => {
       ;(async () => {
@@ -52,16 +55,27 @@ const OnCampus = () => {
               <div className = 'grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 col-span-1 gap-10 '>
                 {
                   allCompany.map((company , index) => (
+      
                     <div key={index}>
                       {
+        
                         company.jobs.map((job) => (
                           <div key={job._id} className={``}>
+                           
                             <CompanyCard 
                             image = {company.thumbnail}
                             CompanyName={company.companyName}
                             Position={job?.jobName}
-                            description={job.jobDescription}
-                            jobDesc={""}
+                            Batch={job?.batch}
+                            Branch={job?.branch}
+                            Stipend={job?.stipend}
+                            MinSalary={job?.minSalary}
+                            MaxSalary={job?.maxSalary}
+                            JobLocation={company?.companyLocation}
+                            Requirements={job?.instructions}
+                            JobDescription={job?.jobDescription}
+                            jobDescPDF={job?.jobDescriptionFile}
+                            companyWebsite={company?.companyWebsite}
                             status = {user?.additionalDetails?.jobEnrolled?.includes(job?._id) ? JOB_STATUS.PUBLISHED : JOB_STATUS.DRAFT}
                             btn1Handler={() => handleApplyJob(job._id)}
                             btn2Handler={handleTakeTest}
