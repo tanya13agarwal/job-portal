@@ -29,6 +29,43 @@ export default function JobInformationForm() {
     formState: { errors },
   } = useForm()
 
+
+  const parseSalaryInput = (input) => {
+    // Ensure input is a string
+    if (typeof input !== 'string') {
+      console.error('Input is not a string:', input);
+      return null;
+    }
+  
+    console.log('Parsing salary input:', input);
+  
+    const matchLPA = input.match(/(\d+(\.\d+)?)\s*LPA/i);
+    if (matchLPA) {
+      const result = parseFloat(matchLPA[1]) * 100000;
+      console.log('Parsed as LPA:', result);
+      return result;
+    }
+  
+    const matchPerMonth = input.match(/(\d+(\.\d+)?)\s*per\s*month/i);
+    if (matchPerMonth) {
+      const result = parseFloat(matchPerMonth[1]) * 12;
+      console.log('Parsed as per month:', result);
+      return result;
+    }
+  
+    const matchNumber = input.match(/^\d+(\.\d+)?$/);
+    if (matchNumber) {
+      const result = parseFloat(matchNumber[0]);
+      console.log('Parsed as number:', result);
+      return result;
+    }
+  
+    console.error('Invalid salary input format:', input);
+    return null;
+  };
+  
+  
+
   const dispatch = useDispatch()
   const { token } = useSelector((state) => state.auth)
   const { job, editJob } = useSelector((state) => state.jobPost)
@@ -89,6 +126,26 @@ export default function JobInformationForm() {
   //   handle next button click
   const onSubmit = async (data) => {
     // console.log(data)
+
+    const minSalary = String(data.minSalary);
+    const maxSalary = String(data.maxSalary);
+  
+    console.log('Min Salary Input:', minSalary);
+    console.log('Max Salary Input:', maxSalary);
+  
+    const parsedMinSalary = parseSalaryInput(minSalary);
+    const parsedMaxSalary = parseSalaryInput(maxSalary);
+  
+    if (parsedMinSalary === null || parsedMaxSalary === null) {
+      toast.error("Invalid salary format");
+      return;
+    }
+  
+    data.minSalary = parsedMinSalary;
+    data.maxSalary = parsedMaxSalary;
+  
+    console.log('Parsed Min Salary:', parsedMinSalary);
+    console.log('Parsed Max Salary:', parsedMaxSalary);
 
     if (editJob) {
 
@@ -232,26 +289,27 @@ export default function JobInformationForm() {
           className="form-style w-full"
         />
       </div>
-      {/* Course Price */}
+
+      {/* Minimum and Maximum salary */}
       <div className="flex items-center gap-4">
         <div className="flex w-full  flex-col space-y-2">
           <label className="text-sm text-richblack-5" htmlFor="minSalary">
-            Min Salary 
+            Min Salary <sup className="text-pink-600">*</sup>
           </label>
           <div className="relative">
             <input
               id="minSalary"
               placeholder="Enter Min Salary"
-              {...register("minSalary", {
-                valueAsNumber: true,
-                pattern: {
-                  value: /^(0|[1-9]\d*)(\.\d+)?$/,
-                },
-              })}
+              {...register("minSalary",{required: true})}
               className="form-style w-full !pl-12"
             />
             <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richblack-400" />
           </div>
+          {errors.maxSalary && (
+            <span className="ml-2 text-xs tracking-wide text-pink-600">
+              Max Salary is required
+            </span>
+          )}
         </div>
         <div className="flex w-full flex-col space-y-2">
           <label className="text-sm text-richblack-5" htmlFor="maxSalary">
@@ -261,13 +319,7 @@ export default function JobInformationForm() {
             <input
               id="maxSalary"
               placeholder="Enter Max Salary"
-              {...register("maxSalary", {
-                required: true,
-                valueAsNumber: true,
-                pattern: {
-                  value: /^(0|[1-9]\d*)(\.\d+)?$/,
-                },
-              })}
+              {...register("maxSalary", {required: true})}
               className="form-style w-full !pl-12"
             />
             <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richblack-400" />
@@ -385,7 +437,6 @@ export default function JobInformationForm() {
         </label> */}
         <Upload
           name="jobDescriptionFile"
-          name="jobDescription"
           label="Upload Job Description File"
           register={register}
           setValue={setValue}
