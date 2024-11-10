@@ -11,6 +11,9 @@ const jobSchema = new mongoose.Schema({
 	jobDescriptionFile: { 
         type: String 
     },
+	stipend: {
+		type:Number,
+	},
 	whatYouWillGet: {
 		type: String,
 	},
