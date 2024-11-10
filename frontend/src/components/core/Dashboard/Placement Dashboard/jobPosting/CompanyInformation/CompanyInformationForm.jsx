@@ -6,13 +6,13 @@ import { MdNavigateNext } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
 import Upload from "../Upload"
 
-import {setEditJob, setStep} from "../../../../../slices/jobPostSlice"
-import { setCompany , setEditCompany, } from "../../../../../slices/companyPostSlice"
+import {setEditJob, setStep} from "../../../../../../slices/jobPostSlice"
+import { setCompany , setEditCompany, } from "../../../../../../slices/companyPostSlice"
 import {
   addCompanyDetails,
   editCompanyDetails,
-} from "../../../../../services/operations/companyDetailsAPI"
-import IconBtn from "../../../../common/IconBtn"
+} from "../../../../../../services/operations/companyDetailsAPI"
+import IconBtn from "../../../../../common/IconBtn"
 
 
 
@@ -67,7 +67,7 @@ export default function CompanyInformationForm() {
 
   // handle form submission
   const onSubmit = async (data) => {
-    console.log(data)
+    console.log("submit pe data",data)
     setLoading(true)
 
     // let result
