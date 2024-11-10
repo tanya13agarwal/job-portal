@@ -15,7 +15,7 @@ const Placements = () => {
   return (
     <div id="placements" className='p-10'>
       <div className='border-white flex flex-col items-center gap-6 p-6'>
-        <p className='text-4xl font-edu-sa font-bold'>Placements</p>
+        <p className='text-4xl font-bold'>Placements</p>
         <div className='flex items-center gap-10 justify-center rounded-full p-2'>
           <button
             onClick={handleCompaniesClick}

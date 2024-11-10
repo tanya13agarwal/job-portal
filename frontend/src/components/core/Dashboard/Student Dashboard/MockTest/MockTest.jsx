@@ -24,7 +24,7 @@ const MockTest = () => {
   return (
     <>
       <div className='mt-10 mb-10 flex flex-col gap-4'>
-        <div className='text-4xl mb-4 font-bold flex items-center justify-center font-edu-sa'>Mock Test</div>
+        <div className='text-4xl mb-4 font-bold flex items-center justify-center'>Mock Test</div>
         <div className=' grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 col-span-1 gap-10 justify-between'>
           {topics.map((topic) => (
             // <div
