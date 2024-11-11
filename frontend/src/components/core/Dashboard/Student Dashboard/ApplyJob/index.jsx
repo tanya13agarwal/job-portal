@@ -21,7 +21,7 @@ import { setUser } from '../../../../../slices/profileSlice';
 export const ApplyJob = () => {
 
     const params = useParams()  
-    console.log(params.jobId);
+    console.log("JOBID:  ",params.jobId);
     
     const {
       register,
@@ -211,9 +211,11 @@ export const ApplyJob = () => {
       setLoading(true)
   
       const result = await applyForJob(formData, token)
-      console.log(result)
+      console.log("RESULT LELO BHAII:  " , result)
       if (result) {
+        localStorage.removeItem("user")
         dispatch(setUser(result))
+        localStorage.setItem("user" , JSON.stringify(result))
         navigate("/dashboard/on-campus")
       }
       setLoading(false)
