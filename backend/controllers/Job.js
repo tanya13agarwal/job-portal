@@ -190,10 +190,14 @@ exports.applyForJob = async (req, res) => {
       await user.additionalDetails.save();
     }
 
+    await user.save();
+
+    const updatedUser = await User.findById(userId).populate('additionalDetails');
+
     res.json({
       success: true,
       message: "Application submitted successfully",
-      data: user,
+      data: updatedUser,
     });
   } catch (error) {
     console.error(error);
