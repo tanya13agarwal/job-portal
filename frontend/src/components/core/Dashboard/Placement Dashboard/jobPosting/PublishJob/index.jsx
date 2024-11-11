@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 // import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI"
-import { resetJobState, setStep } from "../../../../../slices/jobPostSlice"
-import { JOB_STATUS } from "../../../../../utils/constants"
-import IconBtn from "../../../../common/IconBtn"
-import { editJobDetails } from "../../../../../services/operations/jobDetailsAPI"
-import { setEditCompany } from "../../../../../slices/companyPostSlice"
+import { resetJobState, setStep } from "../../../../../../slices/jobPostSlice"
+import { JOB_STATUS } from "../../../../../../utils/constants"
+import IconBtn from "../../../../../common/IconBtn"
+import { editJobDetails } from "../../../../../../services/operations/jobDetailsAPI"
+import { setEditCompany } from "../../../../../../slices/companyPostSlice"
 
 export default function PublishCourse() {
   const { register, handleSubmit, setValue, getValues } = useForm()

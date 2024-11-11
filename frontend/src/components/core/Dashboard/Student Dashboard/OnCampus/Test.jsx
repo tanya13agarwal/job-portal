@@ -98,8 +98,8 @@ const Test = () => {
             </button>
             
             <div className="p-6  mx-auto bg-white mt-10 rounded-lg font mb-10">
-                <h1 className="text-2xl font-bold mb-4 flex items-center justify-center font-edu-sa">Test Finished</h1>
-                <p className="text-xl font-semibold mb-4 flex items-center justify-center font-edu-sa">Your Score: {score} / 30</p>
+                <h1 className="text-2xl font-bold mb-4 flex items-center justify-center">Test Finished</h1>
+                <p className="text-xl font-semibold mb-4 flex items-center justify-center">Your Score: {score} / 30</p>
             </div>
         </>
     );
@@ -112,7 +112,7 @@ const Test = () => {
         </button>
 
         <div className="p-6  mx-auto bg-white mt-10 rounded-lg font mb-10">
-        <h1 className="text-2xl font-bold mb-4 flex items-center justify-center font-edu-sa">Aptitude Mock Test</h1>
+        <h1 className="text-2xl font-bold mb-4 flex items-center justify-center">Aptitude Mock Test</h1>
         <div className='flex items-center justify-between my-4'>
             <div className=" mb-4 bg-transparent border border-customDarkBlue px-4 py-2 rounded-md">
                 <span className="text-lg">Question {questionCount + 1} / 30</span>
@@ -170,7 +170,7 @@ const Test = () => {
         ) : (
             <div className=' flex flex-col gap-3 items-center justify-center text-black'>
                 <div className='spinner'></div>
-                <div className='text-2xl font-edu-sa'>Loading Questions...</div>
+                <div className='text-2xl'>Loading Questions...</div>
             </div>
         )}
         </div>

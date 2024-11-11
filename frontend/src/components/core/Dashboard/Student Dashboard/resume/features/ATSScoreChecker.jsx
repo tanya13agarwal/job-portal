@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const ATSScoreChecker = () => {
@@ -60,3 +61,4 @@ const ATSScoreChecker = () => {
 };
 
 export default ATSScoreChecker;
+
