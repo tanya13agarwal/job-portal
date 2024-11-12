@@ -30,6 +30,7 @@ import Companies from "./components/core/Companies";
 import JobView from "./components/core/Dashboard/Placement Dashboard/JobView";
 import JobPosting from "./components/core/Dashboard/Placement Dashboard/jobPosting";
 import PlacementRecords from "./components/core/PlacementRecords";
+import AdminDashboard from "./components/core/Dashboard/Admin Dashboard/AdminDashboard";
 
 
 function App() {
@@ -123,6 +124,7 @@ function App() {
               <>
                 <Route path="/dashboard/student-data" element={<StudentData/>} />
                 <Route path="/dashboard/student-data/all-students" element={<Table/>} />
+                <Route path="/dashboard/admin" element={<AdminDashboard/>} />
                 {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
                 <Route path="dashboard/edit-course/:courseId" element = {<EditCourse/>}/>      */}
