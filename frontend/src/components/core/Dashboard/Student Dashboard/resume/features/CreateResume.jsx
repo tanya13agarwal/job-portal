@@ -22,10 +22,12 @@ const CreateResume = () => {
   };
 
   return (
-    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
-      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+    <div>
+    <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 text-center">
         Create Your Own Resume
-      </h2>
+    </h2>
+    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
+      
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -110,6 +112,7 @@ const CreateResume = () => {
           Download Resume
         </button>
       </form>
+    </div>
     </div>
   );
 };
