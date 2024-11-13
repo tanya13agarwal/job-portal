@@ -11,10 +11,12 @@ const samples = [
 
 const ResumeSamples = () => {
   return (
-    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
-      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+    <div>
+    <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900">
         Resume Samples
-      </h2>
+    </h2>
+    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {samples.map((sample) => (
           <div key={sample.id} className="bg-gray-100 p-4 rounded-lg shadow">
@@ -32,6 +34,7 @@ const ResumeSamples = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

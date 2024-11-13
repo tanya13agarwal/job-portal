@@ -30,6 +30,10 @@ import Companies from "./components/core/Companies";
 import JobView from "./components/core/Dashboard/Placement Dashboard/JobView";
 import JobPosting from "./components/core/Dashboard/Placement Dashboard/jobPosting";
 import PlacementRecords from "./components/core/PlacementRecords";
+import CreateResume from "./components/core/Dashboard/Student Dashboard/resume/features/CreateResume";
+import ChooseTemplate from "./components/core/Dashboard/Student Dashboard/resume/features/ChooseTemplate";
+import ResumeSamples from "./components/core/Dashboard/Student Dashboard/resume/features/ResumeSamples";
+import ATSScoreChecker from "./components/core/Dashboard/Student Dashboard/resume/features/ATSScoreChecker";
 
 
 function App() {
@@ -96,7 +100,10 @@ function App() {
                 <Route path="/dashboard/on-campus/apply/:jobId" element = {<ApplyJob/>}/>
                 <Route path="/dashboard/resume" element = {<Resume/>}/>
                 <Route path="/dashboard/student" element = {<StudentDashboard/>}/>
-                
+                <Route path="/dashboard/resume/createResume" element = {<CreateResume/>}/>
+                <Route path="/dashboard/resume/chooseTemplate" element = {<ChooseTemplate/>}/>
+                <Route path="/dashboard/resume/resumeSamples" element = {<ResumeSamples/>}/>
+                <Route path="/dashboard/resume/atsScoreChecker" element = {<ATSScoreChecker/>}/>
               </>
             )
           }

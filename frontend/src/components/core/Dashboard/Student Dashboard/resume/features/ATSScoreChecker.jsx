@@ -26,10 +26,11 @@ const ATSScoreChecker = () => {
   };
 
   return (
-    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
-      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+    <div>
+    <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 text-center">
         ATS Score Checker
-      </h2>
+    </h2>
+    <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
       <input
         type="file"
         accept=".pdf, .docx, .doc"
@@ -56,6 +57,7 @@ const ATSScoreChecker = () => {
           </ul>
         </div>
       )}
+    </div>
     </div>
   );
 };
