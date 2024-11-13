@@ -42,7 +42,7 @@ const JobView = () => {
         
         const published = jobs.filter(job => job.status === JOB_STATUS.PUBLISHED);
         const unpublished = jobs.filter(job => job.status !== JOB_STATUS.PUBLISHED);
-        console.log("nnnnnn:", published);
+        console.log("nnnnnn:", unpublished);
         setPublishedJobs(published);
         setUnpublishedJobs(unpublished);
       }
@@ -55,6 +55,7 @@ const JobView = () => {
     if (jobDetail.success) {
       dispatch(setJob(jobDetail.data));
     }
+    console.log("Company Id : " , companyId)
     const companyDetail = await fetchCompanyDetails(companyId);
     if (companyDetail.success) {
       console.log("f vf  f v:", companyDetail);
@@ -116,7 +117,7 @@ const JobView = () => {
                         text2: "All the details in this job will be deleted",
                         btn1Text: "Delete",
                         btn2Text: "Cancel",
-                        btn1Handler: () => handleDeleteJob(job._id),
+                        btn1Handler: () => handleDeleteJob(job?._id),
                         btn2Handler: () => setConfirmationModal(null),
                       })
                     }
@@ -150,7 +151,7 @@ const JobView = () => {
                     status={job.status}
                     compbtn1='Edit Job'
                     compbtn2='Delete Job'
-                    btn1Handler={() => editJobDetails(job._id, job.companyId)}
+                    btn1Handler={() => editJobDetails(job?._id, job?.companyDetails?.companyId)}
                     btn2Handler={() =>
                       setConfirmationModal({
                         text1: "Delete this Job?",
