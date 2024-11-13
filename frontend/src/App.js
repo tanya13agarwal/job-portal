@@ -36,6 +36,7 @@ import ResumeSamples from "./components/core/Dashboard/Student Dashboard/resume/
 import ATSScoreChecker from "./components/core/Dashboard/Student Dashboard/resume/features/ATSScoreChecker";
 
 import AdminDashboard from "./components/core/Dashboard/Admin Dashboard/AdminDashboard";
+import Error from "./pages/Error";
 
 
 
@@ -143,7 +144,7 @@ function App() {
         
         </Route>
 
-        {/* <Route path="*" element={<Error/>}/> */}
+        <Route path="*" element={<Error/>}/>
       
       </Routes>
     </div>
