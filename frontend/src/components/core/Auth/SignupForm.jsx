@@ -109,7 +109,7 @@ const SignupForm = () => {
           <div className='flex items-center gap-x-4'>
             <label className='w-full'>
               <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
-                First Name <span className='text-pink-200'>*</span>
+                First Name <span className='text-pink-600'>*</span>
               </p>
               <input
                 required
@@ -127,7 +127,7 @@ const SignupForm = () => {
 
             <label className='w-full'>
               <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
-                Last Name <span className='text-pink-200'>*</span>
+                Last Name <span className='text-pink-600'>*</span>
               </p>
               <input
                 required
@@ -147,7 +147,7 @@ const SignupForm = () => {
 
           <label className='w-full'>
               <p className='mb-1 text-[0.875rem] leading-[1.375rem]'>
-                Email Address <span className='text-pink-200'>*</span>
+                Email Address <span className='text-pink-600'>*</span>
               </p>
               <input
                 required
@@ -167,7 +167,7 @@ const SignupForm = () => {
 
             <label className='relative w-full'>
               <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
-                Create Password <span className='text-pink-200'>*</span>
+                Create Password <span className='text-pink-600'>*</span>
               </p>
               <input
                 required
@@ -196,7 +196,7 @@ const SignupForm = () => {
 
             <label className='relative w-full'>
               <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
-                Confirm Password <span className='text-pink-200'>*</span>
+                Confirm Password <span className='text-pink-600'>*</span>
               </p>
               <input
                 required

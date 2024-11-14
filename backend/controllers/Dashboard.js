@@ -136,5 +136,43 @@ const getDashboardStats = async (req, res) => {
   }
 };
 
-module.exports = { getDashboardStats };
+
+// Backend Route to Calculate Average Package for Multiple Years
+const averageSalaryStats =  async (req, res) => {
+    try {
+        // const currentYear = new Date().getFullYear();
+        // const years = Array.from({ length: 5 }, (_, i) => currentYear - i); // Last 5 years
+        const startYear = 2023;
+        const currentYear = new Date().getFullYear();
+        const years = Array.from({ length: currentYear - startYear + 1 }, (_, i) => currentYear - i);
+
+
+        const averagePackages = await Promise.all(years.map(async (year) => {
+            const jobs = await Job.find({
+                status: "Published",
+                createdAt: {
+                    $gte: new Date(`${year}-01-01`),
+                    $lte: new Date(`${year}-12-31`)
+                }
+            });
+
+            if (jobs.length === 0) {
+                return { year, averagePackage: 0 };
+            }
+
+            const totalPackage = jobs.reduce((sum, job) => sum + (job.minSalary + job.maxSalary) / 2, 0);
+            const averagePackage = totalPackage / jobs.length;
+
+            return { year, averagePackage };
+        }));
+
+        res.json(averagePackages.reverse()); // Return in ascending order of years
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
+
+module.exports = { getDashboardStats , averageSalaryStats };
 
