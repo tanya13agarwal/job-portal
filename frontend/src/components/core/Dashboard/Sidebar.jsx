@@ -7,6 +7,8 @@ import {sidebarLinks} from "../../../data/dashboard-links";
 import {logout} from "../../../services/operations/authAPI";
 import SidebarLink from './SidebarLinks';
 import ConfirmationModal from '../../common/ConfirmationModal';
+import { FaVideo } from "react-icons/fa";
+
 
 
 function Sidebar() {
@@ -18,6 +20,10 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const [confirmationModal , setConfirmationModal] = useState(null);
+
+  const handleClick = () => {
+    window.location.href = 'https://ai-interview-mocker-two.vercel.app/';
+  }
 
   if(profileLoading || authLoading) {
     return(
@@ -44,6 +50,18 @@ function Sidebar() {
                       )
                     })
                 } 
+                <button 
+                  onClick={handleClick}
+                  className={`relative px-8 py-2 text-sm font-medium bg-opacity-0 text-richblack-300
+                  transition-all duration-200`}
+                >
+                  <div className='flex items-center gap-x-2'>
+                      {/* <Icon className="text-lg"/> */}
+                      <FaVideo className="text-lg"/>
+                      <span>Mock Interview</span>
+                  </div>
+                </button>
+                
             </div>
 
             <div className='mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700'></div>
