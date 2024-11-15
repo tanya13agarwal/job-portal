@@ -7,8 +7,16 @@ import Placements from '../components/core/Placements';
 import Navbar from '../components/common/Navbar';
 import Testimonials from '../components/core/Testimonials';
 import Team from '../components/core/Team';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/signup');
+  }
+
   return (
     <>
       <Navbar/>
@@ -22,7 +30,7 @@ const Home = () => {
             <p className='text-lg md:text-xl text-darkGray pt-4'>
               "Where Every Click Leads to Your Dream Job!"
             </p>
-            <button className='px-8 py-3 mt-8 active:scale-90 transition-all duration-200 rounded border border-customDarkBlue text-customDarkBlue shadow-xl hover:bg-customDarkBlue hover:text-[#fff]'>
+            <button onClick={handleClick} className='px-8 py-3 mt-8 active:scale-90 transition-all duration-200 rounded border border-customDarkBlue text-customDarkBlue shadow-xl hover:bg-customDarkBlue hover:text-[#fff]'>
               Get Started
             </button>
           </div>
