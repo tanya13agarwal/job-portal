@@ -23,7 +23,7 @@ function Sidebar() {
   const [confirmationModal , setConfirmationModal] = useState(null);
 
   const handleClick = () => {
-    window.location.href = 'https://ai-interview-mocker-two.vercel.app/';
+    window.location.href = 'https://ai-mock-interview-sigma.vercel.app/';
   }
 
   if(profileLoading || authLoading) {
