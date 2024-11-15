@@ -8,6 +8,7 @@ import {logout} from "../../../services/operations/authAPI";
 import SidebarLink from './SidebarLinks';
 import ConfirmationModal from '../../common/ConfirmationModal';
 import { FaVideo } from "react-icons/fa";
+import { ACCOUNT_TYPE } from '../../../utils/accoutnType';
 
 
 
@@ -52,7 +53,7 @@ function Sidebar() {
                 } 
                 <button 
                   onClick={handleClick}
-                  className={`relative px-8 py-2 text-sm font-medium bg-opacity-0 text-richblack-300
+                  className={`${user?.accountType === ACCOUNT_TYPE.STUDENT ? "" : "hidden"} relative px-8 py-2 text-sm font-medium bg-opacity-0 text-richblack-300
                   transition-all duration-200`}
                 >
                   <div className='flex items-center gap-x-2'>

@@ -24,6 +24,8 @@ const Signup = () => {
           className = "h-full md:h-3/5 lg:h-[70%]"
           classSet = "flex items-center justify center"
           formType="signup"
+          description3 = "Already have an account?"
+          buttonText = "Login"
         />
         )
       }
