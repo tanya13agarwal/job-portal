@@ -11,10 +11,9 @@ import { MdAdminPanelSettings } from "react-icons/md";
 // Register the necessary components
 Chart.register(...registerables);
 
-const DashboardLayout = () => {
+const AdminDashboard = () => {
   const [loading , setLoading] = useState(false) 
   const [stats, setStats] = useState(null);
-  const [salaryStats, setSalaryStats] = useState(null);;
   const currentDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
   });
@@ -34,126 +33,6 @@ const DashboardLayout = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    // Fetch the dashboard data
-    const fetchSalaryData = async () => {
-      setLoading(true);
-      try {
-        // const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/dashboard/averageSalary`);
-        const response = [
-          {
-              "year": 2000,
-              "averagePackage": 220000
-          },
-          {
-              "year": 2001,
-              "averagePackage": 225000
-          },
-          {
-              "year": 2002,
-              "averagePackage": 210000
-          },
-          {
-              "year": 2003,
-              "averagePackage": 230000
-          },
-          {
-              "year": 2004,
-              "averagePackage": 245000
-          },
-          {
-              "year": 2005,
-              "averagePackage": 250000
-          },
-          {
-              "year": 2006,
-              "averagePackage": 260000
-          },
-          {
-              "year": 2007,
-              "averagePackage": 270000
-          },
-          {
-              "year": 2008,
-              "averagePackage": 280000
-          },
-          {
-              "year": 2009,
-              "averagePackage": 275000
-          },
-          {
-              "year": 2010,
-              "averagePackage": 290000
-          },
-          {
-              "year": 2011,
-              "averagePackage": 310000
-          },
-          {
-              "year": 2012,
-              "averagePackage": 320000
-          },
-          {
-              "year": 2013,
-              "averagePackage": 330000
-          },
-          {
-              "year": 2014,
-              "averagePackage": 340000
-          },
-          {
-              "year": 2015,
-              "averagePackage": 350000
-          },
-          {
-              "year": 2016,
-              "averagePackage": 370000
-          },
-          {
-              "year": 2017,
-              "averagePackage": 380000
-          },
-          {
-              "year": 2018,
-              "averagePackage": 400000
-          },
-          {
-              "year": 2019,
-              "averagePackage": 420000
-          },
-          {
-              "year": 2020,
-              "averagePackage": 410000
-          },
-          {
-              "year": 2021,
-              "averagePackage": 430000
-          },
-          {
-              "year": 2022,
-              "averagePackage": 440000
-          },
-          {
-              "year": 2023,
-              "averagePackage": 450000
-          },
-          {
-              "year": 2024,
-              "averagePackage": 460000
-          }
-      ]
-      
-        console.log(response?.data)
-        // setSalaryStats(response?.data)
-        setSalaryStats(response)
-    } catch (error) {
-        console.error("Error fetching average package data", error);
-    }
-      setLoading(false);
-    };
-    fetchSalaryData();
   }, []);
 
   // Line Chart Options for integer-only y-axis
@@ -358,56 +237,6 @@ const DashboardLayout = () => {
     }
   };
 
-   // Prepare data for Average Salary line chart
-   console.log(salaryStats)
-   const averageSalaryChartData = {
-    labels: salaryStats?.map(data => data?.year) || [],
-    datasets: [
-      {
-        label: 'Average Salary Per Year',
-        data: salaryStats?.map(data => data?.averagePackage) || [],
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        fill: true,
-      },
-    ],
-  };
-
-  // Define chart options (customize as needed for consistency)
-  const chartOptions = {
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          precision: 0, // Ensure integer values only on y-axis
-          callback: function(value) {
-            if (Number.isInteger(value)) {
-              return value;
-            }
-          }
-        },
-        title: {
-          display: true,
-          text: 'Average Salary'
-        }
-      },
-      x: {
-        title: {
-          display: true,
-          text: 'Year'
-        }
-      }
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top'
-      }
-    },
-    maintainAspectRatio: false
-  };
-  
-
   return (
     <>
       {
@@ -471,13 +300,6 @@ const DashboardLayout = () => {
                 <Bar data={barChartData} options={barChartOptions} className='h-full w-full'/>
               </div>
             </section>
-            
-            <section className="bg-white p-6 rounded-xl shadow-lg h-[300px] mt-6">
-              <h3 className="text-xl font-semibold mb-4">Average Salary Offered per Year</h3>
-              <div className="h-[200px]">
-                <Line data={averageSalaryChartData} options={chartOptions} />
-              </div>
-            </section>
 
           </div>
         )
@@ -487,4 +309,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default AdminDashboard;

@@ -3,12 +3,18 @@ import React, { useState } from 'react'
 import frameImg from "../../../assets/images/frame.png"
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
+import { useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 
-function Template({title , description1 , description2 , image , className , classSet , formType}) {
+function Template({title , description1 , description2 , image , className , classSet , formType, description3, buttonText}) {
 
 //   const {loading} = useSelector((state) => state.auth);
     const [loading , setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+      navigate(`/${buttonText}`);
+    }
   
   return (
     <div className='flex min-h-[calc(100vh-3.5rem)] place-items-center'>
@@ -28,6 +34,12 @@ function Template({title , description1 , description2 , image , className , cla
                   </span>
                 </p>
                 {formType === "signup" ? <SignupForm/> : <LoginForm/>}
+                
+                <div className='flex justify-center items-center gap-2 pt-3'>
+                  <p>{description3}</p>
+                  <button onClick={handleClick} className='text-customBlue underline font-semibold hover:text-customDarkBlue'>{buttonText}</button>
+                </div>
+
               </div>
               <div className={`relative mx-auto w-11/12 max-w-[450px] md:mx-0 `}>
                 <img

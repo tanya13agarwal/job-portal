@@ -35,6 +35,10 @@ import ChooseTemplate from "./components/core/Dashboard/Student Dashboard/resume
 import ResumeSamples from "./components/core/Dashboard/Student Dashboard/resume/features/ResumeSamples";
 import ATSScoreChecker from "./components/core/Dashboard/Student Dashboard/resume/features/ATSScoreChecker";
 
+import AdminDashboard from "./components/core/Dashboard/Admin Dashboard/AdminDashboard";
+import Error from "./pages/Error";
+
+
 
 function App() {
 
@@ -130,6 +134,7 @@ function App() {
               <>
                 <Route path="/dashboard/student-data" element={<StudentData/>} />
                 <Route path="/dashboard/student-data/all-students" element={<Table/>} />
+                <Route path="/dashboard/admin" element={<AdminDashboard/>} />
                 {/* <Route path="dashboard/add-course" element = {<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element = {<MyCourses/>}/>
                 <Route path="dashboard/edit-course/:courseId" element = {<EditCourse/>}/>      */}
@@ -139,7 +144,7 @@ function App() {
         
         </Route>
 
-        {/* <Route path="*" element={<Error/>}/> */}
+        <Route path="*" element={<Error/>}/>
       
       </Routes>
     </div>

@@ -22,6 +22,8 @@ const Login = () => {
                 description2="Let’s continue your journey to success"
                 image = {loginImg}
                 fromType = "login" 
+                description3 = "New User?"
+                buttonText = "Signup"
             />
         )
       }

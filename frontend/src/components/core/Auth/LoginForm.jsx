@@ -39,7 +39,7 @@ function LoginForm() {
     className='flex flex-col w-full mt-6 gap-y-4'>
         <label className='w-full'>
             <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
-                Email Address <sup className="text-pink-200">*</sup>
+                Email Address <sup className="text-pink-600">*</sup>
             </p>
             <input
             required 
@@ -53,7 +53,7 @@ function LoginForm() {
         </label>
         <label className='relative'>
             <p className='mb-1 text-[0.875rem] leading-[1.375rem] '>
-                Password <sup className="text-pink-200">*</sup>
+                Password <sup className="text-pink-600">*</sup>
             </p>
             <input
             required
