@@ -11,7 +11,7 @@ module.exports = {
       mono: ["Roboto Mono", "monospace"],
     },
     colors: {
-      customBeige: "#EAD8B1",
+      customBeige: "#EAE4DD",
       customLightBlue: "#6A9AB0",
       customBlue: "#3A6D8C",
       customDarkBlue: "#001F3F",
