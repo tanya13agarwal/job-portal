@@ -10,61 +10,57 @@ import Team from '../components/core/Team';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate('/signup');
-  }
+  };
 
   return (
     <>
-      <Navbar/>
-      <div className='w-11/12 mx-auto'>
-        <div className='flex flex-col-reverse md:flex-row justify-between items-center p-9' id='home'>
+      <Navbar />
+      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-8 py-12" id="home">
           {/* Left Section */}
-          <div className='flex flex-col items-start justify-start w-full md:w-[60%] mb-8 md:mb-0'>
-            <p className='text-4xl md:text-5xl font-bold w-full md:w-[90%]'>
+          <div className="flex flex-col items-start w-full md:w-1/2 text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
               OpportuNest - Campus Career Management System
-            </p>
-            <p className='text-lg md:text-xl text-darkGray pt-4'>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 mt-4">
               "Where Every Click Leads to Your Dream Job!"
             </p>
-            <button onClick={handleClick} className='px-8 py-3 mt-8 active:scale-90 transition-all duration-200 rounded border border-customDarkBlue text-customDarkBlue shadow-xl hover:bg-customDarkBlue hover:text-[#fff]'>
+            <button
+              onClick={handleClick}
+              className="px-6 py-3 mt-6 text-sm md:text-base bg-customDarkBlue text-white rounded-md hover:bg-blue-700 transition-all duration-200"
+            >
               Get Started
             </button>
           </div>
 
           {/* Right Section */}
-          <div className='w-full md:w-[40%] flex justify-center'> {/* Adjusted width to 40% */}
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              className='w-full max-w-[600px] h-auto rounded shadow-lg'>
+          <div className="w-full md:w-1/2 flex justify-center">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full max-w-[400px] sm:max-w-[500px] rounded shadow-lg"
+            >
               <source src={homePage} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
-        
-        <About/>
-                
-        <Features/>
 
-        <Placements/>
-
-        <Testimonials/>
-        
-        <Team/>
-        
-        <Contact/>
-
-        
+        <About />
+        <Features />
+        <Placements />
+        <Testimonials />
+        <Team />
+        <Contact />
       </div>
     </>
   );
-}
+};
 
 export default Home;
