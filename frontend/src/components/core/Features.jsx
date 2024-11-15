@@ -42,32 +42,32 @@ export const Features = () => {
                 image = ""
                 heading = "Off-Campus Drives" 
                 para = "Expand your reach and connect with diverse recruiters through our off-campus drive feature." 
-                link = "/"
+                // link = "/"
             />
             <Card
                 image = ""
                 heading = "On-Campus Drives" 
                 para = "Network with top recruiters on campus through our exclusive on-campus drive feature."
-                link = "/"
+                // link = "/"
             />
             <Card
                 image = ""
                 heading = "Courses" 
                 para = "Access exclusive courses designed to enhance your skills and boost your placement preparation."
-                link = "/"
+                // link = "/"
             />
 
             <Card
                 image = ""
                 heading = "Hackathons / Internships" 
                 para = "Participate in dynamic hackathons and internships, both on and off campus, for all students" 
-                link = "/"
+                // link = "/"
             />
             <Card
                 image = ""
                 heading = "Resume Building" 
                 para = "Create an ATS-friendly resume, check its score, and gain insights from alumnis’ to boost applications."
-                link = "/"
+                // link = "/"
             />
             
         </div>
@@ -77,19 +77,19 @@ export const Features = () => {
                 image = ""
                 heading = "Job Posting" 
                 para = "Easily create and post job openings, including detailed descriptions and requirements, to attract top talent and streamline the hiring process."
-                link = "/"
+                // link = "/"
             />
             <Card
                 image = ""
                 heading = "Analytics" 
                 para = "Provides employers and admins insights on student data and recruitment metrics, such as application rates and demographics."
-                link = "/"
+                // link = "/"
             />
             <Card
                 image = ""
                 heading = "Student Database" 
                 para = "Student database with academic details, skills, contact info, and resumes for easy employer search of qualified candidates"
-                link = "/"
+                // link = "/"
             />
         </div>
     </div>
