@@ -15,6 +15,7 @@ const profileRoutes = require("./routes/Profile");
 const jobRoutes = require("./routes/Job");
 const companyRoutes = require("./routes/Company");
 const dashboardRoutes = require("./routes/Dashboard");
+const resumeRoutes = require("./routes/Resume");
 
 //Import Dotenv for accessing env file
 const dotenv = require("dotenv");
@@ -56,6 +57,7 @@ app.use("/api/v1/profile" , profileRoutes);
 app.use("/api/v1/job", jobRoutes);
 app.use("/api/v1/company", companyRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/v1/resume", resumeRoutes);
 
 //Default Route
 app.get("/" , (req , res) => {
