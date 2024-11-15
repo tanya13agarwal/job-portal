@@ -45,7 +45,7 @@ function App() {
   const {user} = useSelector((state) => state.profile);
 
   return (
-    <div className="bg-[#EAE4DD] w-screen min-h-screen flex flex-col font-inter">
+    <div className="bg-customBeige w-screen min-h-screen flex flex-col font-inter">
       {/* <Navbar/> */}
       <Routes>
         
