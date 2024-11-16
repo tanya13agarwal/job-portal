@@ -28,7 +28,7 @@ export const Features = () => {
 
             {/* Tabs for Admin and Student */}
             <Tab
-                className="w-full max-w-xs sm:max-w-sm flex items-center justify-between gap-4 bg-gray-100 p-2 rounded-lg shadow-md"
+                className="w-full max-w-xs sm:max-w-sm flex items-center justify-between gap-4 bg-gray-100 p-2 rounded-3xl shadow-md"
                 tabData={tabData}
                 field={isStudent}
                 setField={setIsStudent}
