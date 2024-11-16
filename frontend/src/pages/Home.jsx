@@ -31,7 +31,7 @@ const Home = () => {
             </p>
             <button
               onClick={handleClick}
-              className="px-6 py-3 mt-6 text-sm md:text-base bg-customDarkBlue text-white rounded-md hover:bg-blue-700 transition-all duration-200"
+              className="px-6 py-3 mt-6 text-sm md:text-base border border-customDarkBlue rounded-md hover:bg-customDarkBlue hover:text-white transition-all duration-200"
             >
               Get Started
             </button>
