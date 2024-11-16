@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import Card from '../common/Card';
 import Tab from "../core/Auth/Tab";
 import { ACCOUNT_TYPE } from '../../utils/accoutnType';
+import offCampus from '../../assets/images/off-campus-icon.jpg';
+import onCampus from '../../assets/images/on-campus-icon.png';
+import courses from '../../assets/images/courses-icon.png';
+import hackathon from '../../assets/images/hackathon-icon.png';
+import resumeBuilder from '../../assets/images/resume-builder-icon.jpg';
+
 
 export const Features = () => {
     const [isStudent, setIsStudent] = useState("Student");
@@ -39,27 +45,27 @@ export const Features = () => {
                 className={`${isStudent === "Student" ? "" : "hidden"} grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full`}
             >
                 <Card
-                    image=""
+                    image={offCampus}
                     heading="Off-Campus Drives"
                     para="Expand your reach and connect with diverse recruiters through our off-campus drive feature."
                 />
                 <Card
-                    image=""
+                    image={onCampus}
                     heading="On-Campus Drives"
                     para="Network with top recruiters on campus through our exclusive on-campus drive feature."
                 />
                 <Card
-                    image=""
+                    image={courses}
                     heading="Courses"
                     para="Access exclusive courses designed to enhance your skills and boost your placement preparation."
                 />
                 <Card
-                    image=""
+                    image={hackathon}
                     heading="Hackathons / Internships"
                     para="Participate in dynamic hackathons and internships, both on and off campus, for all students"
                 />
                 <Card
-                    image=""
+                    image={resumeBuilder}
                     heading="Resume Building"
                     para="Create an ATS-friendly resume, check its score, and gain insights from alumni to boost applications."
                 />
