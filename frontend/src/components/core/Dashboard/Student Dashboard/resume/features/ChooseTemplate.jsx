@@ -12,9 +12,12 @@ const templates = [
 const ChooseTemplate = () => {
   return (
    <div>
-    <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+    <h2 className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
         Choose a Template
     </h2>
+    <p className="mb-14 text-gray-700">
+      Here are popular ATS-friendly resume templates, designed to help you create a professional resume and increase your chances of getting shortlisted easily.
+    </p>
     <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {templates.map((template) => (

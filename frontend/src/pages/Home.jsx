@@ -22,23 +22,23 @@ const Home = () => {
       <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-8 py-12" id="home">
           {/* Left Section */}
-          <div className="flex flex-col items-start w-full md:w-1/2 text-center md:text-left">
+          <div className="flex flex-col items-center lg:items-start w-full md:w-1/2 text-center lg:text-left">
             <h1 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
               OpportuNest - Campus Career Management System
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mt-4">
+            <p className="text-lg md:text-xl text-gray-600 mt-4 lg:text-left">
               "Where Every Click Leads to Your Dream Job!"
             </p>
             <button
               onClick={handleClick}
-              className="px-6 py-3 mt-6 text-sm md:text-base border border-customDarkBlue rounded-md hover:bg-customDarkBlue hover:text-white transition-all duration-200"
+              className="px-6 py-3 mt-6 text-sm md:text-base border border-customDarkBlue rounded-md hover:bg-customDarkBlue hover:text-white transition-all duration-200 lg:self-start"
             >
               Get Started
             </button>
           </div>
 
           {/* Right Section */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="w-full md:w-1/2 flex justify-center lg:translate-x-[7.5%]">
             <video
               autoPlay
               loop

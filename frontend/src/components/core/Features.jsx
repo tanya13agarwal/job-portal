@@ -8,6 +8,10 @@ import courses from '../../assets/images/courses-icon.png';
 import hackathon from '../../assets/images/hackathon-icon.png';
 import resumeBuilder from '../../assets/images/resume-builder-icon.jpg';
 
+import studentData from "../../assets/images/student-data.jpg";
+import jobPosting from "../../assets/images/job-posting.jpeg";
+import analytics from "../../assets/images/analytics.jpeg";
+
 
 export const Features = () => {
     const [isStudent, setIsStudent] = useState("Student");
@@ -76,17 +80,17 @@ export const Features = () => {
                 className={`${isStudent === "Admin" ? "" : "hidden"} grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full`}
             >
                 <Card
-                    image=""
+                    image={jobPosting}
                     heading="Job Posting"
                     para="Easily create and post job openings, including detailed descriptions and requirements, to attract top talent and streamline the hiring process."
                 />
                 <Card
-                    image=""
+                    image={analytics}
                     heading="Analytics"
                     para="Provides employers and admins insights on student data and recruitment metrics, such as application rates and demographics."
                 />
                 <Card
-                    image=""
+                    image={studentData}
                     heading="Student Database"
                     para="Student database with academic details, skills, contact info, and resumes for easy employer search of qualified candidates."
                 />

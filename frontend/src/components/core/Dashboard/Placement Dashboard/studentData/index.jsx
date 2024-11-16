@@ -34,7 +34,7 @@ const StudentData = () => {
           <button
             onClick={() => handleClick(branch.branch)}
             key={index}
-            className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
           >
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{branch.branch}</h5>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{branch.fullForm}</p>

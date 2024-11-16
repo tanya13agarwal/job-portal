@@ -12,9 +12,12 @@ const samples = [
 const ResumeSamples = () => {
   return (
     <div>
-    <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900">
+    <h2 className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
         Resume Samples
     </h2>
+    <p className="mb-14 text-gray-700">
+      Here are resumes of our past alumni who have secured placements in reputed companies with attractive packages.
+    </p>
     <div className="p-6 bg-white border border-gray-200 rounded-lg shadow">
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
