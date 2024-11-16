@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { IoMdArrowRoundBack } from "react-icons/io";
-import CreateResume from '../features/CreateResume';
-import ChooseTemplate from '../features/ChooseTemplate';
-import ResumeSamples from '../features/ResumeSamples';
-import ATSScoreChecker from '../features/ATSScoreChecker';
 import { useNavigate } from 'react-router-dom';
 
 const ResumeTemplate = () => {
