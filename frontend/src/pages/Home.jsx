@@ -19,7 +19,10 @@ const Home = () => {
   return (
     <>
       <Navbar />
+
+
       <div className="w-full max-w-[1280px] mx-auto px-6 gap-4 flex flex-col">
+
         <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-8 py-12" id="home">
           {/* Left Section */}
           <div className="flex flex-col items-center lg:items-start w-full md:w-1/2 text-center lg:text-left">
