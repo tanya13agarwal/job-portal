@@ -37,6 +37,7 @@ import ATSScoreChecker from "./components/core/Dashboard/Student Dashboard/resum
 
 import AdminDashboard from "./components/core/Dashboard/Admin Dashboard/AdminDashboard";
 import Error from "./pages/Error";
+import Courses from "./components/core/Dashboard/Student Dashboard/Courses";
 
 
 
@@ -103,6 +104,7 @@ function App() {
                 <Route path="/dashboard/on-campus/test" element = {<Test/>}/>
                 <Route path="/dashboard/on-campus/apply/:jobId" element = {<ApplyJob/>}/>
                 <Route path="/dashboard/resume" element = {<Resume/>}/>
+                <Route path="/dashboard/courses" element = {<Courses/>}/>
                 <Route path="/dashboard/student" element = {<StudentDashboard/>}/>
                 <Route path="/dashboard/resume/createResume" element = {<CreateResume/>}/>
                 <Route path="/dashboard/resume/chooseTemplate" element = {<ChooseTemplate/>}/>
