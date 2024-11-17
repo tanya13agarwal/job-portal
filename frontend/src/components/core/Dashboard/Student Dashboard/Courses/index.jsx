@@ -63,25 +63,47 @@ const Courses = () => {
           />
 
           {/* Courses Display */}
-          <div className="grid lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6 mt-6">
+          <div className="grid lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-10 mt-10">
             {courseType === "onCampus" &&
               onCampusCourses.map((course, index) => (
-                <Card
+                <div
                   key={index}
-                  image={course.image} // Placeholder if an image is added later
-                  heading={course.heading}
-                  para={course.para}
-                />
+                  className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                >
+                    <img src={course.image} alt="img"/>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {course.heading}
+                    </h5>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {course.para}
+                    </p>
+                    <button
+                        className="mt-auto px-4 flex items-center gap-2 w-fit py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue"
+                    >
+                        View Full Course
+                    </button>
+                </div>
               ))}
 
             {courseType === "offCampus" &&
               offCampusCourses.map((course, index) => (
-                <Card
+                <div
                   key={index}
-                  image={course.image} // Placeholder if an image is added later
-                  heading={course.heading}
-                  para={course.para}
-                />
+                  className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                >
+                    <img src={course.image} alt="img"/>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {course.heading}
+                    </h5>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {course.para}
+                    </p>
+                    <button
+                        className="mt-auto px-4 flex items-center gap-2 w-fit py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue"
+                    >
+                        View Full Course
+                    </button>
+                </div>
               ))}
           </div>
         </div>
