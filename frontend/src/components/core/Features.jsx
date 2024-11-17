@@ -30,7 +30,7 @@ export const Features = () => {
     ];
 
     return (
-        <div id='features' className='flex flex-col p-6 sm:p-10 items-center gap-8'>
+        <div id='features' className='flex flex-col items-center gap-8'>
             {/* Header */}
             <div className='text-center font-semibold text-2xl sm:text-4xl'>
                 Features

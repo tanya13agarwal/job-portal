@@ -7,7 +7,7 @@ import dg from '../../assets/images/dg1.jpg';
 
 const Testimonials =()=>{
     return (
-        <div id="testimonials" className='flex  flex-col p-10 items-center gap-4'>
+        <div id="testimonials" className='flex  flex-col items-center gap-4'>
             <div className='bg-white rounded-lg p-10 '>
                 <div class="mx-auto max-w-screen-sm  text-center mb-2 ">
                     <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-500">Testimonials</h2>
