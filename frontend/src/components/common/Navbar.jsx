@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between pr-4 py-3">
+      <div className="container mx-auto flex items-center justify-between pr-4 py-2">
         {/* Logo */}
         <img src={logo} alt="Logo" className="w-15 h-12 object-contain" />
 
@@ -46,7 +46,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/signup"
-            className="px-4 py-2 text-sm bg-customDarkBlue text-white hover:scale-105 active:scale-105 rounded transition-all duration-200"
+            className="px-4 py-2 text-sm bg-customDarkBlue text-white hover:bg-transparent border border-customDarkBlue hover:text-customDarkBlue active:scale-105 rounded transition-all duration-200"
           >
             Signup
           </Link>
