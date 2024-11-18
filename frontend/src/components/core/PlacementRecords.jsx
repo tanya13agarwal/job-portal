@@ -34,7 +34,7 @@ const PlacementRecords = () => {
     const yearsRange = Array.from({ length: currentYear - startYear + 1 }, (_, i) => startYear + i);
 
     const dataMap = new Map(data.map(item => [item._id, item.totalPlaced || item.totalApplications || 0]));
-    
+
     return yearsRange.map(year => ({
       _id: year,
       count: dataMap.get(year) || 0,
@@ -93,7 +93,7 @@ const PlacementRecords = () => {
       },
     ],
   };
-  
+
   const jobApplicationsChartOptions = {
     scales: {
       y: {
@@ -149,55 +149,52 @@ const PlacementRecords = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="p-4 md:p-10">
 
-        {
-            loading ? (
-              <div className='w-full h-screen flex flex-col items-center justify-center'>
-                <img src={logo} alt="logo"/>
-                <p className='font-semibold text-2xl mt-6'>Please Wait while the page is loading...</p>
+      {loading ? (
+        <div className="w-full h-screen flex flex-col items-center justify-center">
+          <img src={logo} alt="logo" className="w-32 h-32 md:w-48 md:h-48" />
+          <p className="font-semibold text-xl md:text-2xl mt-6 text-center">
+            Please wait while the page is loading...
+          </p>
+        </div>
+      ) : (
+        <>
+          <h1 className="text-center text-2xl md:text-4xl font-bold mb-8">Placement Records</h1>
+          <div className="flex flex-col gap-8 items-center">
+            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg w-full max-w-[90%] md:max-w-[60%] h-[350px] hover:scale-105 hover:shadow-xl transition-all duration-300">
+              <h3 className="text-lg md:text-xl font-semibold mb-4 text-center">Students Placed per Year</h3>
+              <div className="h-[250px]">
+                <Line data={linedChartData} options={linedChartOptions} />
               </div>
-            ) : (
-            <>
-            <h1 className="text-center text-4xl font-bold mb-8">Placement Records</h1>
-            <div className="flex flex-col gap-8 items-center">
-                {/* Line Chart for Students Placed per Year */}
-                <div className="bg-white p-6 rounded-xl shadow-lg w-[80%] md:w-[60%] h-[350px] hover:scale-105 hover:shadow-xl transition-all duration-300">
-                    <h3 className="text-xl font-semibold mb-4 text-center">Students Placed per Year</h3>
-                    <div className="h-[250px]">
-                    <Line data={linedChartData} options={linedChartOptions} />
-                    </div>
-                </div>
-
-                {/* Line Chart for Job Applications per Year */}
-                <div className="bg-white p-6 rounded-xl shadow-lg w-[80%] md:w-[60%] h-[350px] hover:scale-105 hover:shadow-xl transition-all duration-300">
-                    <h3 className="text-xl font-semibold mb-4 text-center">Job Applications per Year</h3>
-                    <div className="h-[250px]">
-                    <Line data={jobApplicationsChartData} options={jobApplicationsChartOptions} />
-                    </div>
-                </div>
-
-                {/* Bar Chart for Jobs Posted by Each Company */}
-                <div className="bg-white p-6 rounded-xl shadow-lg w-[80%] md:w-[60%] h-[350px] hover:scale-105 hover:shadow-xl transition-all duration-300">
-                    <h3 className="text-xl font-semibold mb-4 text-center">Jobs Posted by Each Company</h3>
-                    <div className="h-[250px]">
-                    <Bar data={barChartData} options={barChartOptions} />
-                    </div>
-                </div>
             </div>
 
-            <div className='mt-10 flex items-center justify-center gap-3'>
-                    <p>Want to see our past Placement Records?</p>
-                    <button
-                    onClick={handlePlacementRecordsClick}
-                    className=" hover:bg-customDarkBlue text-customDarkBlue rounded hover:text-white px-4 py-2 border border-customDarkBlue transition-all duration-300 hover:scale-105"
-                    >
-                        Past Placement Records
-                    </button>
-                </div>
-            </>
-            )
-        }
+            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg w-full max-w-[90%] md:max-w-[60%] h-[350px] hover:scale-105 hover:shadow-xl transition-all duration-300">
+              <h3 className="text-lg md:text-xl font-semibold mb-4 text-center">Job Applications per Year</h3>
+              <div className="h-[250px]">
+                <Line data={jobApplicationsChartData} options={jobApplicationsChartOptions} />
+              </div>
+            </div>
+
+            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg w-full max-w-[90%] md:max-w-[60%] h-[350px] hover:scale-105 hover:shadow-xl transition-all duration-300">
+              <h3 className="text-lg md:text-xl font-semibold mb-4 text-center">Jobs Posted by Each Company</h3>
+              <div className="h-[250px]">
+                <Bar data={barChartData} options={barChartOptions} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col md:flex-row items-center justify-center gap-3 text-center">
+            <p className="text-sm md:text-base">Want to see our past Placement Records?</p>
+            <button
+              onClick={handlePlacementRecordsClick}
+              className="hover:bg-customDarkBlue text-customDarkBlue rounded hover:text-white px-4 py-2 border border-customDarkBlue transition-all duration-300 hover:scale-105"
+            >
+              Past Placement Records
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
