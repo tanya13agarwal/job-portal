@@ -7,6 +7,14 @@ const ResumeTemplate = () => {
   const navigate = useNavigate()
 
   const handleClick = (activeComponent) => {
+    
+     if (activeComponent === "createResume"){
+      window.open('https://ats-resume-maker-ruby.vercel.app/');
+     }
+     else if(activeComponent === "atsScoreChecker"){
+      window.open('https://ats-score-checker-cwtnaa48nx73qv4xfiqhxk.streamlit.app/');
+     }
+     else
       navigate(`${activeComponent}`);
   }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 const CreateResume = () => {
    React.useEffect(() => {
-      window.open('https://ats-resume-maker-ruby.vercel.app/', '_blank');
+      window.open('https://ats-resume-maker-ruby.vercel.app/');
    }, []);
 
    return (
