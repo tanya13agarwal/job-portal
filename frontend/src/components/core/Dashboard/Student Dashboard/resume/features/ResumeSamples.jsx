@@ -11,21 +11,21 @@ const samples = [
 
 const ResumeSamples = () => {
   return (
-    <div>
-    <h2 className="mb-3 text-4xl font-bold tracking-tight text-gray-900 text-center">
+    <div className='flex flex-col gap-6'>
+    <h2 className="text-4xl font-bold tracking-tight text-gray-900 text-center">
         Resume Samples
     </h2>
-    <p className="mb-14 text-gray-700">
+    <p className="text-gray-700 text-center">
       Here are resumes of our past alumni who have secured placements in reputed companies with attractive packages.
     </p>
     <div className="p-6 border border-gray-200 rounded-lg ">
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {samples.map((sample) => (
           <div key={sample.id} className="bg-gray-100 p-4 rounded-lg shadow hover:scale-105 transition-all duration-200">
             <img src={sample.image} alt={sample.name} className="w-full h-40 object-cover mb-4" />
             <h3 className="text-lg font-bold mb-2">{sample.name}</h3>
-            <p className="text-gray-600">{sample.company}</p>
+            <p className="text-gray-600">Company : {sample.company}</p>
             <a
               href={sample.file}
               target="_blank"
