@@ -41,4 +41,4 @@ def predict_placement():
         return jsonify({"error": "Something went wrong", "details": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=6000)
+    app.run(debug=True, port=8000)
