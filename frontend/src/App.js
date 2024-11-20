@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ACCOUNT_TYPE } from "./utils/accoutnType";
 import { useSelector } from "react-redux";
+import { courseData } from "./data/course-data";
+import CourseDetails from "./components/core/Dashboard/Student Dashboard/Courses/coursePages/CourseDetails";
 
 // Lazy loading the components
 const Home = lazy(() => import("./pages/Home"));
@@ -67,7 +69,97 @@ function App() {
                 <Route path="/dashboard/on-campus/test" element={<Test />} />
                 <Route path="/dashboard/on-campus/apply/:jobId" element={<ApplyJob />} />
                 <Route path="/dashboard/resume" element={<Resume />} />
+
                 <Route path="/dashboard/courses" element={<Courses />} />
+                {/* <Route
+                  path="/dashboard/courses/on-campus/:course"
+                  element={
+                    <CourseDetails
+                      title="On-Campus Course"
+                      description="Detailed description for the on-campus course."
+                    />
+                  }
+                />
+                <Route
+                  path="/dashboard/courses/off-campus/:course"
+                  element={
+                    <CourseDetails
+                      title="Off-Campus Course"
+                      description="Detailed description for the off-campus course."
+                    />
+                  }
+                /> */}
+                <Route 
+        path="/dashboard/courses/off-campus/dsa" 
+        element={
+          <CourseDetails 
+            title={courseData.dsa.title} 
+            content={courseData.dsa.content} 
+            modules={courseData.dsa.modules} 
+          />
+        } 
+      />
+      <Route 
+        path="/dashboard/courses/off-campus/web-development" 
+        element={
+          <CourseDetails 
+            title={courseData.webDevelopment.title} 
+            content={courseData.webDevelopment.content} 
+            modules={courseData.webDevelopment.modules} 
+          />
+        } 
+      />
+      <Route 
+        path="/dashboard/courses/off-campus/data-science-ml-dl" 
+        element={
+          <CourseDetails 
+            title={courseData.dataScience.title} 
+            content={courseData.dataScience.content} 
+            modules={courseData.dataScience.modules} 
+          />
+        } 
+      />
+      <Route 
+        path="/dashboard/courses/off-campus/system-design" 
+        element={
+          <CourseDetails 
+            title={courseData.systemDesign.title} 
+            content={courseData.systemDesign.content} 
+            modules={courseData.systemDesign.modules} 
+          />
+        } 
+      />
+      <Route 
+        path="/dashboard/courses/off-campus/operating-systems" 
+        element={
+          <CourseDetails 
+            title={courseData.operatingSystems.title} 
+            content={courseData.operatingSystems.content} 
+            modules={courseData.operatingSystems.modules} 
+          />
+        } 
+      />
+      <Route 
+        path="/dashboard/courses/off-campus/dbms-sql" 
+        element={
+          <CourseDetails 
+            title={courseData.dbmsSql.title} 
+            content={courseData.dbmsSql.content} 
+            modules={courseData.dbmsSql.modules} 
+          />
+        } 
+      />
+      <Route 
+        path="/dashboard/courses/off-campus/git-version-control" 
+        element={
+          <CourseDetails 
+            title={courseData.gitVersionControl.title} 
+            content={courseData.gitVersionControl.content} 
+            modules={courseData.gitVersionControl.modules} 
+          />
+        } 
+      />
+
                 <Route path="/dashboard/student" element={<StudentDashboard />} />
                 <Route path="/dashboard/resume/createResume" element={<CreateResume />} />
                 <Route path="/dashboard/resume/chooseTemplate" element={<ChooseTemplate />} />

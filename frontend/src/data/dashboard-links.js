@@ -99,7 +99,7 @@ export const sidebarLinks = [
   },
   {
     id: 15,
-    name: "Courses",
+    name: "Certifications / Resources",
     path: "/dashboard/courses",
     type: ACCOUNT_TYPE.STUDENT,
     icon: "VscFileSubmodule",
