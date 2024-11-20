@@ -1,6 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+
 
 const templates = [
   { id: 1, name: 'Modern', image: 'https://res.cloudinary.com/dxo2kr9bz/image/upload/v1731874788/JobPortal/resumeTemplatePreview/resumePreview4_phyacg.jpg', description: 'A sleek and modern template' , url:'https://www.overleaf.com/latex/templates/deedy-resume-reversed/hqnwfgjbbddt'},
@@ -10,8 +13,15 @@ const templates = [
 ];
 
 const ChooseTemplate = () => {
+  const navigate = useNavigate();
   return (
    <div className='flex flex-col gap-6'>
+   <button
+      onClick={() => navigate(-1)} 
+      className="bg-customDarkBlue text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:scale-105 transition"
+    >
+      <IoMdArrowRoundBack size={20} />
+    </button>
     <h2 className="text-4xl font-bold tracking-tight text-gray-900 text-center">
         Choose a Template
     </h2>
