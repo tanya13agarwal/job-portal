@@ -16,8 +16,8 @@ const Test = () => {
   const [isTimerActive, setIsTimerActive] = useState(false); // New state for timer activation
   const [placementPercentage, setPlacementPercentage] = useState(0); // New state for placement percentage
 
-  const [improvementRemarks, setImprovementRemarks] = useState(""); // New state for remarks
-  const [recommendations, setRecommendations] = useState(""); // New state for recommendations
+  const [improvementRemarks, setImprovementRemarks] = useState(""); 
+  const [recommendations, setRecommendations] = useState("");
 
   const navigate = useNavigate();
 
