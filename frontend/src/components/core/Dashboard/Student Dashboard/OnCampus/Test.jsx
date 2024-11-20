@@ -14,11 +14,15 @@ const Test = () => {
   const [isTestFinished, setIsTestFinished] = useState(false);
   const [timer, setTimer] = useState(1800); // 30 minutes in seconds
   const [isTimerActive, setIsTimerActive] = useState(false); // New state for timer activation
+  const [placementPercentage, setPlacementPercentage] = useState(0); // New state for placement percentage
+
+  const [improvementRemarks, setImprovementRemarks] = useState(""); 
+  const [recommendations, setRecommendations] = useState("");
 
   const navigate = useNavigate();
 
   const backBtn = () => {
-    navigate(-1)
+    navigate("/dashboard/on-campus")
   }
 
   // Fetch a question from the API and start the timer
@@ -55,6 +59,7 @@ const Test = () => {
         } else {
           clearInterval(interval);
           setIsTestFinished(true); // Finish the test if time is up
+          // fetchPlacementPercentage();
         }
       }, 1000);
     }
@@ -62,6 +67,62 @@ const Test = () => {
     return () => clearInterval(interval);
   }, [isTimerActive, timer]);
 
+  // console.log(timer);
+  const fetchPlacementPercentage = async () => {
+    try {
+      const timeTaken = 1800 - timer; // Correctly calculate the time taken
+      console.log("Score:", score);
+      console.log("Time Taken:", timeTaken);
+  
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/dashboard/predict-placement`, {
+        score,
+        timeTaken, // Send timeTaken (not time_taken directly, adjust in backend if needed)
+      });
+  
+      const percentage = response.data.placementPercentage;
+      setPlacementPercentage(percentage);
+
+      // Set remarks and recommendations based on percentage
+      if (percentage < 20) {
+        setImprovementRemarks("Needs significant improvement.");
+        setRecommendations(
+          "Focus on strengthening basic concepts and practice more mock tests to build confidence."
+        );
+      } else if (percentage >= 20 && percentage < 40) {
+        setImprovementRemarks("Below average performance.");
+        setRecommendations(
+          "Revise key topics and attempt topic-specific practice sessions. Analyze your mistakes carefully."
+        );
+      } else if (percentage >= 40 && percentage < 60) {
+        setImprovementRemarks("Average performance.");
+        setRecommendations(
+          "Consistent practice is essential. Work on time management and try solving questions faster."
+        );
+      } else if (percentage >= 60 && percentage < 80) {
+        setImprovementRemarks("Good performance!");
+        setRecommendations(
+          "Keep up the good work! Aim to polish weaker sections to reach top performance levels."
+        );
+      } else {
+        setImprovementRemarks("Excellent performance!");
+        setRecommendations(
+          "Maintain your high standards. Keep practicing and focus on advanced problems to stay ahead."
+        );
+      }
+
+    } catch (error) {
+      console.error('Error predicting placement percentage:', error);
+    }
+  };
+  
+  // Trigger fetchPlacementPercentage when the test is finished
+  useEffect(() => {
+    if (isTestFinished) {
+      console.log("Timer at test end:", timer);
+      fetchPlacementPercentage();
+    }
+  }, [isTestFinished]); // Add `timer` as a dependency
+  
   // Handle answer selection and auto-submit
   const handleAnswerChange = (option) => {
     setSelectedAnswer(option);
@@ -89,25 +150,57 @@ const Test = () => {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
 
-  // If the test is finished, display the score
+  // If the test is finished, display the score and placement percentage
   if (isTestFinished) {
     return (
-        <>
-            <button onClick={backBtn} className='bg-customDarkBlue text-white w-[50px] px-3 py-3 mt-3 mx-5 rounded-full'>
-                <IoMdArrowRoundBack className='text-2xl'/>
-            </button>
-            
-            <div className="p-6  mx-auto bg-white mt-10 rounded-lg font mb-10">
-                <h1 className="text-2xl font-bold mb-4 flex items-center justify-center">Test Finished</h1>
-                <p className="text-xl font-semibold mb-4 flex items-center justify-center">Your Score: {score} / 30</p>
+      <>
+        <button onClick={backBtn} className="bg-customDarkBlue text-white w-[50px] px-3 py-3 mt-3 rounded-full hover:scale-95 active:scale-105 transition-all duration-200">
+          <IoMdArrowRoundBack className="text-2xl" />
+        </button>
+
+        <div className="p-6 mx-auto bg-white mt-10 rounded-lg font mb-10 shadow-lg">
+          <h1 className="text-3xl font-extrabold mb-6 text-center text-customDarkBlue">Test Finished!</h1>
+          
+          <div className="mb-6 text-center">
+            <p className="text-2xl font-semibold text-customDarkBlue">Your Score: <span className="text-green-600">{score} / 30</span></p>
+            <p className="text-xl text-gray-600 mt-2">Now let's see how high are your chances of getting placed in a reputed company.</p>
+          </div>
+          
+          <div className="mb-6">
+            {/* <h2 className="text-2xl font-semibold text-center text-customDarkBlue">Placement Probability</h2> */}
+            <p className="text-xl text-center text-customDarkBlue font-bold">
+              {placementPercentage !== null
+                ? `Your Placement Probability: ${placementPercentage.toFixed(2)}%`
+                : "Calculating..."}
+            </p>
+          </div>
+
+          {placementPercentage !== null && (
+            <div className="mb-6 text-center text-lg text-gray-700">
+              <p><span className="font-semibold text-black">Remarks: </span>{improvementRemarks}</p>
+              <p><span className="font-semibold text-black">Recommendations: </span>{recommendations}</p>
             </div>
-        </>
+          )}
+
+          <div className="mt-6 text-center">
+            <p>Prepare Well for the placement season through the On/Off Campus Certification Courses and Study Materials based on placement topics.</p>
+            <button
+              onClick={() => navigate("/courses")}
+              className="px-4 py-2 bg-customDarkBlue text-white font-semibold rounded-lg shadow-lg hover:bg-transparent hover:text-customDarkBlue border hover:border-customDarkBlue transition-all duration-200"
+            >
+              Certifications / Resources
+            </button>
+          </div>
+        </div>
+      </>
     );
   }
 
+
+
   return (
     <>
-        <button  onClick={backBtn} className='bg-customDarkBlue text-white w-[50px] px-3 py-3 mt-3  rounded-full'>
+        <button  onClick={backBtn} className='bg-customDarkBlue text-white w-[50px] px-3 py-3 mt-3 rounded-full hover:scale-95 active:scale-105 transition-all duration-200'>
             <IoMdArrowRoundBack className='text-2xl'/>
         </button>
 

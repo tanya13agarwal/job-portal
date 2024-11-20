@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Company = require('../models/Company');
 const Job = require('../models/Job');
 const Profile = require('../models/Profile');
+const axios = require('axios'); // For communicating with Flask API
 
 const getDashboardStats = async (req, res) => {
   try {
@@ -172,7 +173,51 @@ const averageSalaryStats =  async (req, res) => {
     }
 };
 
+// Predict Placement Percentage
+const predictPlacement = async (req, res) => {
+  const { score, timeTaken } = req.body; // Adjust to extract both score and timeTaken
+  console.log("bd:scoreeeee:", score);
+  console.log("bd:time:", timeTaken);
+  if (score === undefined || timeTaken === undefined) {
+    return res.status(400).json({
+      success: false,
+      message: 'Missing required fields: score and timeTaken.',
+    });
+  }
 
+  try {
+    // Send the request to the Flask API
+    const response = await axios.post(`${process.env.PYTHON_BACKEND_URL}/dashboard/predict`, {
+      score,
+      time_taken: timeTaken, // API expects "time_taken" field
+    });
 
-module.exports = { getDashboardStats , averageSalaryStats };
+    console.log("Response from Flask API:", response.data);
+
+    // Extract the predicted placement percentage
+    const placementPercentage = response.data.predicted_placement_percentage;
+
+    // Respond with the prediction
+    res.status(200).json({
+      success: true,
+      placementPercentage,
+    });
+  } catch (error) {
+    console.error('Error predicting placement:', error);
+
+    // Handle errors appropriately
+    const errorMessage = error.response?.data?.details || 'Failed to predict placement percentage.';
+    res.status(500).json({
+      success: false,
+      message: errorMessage,
+    });
+  }
+};
+
+module.exports = {
+  getDashboardStats,
+  averageSalaryStats,
+  predictPlacement,
+};
+
 
