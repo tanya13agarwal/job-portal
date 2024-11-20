@@ -18,7 +18,7 @@ const Test = () => {
   const navigate = useNavigate();
 
   const backBtn = () => {
-    navigate("/dashboard/on-campus")
+    navigate(-1)
   }
 
   // Fetch a question from the API and start the timer
