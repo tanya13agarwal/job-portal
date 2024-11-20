@@ -62,7 +62,7 @@ const MockTest = () => {
             <TestCard
               heading={topic.name}
               desc={topic.desc}
-              link={`/test?api=${encodeURIComponent(topic.api)}`}
+              link={`on-campus/test?api=${encodeURIComponent(topic.api)}`}
             />
           ))}
         </div>
