@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 import numpy as np
 import joblib
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Allow all origins by default
 
 # Load the trained model
 model = joblib.load("model.pkl")
