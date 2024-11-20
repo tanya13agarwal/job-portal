@@ -39,7 +39,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "cd .. && cd backend && npm run dev",
-    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
+    "flask-api": "cd .. && cd backend && python app.py",
+    "dev": "concurrently -n \"client,server,flask\" -c \"bgBlue,bgYellow,bgMagenta\" \"npm start\" \"npm run server\" \"npm run flask-api\""
   },
   "eslintConfig": {
     "extends": [
