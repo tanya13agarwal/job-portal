@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import logo from '../../../../../assets/images/logo.jpeg';
 
 const Test = () => {
@@ -23,15 +23,31 @@ const Test = () => {
   const [isLoading, setIsLoading] = useState(false); // New state for loading
 
   const navigate = useNavigate();
+  const params = useParams();
+
 
   const backBtn = () => {
-    navigate("/dashboard/on-campus")
+    navigate(-1)
   }
+  const topics = {
+    'mixture-and-alligation': 'https://aptitude-api.vercel.app/MixtureAndAlligation',
+    'age': 'https://aptitude-api.vercel.app/Age',
+    'permutation-and-combination': 'https://aptitude-api.vercel.app/PermutationAndCombination',
+    'profit-and-loss': 'https://aptitude-api.vercel.app/ProfitAndLoss',
+    'pipes-and-cisterns': 'https://aptitude-api.vercel.app/PipesAndCistern',
+    'speed-time-distance': 'https://aptitude-api.vercel.app/SpeedTimeDistance',
+    'calendars': 'https://aptitude-api.vercel.app/Calendar',
+    'simple-interest': 'https://aptitude-api.vercel.app/SimpleInterest',
+  };
+  
+ // Ensure the key exists in the topics object
+ const topicKey = params.topic.trim(); // Handle any whitespace issues
+ const selectedTopicUrl = topics[topicKey];
 
   // Fetch a question from the API and start the timer
   const fetchNextQuestion = async () => {
     try {
-      const response = await axios.get('https://aptitude-api.vercel.app/Random');
+      const response = await axios.get(selectedTopicUrl || 'https://aptitude-api.vercel.app/Random');
       setCurrentQuestion(response.data);
       setSelectedAnswer('');
       setIsAnswerSubmitted(false);
