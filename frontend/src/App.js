@@ -67,6 +67,7 @@ function App() {
                 <Route path="/dashboard/mock-test" element={<MockTest />} />
                 <Route path="/dashboard/on-campus" element={<OnCampus />} />
                 <Route path="/dashboard/on-campus/test" element={<Test />} />
+                <Route path="/dashboard/on-campus/test/:topic" element={<Test />} />
                 <Route path="/dashboard/on-campus/apply/:jobId" element={<ApplyJob />} />
                 <Route path="/dashboard/resume" element={<Resume />} />
 
