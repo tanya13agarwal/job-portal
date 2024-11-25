@@ -4,7 +4,7 @@ import { ACCOUNT_TYPE } from "./utils/accoutnType";
 import { useSelector } from "react-redux";
 import { courseData } from "./data/course-data";
 import CourseDetails from "./components/core/Dashboard/Student Dashboard/Courses/coursePages/CourseDetails";
-
+import CreateCourse from "./components/core/Dashboard/Placement Dashboard/createCourse";
 // Lazy loading the components
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -176,6 +176,7 @@ function App() {
                 <Route path="/dashboard/placement" element={<PlacementDashboard />} />
                 <Route path="/dashboard/student-data" element={<StudentData />} />
                 <Route path="/dashboard/student-data/all-students" element={<Table />} />
+                <Route path="/dashboard/create-course" element={<CreateCourse />} />
               </>
             )}
 
