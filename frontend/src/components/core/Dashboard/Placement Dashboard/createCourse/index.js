@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const Upload = ({ name, label, setValue }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -31,7 +32,9 @@ const Upload = ({ name, label, setValue }) => {
 
   return (
     <div className="flex flex-col space-y-2">
-      <label className="text-sm text-gray-700">{label} *</label>
+      <label className="text-sm text-gray-700">
+        {label} <span className="text-red-500">*</span>
+      </label>
       <div
         className="bg-gray-100 flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted"
         {...getRootProps()}
@@ -62,6 +65,7 @@ const CreateCourse = () => {
   const navigate = useNavigate();
   const [onCampusCourses, setOnCampusCourses] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [newCourse, setNewCourse] = useState({
     courseName: "",
     courseDescription: "",
@@ -73,23 +77,44 @@ const CreateCourse = () => {
     setNewCourse((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (
       newCourse.courseName &&
       newCourse.courseDescription &&
       newCourse.courseLink &&
       newCourse.courseImage
     ) {
-      setOnCampusCourses((prev) => [...prev, newCourse]);
-      setShowModal(false);
-      setNewCourse({
-        courseName: "",
-        courseDescription: "",
-        courseLink: "",
-        courseImage: null,
-      });
+      setLoading(true);
+
+      try {
+        const formData = new FormData();
+        formData.append("courseName", newCourse.courseName);
+        formData.append("courseDescription", newCourse.courseDescription);
+        formData.append("courseLink", newCourse.courseLink);
+        formData.append("courseImage", newCourse.courseImage);
+
+        // Simulate API call
+        console.log("Submitted data:", newCourse);
+
+        // Add to course list after API success
+        setOnCampusCourses((prev) => [...prev, newCourse]);
+        toast.success("Course added successfully!");
+        setShowModal(false);
+
+        // Reset the form
+        setNewCourse({
+          courseName: "",
+          courseDescription: "",
+          courseLink: "",
+          courseImage: null,
+        });
+      } catch (error) {
+        toast.error("Failed to add course. Try again.");
+      } finally {
+        setLoading(false);
+      }
     } else {
-      alert("Please fill all the fields.");
+      toast.error("Please fill in all required fields.");
     }
   };
 
@@ -114,7 +139,7 @@ const CreateCourse = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
           <div className="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
             <button
               className="absolute top-2 right-2 text-gray-500"
@@ -123,10 +148,12 @@ const CreateCourse = () => {
               ✖
             </button>
             <h2 className="text-xl font-bold mb-4">Create a New Course</h2>
-            <div className="space-y-4">
+
+            {/* Scrollable Content */}
+            <div className="max-h-96 overflow-y-auto space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Course Name
+                  Course Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -137,7 +164,7 @@ const CreateCourse = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Course Description
+                  Course Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   className="mt-1 p-2 w-full border rounded"
@@ -147,7 +174,7 @@ const CreateCourse = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Course Link
+                  Course Link <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -162,18 +189,21 @@ const CreateCourse = () => {
                 setValue={(name, file) => setValue(name, file)}
               />
             </div>
+
             <div className="mt-4 flex justify-end space-x-2">
               <button
                 className="px-4 py-2 bg-gray-300 rounded"
                 onClick={() => setShowModal(false)}
+                disabled={loading}
               >
                 Cancel
               </button>
               <button
                 className="px-4 py-2 bg-customDarkBlue text-white rounded"
                 onClick={handleSave}
+                disabled={loading}
               >
-                Save
+                {loading ? "Saving..." : "Save"}
               </button>
             </div>
           </div>
