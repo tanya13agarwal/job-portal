@@ -50,3 +50,12 @@ export const companyEndpoints = {
     DELETE_COMPANY_API: BASE_URL + "/company/deleteCompany",
     GET_ALL_COMPANY_API: BASE_URL + "/company/getAllCompany",
   }
+
+  export const courseEndpoints = {
+    COURSE_DETAILS_API: BASE_URL + "/course/getCourseDetails",
+    PUBLISHED_COURSE_DETAILS_API: BASE_URL + "/course/getPublishedCourseDetails",
+    EDIT_COURSE_API: BASE_URL + "/course/editCourse",
+    CREATE_COURSE_API: BASE_URL + "/course/createCourse",
+    DELETE_COURSE_API: BASE_URL + "/course/deleteCourse",
+    GET_ALL_COURSE_API: BASE_URL + "/course/getAllCourse",
+  }

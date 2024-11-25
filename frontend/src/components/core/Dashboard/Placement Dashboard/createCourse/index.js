@@ -1,127 +1,126 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
-import { FiUploadCloud } from "react-icons/fi";
-import { toast } from "react-toastify";
+import Upload from "../jobPosting/Upload";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import {
+  addCourseDetails,
+  editCourseDetails,
+} from "../../../../../services/operations/courseDetailsAPI"
+import { setEditCourse } from "../../../../../slices/courseSlice";
+import { deleteCourse } from "../../../../../services/operations/courseDetailsAPI";
+import ConfirmationModal from "../../../../common/ConfirmationModal";
 
-const Upload = ({ name, label, setValue }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewSource, setPreviewSource] = useState("");
-
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    if (file) {
-      previewFile(file);
-      setSelectedFile(file);
-      setValue(name, file);
-    }
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: { "image/*": [".jpeg", ".jpg", ".png"] },
-    onDrop,
-  });
-
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
-  };
-
-  return (
-    <div className="flex flex-col space-y-2">
-      <label className="text-sm text-gray-700">
-        {label} <span className="text-red-500">*</span>
-      </label>
-      <div
-        className="bg-gray-100 flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted"
-        {...getRootProps()}
-      >
-        {previewSource ? (
-          <img
-            src={previewSource}
-            alt="Preview"
-            className="h-full w-full rounded-md object-cover"
-          />
-        ) : (
-          <div className="flex w-full flex-col items-center p-6">
-            <input {...getInputProps()} />
-            <div className="grid aspect-square w-14 place-items-center rounded-full bg-gray-200">
-              <FiUploadCloud className="text-2xl text-gray-600" />
-            </div>
-            <p className="mt-2 max-w-[200px] text-center text-sm text-gray-500">
-              Drag and drop an image, or click to browse
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
 
 const CreateCourse = () => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm()
+
+  // Default values if editCourse or course is undefined
+  const { editCourse, course } = useSelector((state) => state.course);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [onCampusCourses, setOnCampusCourses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [newCourse, setNewCourse] = useState({
-    courseName: "",
-    courseDescription: "",
-    courseLink: "",
-    courseImage: null,
-  });
+  const { token } = useSelector((state) => state.auth)
+  const [confirmationModal, setConfirmationModal] = useState(null);
 
-  const setValue = (name, value) => {
-    setNewCourse((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSave = async () => {
+  const isFormUpdated = () => {
+    const currentValues = getValues()
+    // console.log("changes after editing form values:", currentValues)
     if (
-      newCourse.courseName &&
-      newCourse.courseDescription &&
-      newCourse.courseLink &&
-      newCourse.courseImage
+      currentValues.courseName !== course.courseName ||
+      currentValues.courseDescription !== course.courseDescription ||
+      currentValues.courseLink !== course.courseLink || 
+      currentValues.courseImage !== course.thumbnail
     ) {
-      setLoading(true);
-
-      try {
-        const formData = new FormData();
-        formData.append("courseName", newCourse.courseName);
-        formData.append("courseDescription", newCourse.courseDescription);
-        formData.append("courseLink", newCourse.courseLink);
-        formData.append("courseImage", newCourse.courseImage);
-
-        // Simulate API call
-        console.log("Submitted data:", newCourse);
-
-        // Add to course list after API success
-        setOnCampusCourses((prev) => [...prev, newCourse]);
-        toast.success("Course added successfully!");
-        setShowModal(false);
-
-        // Reset the form
-        setNewCourse({
-          courseName: "",
-          courseDescription: "",
-          courseLink: "",
-          courseImage: null,
-        });
-      } catch (error) {
-        toast.error("Failed to add course. Try again.");
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      toast.error("Please fill in all required fields.");
+      return true
     }
-  };
+    return false
+  }
 
+  const handleSave = async (data) => {
+    console.log("submit pe data",data)
+    setLoading(true)
+   
+    // let result
+
+    if (editCourse) {
+
+      if (isFormUpdated()) {
+        const currentValues = getValues()
+        const formData = new FormData()
+        // console.log(data)
+        formData.append("courseId", course._id)
+        if (currentValues.courseName !== course.courseName) {
+          formData.append("courseName", data.courseName)
+        }
+        if (currentValues.courseDescription !== course.courseDescription) {
+          formData.append("courseDescription", data.courseDescription)
+        }
+        if (currentValues.courseLink !== course.courseLink) {
+          formData.append("courseLink", data.courseLink)
+        }
+        if (currentValues.courseImage !== course.thumbnail) {
+          formData.append("thumbnail", data.courseImage)
+        }
+
+        console.log("Edit Form data: ", formData)
+        setLoading(true)
+        const result = await editCourseDetails(formData, token)
+        setLoading(false)
+        if (result) {
+          dispatch(setEditCourse(false));
+        }
+      } 
+      return
+    }
+
+
+    const formData = new FormData()
+    formData.append("courseName", data.courseName)
+    formData.append("courseDescription", data.courseDescription)
+    formData.append("courseLink", data.courseLink)
+    formData.append("thumbnail", data.courseImage)
+
+    setLoading(true)
+
+    const result = await addCourseDetails(formData, token)
+    console.log(result)
+    setLoading(false)
+  }
   const handleViewCourse = (link) => {
+
     navigate(link);
+
   };
 
+  const handleEditCourse =(courseId)=>{
+    dispatch(setEditCourse(true));
+    setShowModal(true);
+  };
+
+  const handleDeleteCourse = async (courseId) =>{
+      try{
+         const result = await deleteCourse(courseId,token);
+         if(result){
+          //to add something
+          setConfirmationModal(null);
+             
+         }
+      }
+      catch(error) {
+         console.log(error);
+      }
+  }
+
+  
   return (
     <div>
       <div className="flex w-full items-center justify-center text-4xl mb-10">
@@ -140,7 +139,7 @@ const CreateCourse = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
+          <div className="bg-white p-6 rounded shadow-lg w-full max-w-lg relative">
             <button
               className="absolute top-2 right-2 text-gray-500"
               onClick={() => setShowModal(false)}
@@ -150,43 +149,63 @@ const CreateCourse = () => {
             <h2 className="text-xl font-bold mb-4">Create a New Course</h2>
 
             {/* Scrollable Content */}
-            <div className="max-h-96 overflow-y-auto space-y-4">
+            <div className="space-y-4 max-h-[400px] overflow-y-auto">
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Course Name <span className="text-red-500">*</span>
                 </label>
                 <input
+                  id="courseName"
                   type="text"
                   className="mt-1 p-2 w-full border rounded"
-                  value={newCourse.courseName}
-                  onChange={(e) => setValue("courseName", e.target.value)}
+                  {...register("courseName", { required: true })}
                 />
+                {errors.courseName && (
+                  <span className="ml-2 text-xs tracking-wide text-pink-200">
+                    Course Name is required.
+                  </span>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Course Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
+                  id="courseDescription"
                   className="mt-1 p-2 w-full border rounded"
-                  value={newCourse.courseDescription}
-                  onChange={(e) => setValue("courseDescription", e.target.value)}
+                  {...register("courseDescription", { required: true })}
                 />
+                {errors.courseDescription && (
+                  <span className="ml-2 text-xs tracking-wide text-pink-200">
+                    Course Description is required.
+                  </span>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Course Link <span className="text-red-500">*</span>
                 </label>
                 <input
+                  id="courseLink"
                   type="text"
                   className="mt-1 p-2 w-full border rounded"
-                  value={newCourse.courseLink}
-                  onChange={(e) => setValue("courseLink", e.target.value)}
+                  {...register("courseLink", { required: true })}
                 />
+                {errors.courseLink && (
+                  <span className="ml-2 text-xs tracking-wide text-pink-200">
+                    Course Link is required.
+                  </span>
+                )}
               </div>
-              <Upload
+
+              <Upload 
+                className="text-gray-700 font-medium"
                 name="courseImage"
-                label="Course Image"
-                setValue={(name, file) => setValue(name, file)}
+                label="Course Thumbnail"
+                register={register}
+                setValue={setValue}
+                errors={errors}
+                editData={editCourse ? course?.thumbnail : null}
               />
             </div>
 
@@ -214,6 +233,14 @@ const CreateCourse = () => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-10 mt-10">
         {onCampusCourses.map((course, index) => (
           <div
+            onClick={ () => setConfirmationModal({
+                  text1:"Changes ?",
+                  text2:"What would you like to do with your course?",
+                  btn1Text: "Edit",
+                  btn2Text: "Delete",
+                  btn1Handler: () => handleEditCourse(course?._id),
+                  btn2Handler: () => handleDeleteCourse(course?._id),
+                })}
             key={index}
             className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 hover:scale-105 transition-all duration-300"
           >
@@ -235,6 +262,7 @@ const CreateCourse = () => {
           </div>
         ))}
       </div>
+      {confirmationModal && <ConfirmationModal modalData = {confirmationModal}/>}
     </div>
   );
 };
