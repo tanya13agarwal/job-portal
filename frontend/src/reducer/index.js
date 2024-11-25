@@ -7,6 +7,7 @@ import jobPostReducer from "../slices/jobPostSlice";
 import companyPostReducer from "../slices/companyPostSlice";
 import viewCourseReducer from "../slices/viewCourseSlice"
 import dashboardReducer from "../slices/dashboardSlice"
+import courseReducer from "../slices/dashboardSlice"
 
 
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     companyPost : companyPostReducer,
     dashboard : dashboardReducer,
     viewCourse:viewCourseReducer,
+    course:courseReducer,
 })
 
 export default rootReducer;
