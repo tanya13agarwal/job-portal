@@ -16,6 +16,7 @@ const jobRoutes = require("./routes/Job");
 const companyRoutes = require("./routes/Company");
 const dashboardRoutes = require("./routes/Dashboard");
 const resumeRoutes = require("./routes/Resume");
+const courseRoutes = require("./routes/Course");
 
 //Import Dotenv for accessing env file
 const dotenv = require("dotenv");
@@ -55,6 +56,7 @@ cloudinaryConnect();
 app.use("/api/v1/auth" , userRoutes);
 app.use("/api/v1/profile" , profileRoutes);
 app.use("/api/v1/job", jobRoutes);
+app.use("/api/v1/course" , courseRoutes);
 app.use("/api/v1/company", companyRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/resume", resumeRoutes);

@@ -139,7 +139,7 @@ const CreateCourse = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className="bg-white p-6 rounded shadow-lg w-full max-w-lg relative">
+          <form onSubmit={handleSave} className="bg-white p-6 rounded shadow-lg w-full max-w-lg relative">
             <button
               className="absolute top-2 right-2 text-gray-500"
               onClick={() => setShowModal(false)}
@@ -219,13 +219,13 @@ const CreateCourse = () => {
               </button>
               <button
                 className="px-4 py-2 bg-customDarkBlue text-white rounded"
-                onClick={handleSave}
+                type="save"
                 disabled={loading}
               >
                 {loading ? "Saving..." : "Save"}
               </button>
             </div>
-          </div>
+          </form>
         </div>
       )}
 
