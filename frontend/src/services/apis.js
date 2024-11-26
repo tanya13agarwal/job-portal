@@ -57,5 +57,5 @@ export const companyEndpoints = {
     EDIT_COURSE_API: BASE_URL + "/course/editCourse",
     CREATE_COURSE_API: BASE_URL + "/course/createCourse",
     DELETE_COURSE_API: BASE_URL + "/course/deleteCourse",
-    GET_ALL_COURSE_API: BASE_URL + "/course/getAllCourse",
+    GET_ALL_COURSE_API: BASE_URL + "/course/showAllCourses",
   }
