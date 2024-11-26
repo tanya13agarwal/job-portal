@@ -7,7 +7,8 @@ const router = express.Router();
 //Import the controllers -->
 
 //Course Controller Import
-const {createCourse , editCourse , deleteCourse , getFullCourseDetails , getInstructorCourses , showAllCourses , getCourseDetails} = require("../controllers/Course");
+const {createCourse , editCourse , deleteCourse , showAllCourses , getCourseDetails} = require("../controllers/Course");
+const { auth , isPlacement} = require("../middlewares/Auth");
 
 
 //********************************************************************************************************************************************************** */
@@ -15,11 +16,11 @@ const {createCourse , editCourse , deleteCourse , getFullCourseDetails , getInst
 //********************************************************************************************************************************************************** */
 
 //Courses can Only be Created by Instructor
-router.post("/createCourse" , auth , isInstructor , createCourse);
+router.post("/createCourse" , auth , isPlacement , createCourse);
 //Courses can Only be deleted by Instructor
-router.delete("/deleteCourse" , auth , isInstructor , deleteCourse);
+router.delete("/deleteCourse" , auth , isPlacement , deleteCourse);
 //Courses can Only be edited by Instructor
-router.post("/editCourse" , auth , isInstructor , editCourse);
+router.post("/editCourse" , auth , isPlacement , editCourse);
 
 
 
@@ -31,7 +32,7 @@ router.get("/showAllCourses" , showAllCourses);
 router.post("/getCourseDetails" , getCourseDetails);
 
 // Get Details for a Specific Courses
-router.post("/getFullCourseDetails", auth, getFullCourseDetails)
+// router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 
 
 module.exports = router
