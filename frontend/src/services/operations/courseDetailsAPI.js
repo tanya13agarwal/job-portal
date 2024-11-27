@@ -6,7 +6,6 @@ import { courseEndpoints } from "../apis"
 
 const {
   COURSE_DETAILS_API,
-  PUBLISHED_COURSE_DETAILS_API,
   CREATE_COURSE_API ,
   EDIT_COURSE_API,
   DELETE_COURSE_API,
@@ -131,20 +130,25 @@ export const editCourseDetails = async (data, token) => {
 }
 
 // delete a course
-export const deleteCourse = async (data, token) => {
+export const deleteCourseDetails = async (courseId, token) => {
   const toastId = toast.loading("Loading...")
+  let result = null;
   try {
-    const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
+    const response = await apiConnector("DELETE", DELETE_COURSE_API, {courseId:courseId}, {
       Authorization: `Bearer ${token}`,
     })
     console.log("DELETE COURSE API RESPONSE............", response)
+
     if (!response?.data?.success) {
+      
       throw new Error("Could Not Delete Course")
     }
+    result=response.data;
     toast.success("Course Deleted")
   } catch (error) {
     console.log("DELETE Course API ERROR............", error)
     toast.error(error.message)
   }
   toast.dismiss(toastId)
+  return result;
 }

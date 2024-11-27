@@ -16,7 +16,7 @@ const { auth , isPlacement} = require("../middlewares/Auth");
 //********************************************************************************************************************************************************** */
 
 //Courses can Only be Created by Instructor
-router.post("/createCourse" , auth , isPlacement , createCourse);
+ router.post("/createCourse" , auth , isPlacement , createCourse);
 //Courses can Only be deleted by Instructor
 router.delete("/deleteCourse" , auth , isPlacement , deleteCourse);
 //Courses can Only be edited by Instructor
