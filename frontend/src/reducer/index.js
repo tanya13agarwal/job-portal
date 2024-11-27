@@ -7,7 +7,7 @@ import jobPostReducer from "../slices/jobPostSlice";
 import companyPostReducer from "../slices/companyPostSlice";
 import viewCourseReducer from "../slices/viewCourseSlice"
 import dashboardReducer from "../slices/dashboardSlice"
-import courseReducer from "../slices/dashboardSlice"
+import courseReducer from "../slices/courseSlice"
 
 
 

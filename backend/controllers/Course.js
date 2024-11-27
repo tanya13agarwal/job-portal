@@ -15,8 +15,8 @@ exports.createCourse = async (req , res) => {
         } = req.body;
 
         //get thumbnail
-        console.log("thumbnailiamge: " , req.body)
-        const thumbnail = req.files.courseImage;
+        console.log("thumbnailiamge: " , req.files)
+        const thumbnail = req.files.thumbnail;
 
         //validation
         if(
@@ -134,7 +134,7 @@ exports.editCourse = async(req , res) => {
 exports.deleteCourse = async(req , res)  => {
     try {
         const {courseId} = req.body;
-
+        console.log(req.body);
         //Find the course
         const course = await Course.findById(courseId);
 
@@ -147,9 +147,12 @@ exports.deleteCourse = async(req , res)  => {
         //Delete the Course
         await Course.findByIdAndDelete(courseId)
 
+        const allCourses = await Course.find()
+
         return res.status(200).json({
             success : true,
             message : "Course Deleted Successfully",
+            data : allCourses
         })
     }
     catch(error) {

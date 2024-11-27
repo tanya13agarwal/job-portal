@@ -67,7 +67,7 @@ export const sidebarLinks = [
     name: "Create-Course",
     path: "/dashboard/create-course",
     type: ACCOUNT_TYPE.PLACEMENT_CELL,
-    icon: "VscRepo",
+    icon: "VscNewFolder",
   },
   {
     id: 11,

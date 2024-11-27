@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Upload from "../jobPosting/Upload";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import {
   addCourseDetails,
   editCourseDetails,
+  fetchAllCourseDetails,
+  fetchCourseDetails,
 } from "../../../../../services/operations/courseDetailsAPI"
-import { setEditCourse } from "../../../../../slices/courseSlice";
-import { deleteCourse } from "../../../../../services/operations/courseDetailsAPI";
+import { setCourse, setEditCourse } from "../../../../../slices/courseSlice";
+import { deleteCourseDetails } from "../../../../../services/operations/courseDetailsAPI";
 import ConfirmationModal from "../../../../common/ConfirmationModal";
 
 
@@ -30,6 +32,9 @@ const CreateCourse = () => {
   const [loading, setLoading] = useState(false);
   const { token } = useSelector((state) => state.auth)
   const [confirmationModal, setConfirmationModal] = useState(null);
+  const [allCourses,setAllCourses] = useState([]);
+  const [edit,setEdit] = useState(false);
+  const [del,setDel] = useState(false);
 
   const isFormUpdated = () => {
     const currentValues = getValues()
@@ -44,6 +49,33 @@ const CreateCourse = () => {
     }
     return false
   }
+
+  useEffect(() => {
+    // if form is in edit mode
+    console.log("data populated", course)
+    if (editCourse) {
+      setValue("courseName", course?.courseName)
+      setValue("courseDescription", course?.courseDescription)
+      setValue("courseLink", course?.courseLink)
+      setValue("courseImage", course?.thumbnail)
+      // setValue("jobId", job?._id)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [edit])
+
+
+  useEffect(async ()=>{
+      try{
+         const result = await fetchAllCourseDetails();
+         if (result)
+          setAllCourses(result);
+      }
+      catch(error){
+       console.log(error);
+      }
+  },[edit])
+
+
 
   const handleSave = async (data) => {
     console.log("submit pe data",data)
@@ -77,6 +109,8 @@ const CreateCourse = () => {
         setLoading(false)
         if (result) {
           dispatch(setEditCourse(false));
+          setEdit(false);
+          setShowModal(false);
         }
       } 
       return
@@ -93,6 +127,7 @@ const CreateCourse = () => {
 
     const result = await addCourseDetails(formData, token)
     console.log(result)
+    setShowModal(false)
     setLoading(false)
   }
   const handleViewCourse = (link) => {
@@ -101,16 +136,35 @@ const CreateCourse = () => {
 
   };
 
-  const handleEditCourse =(courseId)=>{
-    dispatch(setEditCourse(true));
-    setShowModal(true);
+  const handleEditCourse =async (courseId)=>{
+    try{
+      dispatch(setEditCourse(true));
+      setLoading(true);
+      const result = await fetchCourseDetails(courseId);
+      setEdit(true);
+      if (result.data){
+        dispatch(setCourse(result.data[0]));
+      }
+      console.log("hello", result.data[0]);
+      setShowModal(true);
+    }
+    catch(error){
+       console.log(error);
+    }
+    setLoading(false);
+    
+    setConfirmationModal(null);
   };
-
+  console.log("helllooooooo",course);
   const handleDeleteCourse = async (courseId) =>{
+
       try{
-         const result = await deleteCourse(courseId,token);
-         if(result){
+         const result = await deleteCourseDetails(courseId,token);
+         console.log("Delete course",result);
+         if(result.data){
           //to add something
+         
+          setAllCourses(result.data);
           setConfirmationModal(null);
              
          }
@@ -122,12 +176,12 @@ const CreateCourse = () => {
 
   
   return (
-    <div>
+    <div >
       <div className="flex w-full items-center justify-center text-4xl mb-10">
         Certifications / Resources
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end" >
         <button
           className="mt-auto px-4 flex items-center gap-2 w-fit py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue"
           onClick={() => setShowModal(true)}
@@ -135,11 +189,47 @@ const CreateCourse = () => {
           Create Course
         </button>
       </div>
+       {allCourses.length > 0 && 
+       (
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-10 mt-10" >
+        {allCourses.map((course, index) => (
+          <div onClick={ () => setConfirmationModal({
+                  text1:"Changes ?",
+                  text2:"What would you like to do with your course?",
+                  btn1Text: "Edit",
+                  btn2Text: "Delete",
+                  btn1Handler: () => handleEditCourse(course?._id),
+                  btn2Handler: () => handleDeleteCourse(course?._id),
+                })}
+            key={index}
+            className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 hover:scale-105 transition-all duration-300"
+          >
+            <img
+              src={course.thumbnail}
+              alt={course.courseName}
+              className="w-24 h-24 my-4 rounded-xl object-cover translate-x-[80%]"
+            />
 
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {course.courseName}
+            </h5>
+            <p className="mb-5 font-normal text-gray-700 dark:text-gray-400">
+              {course.courseDescription}
+            </p>
+            <button
+              className="mt-auto px-4 flex items-center gap-2 w-fit py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue"
+              onClick={() => handleViewCourse(course.courseLink)}
+            >
+              View Course
+            </button>
+          </div>
+        ))}
+      </div>
+       )}
       {/* Modal */}
       {showModal && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-          <form onSubmit={handleSave} className="bg-white p-6 rounded shadow-lg w-full max-w-lg relative">
+          <form onSubmit={handleSubmit(handleSave)} className="bg-white p-6 rounded shadow-lg w-full max-w-lg relative">
             <button
               className="absolute top-2 right-2 text-gray-500"
               onClick={() => setShowModal(false)}
