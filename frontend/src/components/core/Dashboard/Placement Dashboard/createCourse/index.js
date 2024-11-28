@@ -35,6 +35,7 @@ const CreateCourse = () => {
   const [allCourses,setAllCourses] = useState([]);
   const [edit,setEdit] = useState(false);
   const [del,setDel] = useState(false);
+  const [createCourses,setCreateCourses] = useState(false);
 
   const isFormUpdated = () => {
     const currentValues = getValues()
@@ -50,6 +51,7 @@ const CreateCourse = () => {
     return false
   }
 
+
   useEffect(() => {
     // if form is in edit mode
     console.log("data populated", course)
@@ -64,16 +66,19 @@ const CreateCourse = () => {
   }, [edit])
 
 
-  useEffect(async ()=>{
-      try{
-         const result = await fetchAllCourseDetails();
-         if (result)
-          setAllCourses(result);
+  useEffect( ()=>{
+      const fetchData = async() => {
+        try{
+          const result = await fetchAllCourseDetails();
+          if (result)
+           setAllCourses(result);
+        }
+        catch(error){
+          console.log(error);
+        }
       }
-      catch(error){
-       console.log(error);
-      }
-  },[edit])
+      fetchData();
+  },[])
 
 
 
@@ -102,16 +107,17 @@ const CreateCourse = () => {
         if (currentValues.courseImage !== course.thumbnail) {
           formData.append("thumbnail", data.courseImage)
         }
-
         console.log("Edit Form data: ", formData)
+
         setLoading(true)
         const result = await editCourseDetails(formData, token)
-        setLoading(false)
         if (result) {
           dispatch(setEditCourse(false));
           setEdit(false);
           setShowModal(false);
+          setAllCourses(result);
         }
+        setLoading(false)
       } 
       return
     }
@@ -128,34 +134,34 @@ const CreateCourse = () => {
     const result = await addCourseDetails(formData, token)
     console.log(result)
     setShowModal(false)
+    setAllCourses(result);
     setLoading(false)
   }
+
   const handleViewCourse = (link) => {
-
     navigate(link);
-
   };
 
   const handleEditCourse =async (courseId)=>{
     try{
-      dispatch(setEditCourse(true));
-      setLoading(true);
+      // setLoading(true);
       const result = await fetchCourseDetails(courseId);
-      setEdit(true);
       if (result.data){
+        setEdit(true); 
         dispatch(setCourse(result.data[0]));
+        dispatch(setEditCourse(true));
       }
-      console.log("hello", result.data[0]);
+      // console.log("hello", result.data[0]);
       setShowModal(true);
     }
     catch(error){
        console.log(error);
     }
-    setLoading(false);
-    
+    // setLoading(false);
     setConfirmationModal(null);
   };
-  console.log("helllooooooo",course);
+
+
   const handleDeleteCourse = async (courseId) =>{
 
       try{
@@ -309,7 +315,7 @@ const CreateCourse = () => {
               </button>
               <button
                 className="px-4 py-2 bg-customDarkBlue text-white rounded"
-                type="save"
+                type="submit"
                 disabled={loading}
               >
                 {loading ? "Saving..." : "Save"}
