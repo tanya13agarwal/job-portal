@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Upload from "../jobPosting/Upload";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import {
 import { setCourse, setEditCourse } from "../../../../../slices/courseSlice";
 import { deleteCourseDetails } from "../../../../../services/operations/courseDetailsAPI";
 import ConfirmationModal from "../../../../common/ConfirmationModal";
+import useOnClickOutside from "../../../../../hooks/useOnClickOutside";
 
 
 const CreateCourse = () => {
@@ -36,6 +37,9 @@ const CreateCourse = () => {
   const [edit,setEdit] = useState(false);
   const [del,setDel] = useState(false);
   const [createCourses,setCreateCourses] = useState(false);
+  const ref = useRef(null);
+
+  useOnClickOutside(ref, () => setConfirmationModal(null));
 
   const isFormUpdated = () => {
     const currentValues = getValues()
@@ -206,6 +210,7 @@ const CreateCourse = () => {
                   btn2Text: "Delete",
                   btn1Handler: () => handleEditCourse(course?._id),
                   btn2Handler: () => handleDeleteCourse(course?._id),
+                  ref : ref
                 })}
             key={index}
             className="flex flex-col h-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 hover:scale-105 transition-all duration-300"
@@ -220,7 +225,7 @@ const CreateCourse = () => {
               {course.courseName}
             </h5>
             <p className="mb-5 font-normal text-gray-700 dark:text-gray-400">
-              {course.courseDescription}
+              {course.courseDescription.length > 100 ? `${course.courseDescription.slice(0 , 100)}...` : `${course.courseDescription}`}
             </p>
             <button
               className="mt-auto px-4 flex items-center gap-2 w-fit py-2 rounded border border-transparent active:scale-90 text-[#fff] bg-customDarkBlue transition-all duration-200 hover:bg-transparent hover:text-black hover:border-[0.5px] hover:border-customDarkBlue"
