@@ -73,7 +73,7 @@ export const Features = () => {
                 />
                 <Card
                     image={hackathon}
-                    heading="Hackathons / Internships"
+                    heading="Hackathons"
                     para="Participate in dynamic hackathons and internships, both on and off campus, for all students"
                     link = {token !== null && user.accountType === ACCOUNT_TYPE.STUDENT ? "/dashboard/hackathon" : "/signup"}
                 />
@@ -82,6 +82,24 @@ export const Features = () => {
                     heading="Resume Building"
                     para="Create an ATS-friendly resume, check its score, and gain insights from alumni to boost applications."
                     link = {token !== null && user.accountType === ACCOUNT_TYPE.STUDENT ? "/dashboard/resume" : "/signup"}
+                />
+                <Card
+                    image={courses}
+                    heading="Internships"
+                    para="Access exclusive courses designed to enhance your skills and boost your placement preparation."
+                    link = {token !== null && user.accountType === ACCOUNT_TYPE.STUDENT ? "/dashboard/courses" : "/signup"}
+                />
+                <Card
+                    image={hackathon}
+                    heading="Mock Interview"
+                    para="Participate in dynamic hackathons and internships, both on and off campus, for all students"
+                    link = {token !== null && user.accountType === ACCOUNT_TYPE.STUDENT ? "https://mock-interview-qvxv.vercel.app" : "/signup"}
+                />
+                <Card
+                    image={resumeBuilder}
+                    heading="Mock Test"
+                    para="Create an ATS-friendly resume, check its score, and gain insights from alumni to boost applications."
+                    link = {token !== null && user.accountType === ACCOUNT_TYPE.STUDENT ? "/dashboard/mock-test" : "/signup"}
                 />
             </div>
 
