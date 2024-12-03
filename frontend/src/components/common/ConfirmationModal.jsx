@@ -3,7 +3,7 @@ import React from 'react'
 function ConfirmationModal({modalData}) {
   return (
         <div className='fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm'>
-            <div className='w-11/12 max-w-[350px] rounded-lg shadow-lg bg-white p-6'>
+            <div ref={modalData.ref ? modalData.ref : null} className='w-11/12 max-w-[350px] rounded-lg shadow-lg border border-gray-400 bg-white p-6'>
                 <p className='text-2xl font-semibold '>
                     {modalData.text1}
                 </p>

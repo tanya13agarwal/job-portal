@@ -152,61 +152,61 @@ export default function MyProfile() {
                     <RiEditBoxLine />
                 </button>
             </div>
-                <div className='flex max-w-[500px] justify-between'>
-                    <div className='flex flex-col gap-y-5'>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Semester</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.sem ?? "Add Your Sem"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Branch</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.brch ?? "Add Branch"}</p>
-                        </div>
-                        <div >
-                            <p className='mb-2 text-sm text-richblack-600'>CGPA</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.cgpa ?? "Add CGPA"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Backlogs</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.bklgs ?? "Add Backlogs"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Resume</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.resume ?? "Add Gender"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Leetcode</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.leetcode ?? "Add Leetcode"}</p>
-                        </div>
+            <div className='flex max-w-[770px] justify-between'>
+                <div className='flex flex-col gap-y-5'>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Semester</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.sem ?? "Add Your Sem"}</p>
                     </div>
-                    <div className='flex flex-col gap-y-5'>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Portfolio Website</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
-                        </div>
-                        
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Github</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.github ?? "Add Github"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>LinkedIn</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.linkedin ?? "Add LinkedIn"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Codechef</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
-                        </div>
-                        <div>
-                            <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
-                            <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
-                        </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Branch</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.brch ?? "Add Branch"}</p>
+                    </div>
+                    <div >
+                        <p className='mb-2 text-sm text-richblack-600'>CGPA</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.cgpa ?? "Add CGPA"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Backlogs</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.bklgs ?? "Add Backlogs"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Resume</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.resume ?? "Add Gender"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Leetcode</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.leetcode ?? "Add Leetcode"}</p>
                     </div>
                 </div>
+                <div className='flex flex-col gap-y-5'>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Portfolio Website</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
+                    </div>
+                    
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Github</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.github ?? "Add Github"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>LinkedIn</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.linkedin ?? "Add LinkedIn"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Codechef</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   )

@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { courseData } from "./data/course-data";
 import CourseDetails from "./components/core/Dashboard/Student Dashboard/Courses/coursePages/CourseDetails";
 import CreateCourse from "./components/core/Dashboard/Placement Dashboard/createCourse";
+import logo from "./assets/images/logo.jpeg"
+
 // Lazy loading the components
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -36,12 +38,18 @@ const AdminDashboard = lazy(() => import("./components/core/Dashboard/Admin Dash
 const Error = lazy(() => import("./pages/Error"));
 const Courses = lazy(() => import("./components/core/Dashboard/Student Dashboard/Courses"));
 
+
 function App() {
   const { user } = useSelector((state) => state.profile);
 
   return (
     <div className="bg-customBeige w-screen min-h-screen flex flex-col font-inter">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+        <div className='w-full h-screen flex flex-col items-center justify-center'>
+          <img src={logo} alt="logo"/>
+          <p className='font-semibold text-2xl mt-6'>Please Wait while the page is loading...</p>
+        </div>
+      }>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/companies" element={<Companies />} />
