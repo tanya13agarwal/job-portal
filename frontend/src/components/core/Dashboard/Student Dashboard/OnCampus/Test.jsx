@@ -40,9 +40,9 @@ const Test = () => {
     'simple-interest': 'https://aptitude-api.vercel.app/SimpleInterest',
   };
   
- // Ensure the key exists in the topics object
- const topicKey = params.topic.trim(); // Handle any whitespace issues
- const selectedTopicUrl = topics[topicKey];
+  // Ensure the key exists in the topics object
+  const topicKey = params?.topic?.trim(); // Handle any whitespace issues
+  const selectedTopicUrl = topics[topicKey];
 
   // Fetch a question from the API and start the timer
   const fetchNextQuestion = async () => {
@@ -51,8 +51,8 @@ const Test = () => {
       setCurrentQuestion(response.data);
       setSelectedAnswer('');
       setIsAnswerSubmitted(false);
-      setCorrectAnswer(response.data.answer);
-      setExplanation(response.data.explanation);
+      setCorrectAnswer(response?.data?.answer);
+      setExplanation(response?.data?.explanation);
       
       // Activate the timer after the first question is fetched
       if (!isTimerActive) {

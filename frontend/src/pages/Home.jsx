@@ -8,12 +8,21 @@ import Navbar from '../components/common/Navbar';
 import Testimonials from '../components/core/Testimonials';
 import Team from '../components/core/Team';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ACCOUNT_TYPE } from '../utils/accoutnType';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.profile);
 
   const handleClick = () => {
-    navigate('/signup');
+    if(token === null) {
+      navigate('/signup');
+    }
+    else if (user.accountType === ACCOUNT_TYPE.STUDENT){
+      navigate("/dashboard/on-campus")
+    }
   };
 
   return (
@@ -34,7 +43,7 @@ const Home = () => {
             </p>
             <button
               onClick={handleClick}
-              className="px-6 py-3 mt-6 text-sm md:text-base border border-customDarkBlue rounded-md hover:bg-customDarkBlue hover:text-white transition-all duration-200 lg:self-start"
+              className={`${token !== null && user.accountType !== ACCOUNT_TYPE.STUDENT ? "hidden" : ""} px-6 py-3 mt-6 text-sm md:text-base border border-customDarkBlue rounded-md hover:bg-customDarkBlue hover:text-white transition-all duration-200 lg:self-start`}
             >
               Get Started
             </button>

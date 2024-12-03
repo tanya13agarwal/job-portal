@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Card = ({image , heading , para , link}) => {
+const Card = ({image , heading , para , link = ""}) => {
   return (
     <div>
         
-        <a href='/signup' class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 hover:scale-105 transition-all duration-200 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <a href={link} class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 hover:scale-105 transition-all duration-200 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
            <div className=' p-4 object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg'>
            <img className={`object-cover w-full rounded-t-lg h-[370px] md:h-auto md:w-36 md:rounded-none md:rounded-s-lg`} src={image} alt=""/>
            </div> 

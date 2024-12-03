@@ -7,6 +7,7 @@ import CourseDetails from "./components/core/Dashboard/Student Dashboard/Courses
 import CreateCourse from "./components/core/Dashboard/Placement Dashboard/createCourse";
 import logo from "./assets/images/logo.jpeg"
 
+
 // Lazy loading the components
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -20,7 +21,7 @@ const PrivateRoute = lazy(() => import("./components/core/Auth/PrivateRoute"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const MyProfile = lazy(() => import("./components/core/Dashboard/MyProfile"));
 const Settings = lazy(() => import("./components/core/Dashboard/Settings"));
-const ApplyJob = lazy(() => import("./components/core/Dashboard/Student Dashboard/ApplyJob"));
+const { ApplyJob } = lazy(() => import("./components/core/Dashboard/Student Dashboard/ApplyJob"));
 const Resume = lazy(() => import("./components/core/Dashboard/Student Dashboard/resume"));
 const PlacementDashboard = lazy(() => import("./components/core/Dashboard/Placement Dashboard/Dashboard"));
 const StudentDashboard = lazy(() => import("./components/core/Dashboard/Student Dashboard/StudentDashboard"));

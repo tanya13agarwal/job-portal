@@ -169,7 +169,7 @@ export function login(email , password , navigate) {
             localStorage.setItem("user" , JSON.stringify(response.data.user))
             
             //login krne ke baad navigate to dashboard
-            navigate("/dashboard/my-profile");
+            navigate("/");
         }
         catch(error) {
             console.log("LOGIN API ERROR..." , error)
