@@ -240,6 +240,7 @@ export default function JobInformationForm() {
   }
 
   return (
+
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6"
@@ -394,6 +395,7 @@ export default function JobInformationForm() {
         setValue={setValue}
         getValues={getValues}
       />
+      
       {/* Course Thumbnail Image */}
       {/* <Upload
         name="companyImage"
@@ -472,5 +474,7 @@ export default function JobInformationForm() {
         </IconBtn>
       </div>
     </form>
+
+
   )
 }
