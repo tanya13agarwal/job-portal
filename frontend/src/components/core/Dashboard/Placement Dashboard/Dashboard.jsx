@@ -418,8 +418,9 @@ const DashboardLayout = () => {
           </div>
         ) : (
           <div className="flex flex-col p-6">
+            
             {/* Header */}
-            <header className="flex p-4 rounded-xl shadow-lg bg-white items-center justify-between mb-6">
+            {/* <header className="flex p-4 rounded-xl shadow-lg bg-white items-center justify-between mb-6">
               
               <img src = {logo} alt = 'logo' className='w-[150px] '/>
               
@@ -428,14 +429,28 @@ const DashboardLayout = () => {
                 {
                   user?.firstName + " " + user?.lastName
                 }
-              </div>
+              </div> */}
               
               {/* Date and Notification */}
-              <div className="flex items-center gap-4">
+              {/* <div className="flex items-center gap-4">
                 <p>{currentDate}</p>
                 <FaBell className="text-xl text-gray-500 cursor-pointer" />
               </div>
-            </header>
+            </header> */}
+            
+
+            {/* Header */}
+  <header className="flex flex-wrap p-4 rounded-xl shadow-lg bg-white items-center justify-between mb-6 gap-4">
+  <img src={logo} alt="logo" className="w-[150px]" />
+  <div className="text-lg md:text-xl flex text-gray-700 items-center gap-2">
+    <MdAdminPanelSettings className="text-3xl md:text-4xl" />
+    {user?.firstName + " " + user?.lastName}
+  </div>
+  <div className="flex items-center gap-4">
+    <p className="text-sm md:text-base">{currentDate}</p>
+    <FaBell className="text-base md:text-xl text-gray-500 cursor-pointer" />
+  </div>
+</header>
 
             {/* Charts Section */}
             <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -488,3 +503,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
+ 

@@ -137,77 +137,77 @@
 //         </div>
         
 //         {/* Section 4 */}
-//         <div className={`${user.accountType === "Student" ? "flex flex-col" : "hidden"} my-10 gap-y-10 bg-richblack-800 rounded-md border-[1px] border-richblack-700 p-8 px-12`}>
-//             <div className='flex w-full items-center justify-between'>
-//                 <p className='text-lg font-semibold text-richblack-5'>
-//                     Professional Details
-//                 </p>
-//                 <button
-//                 // text="Edit"
-//                     className='flex text-richblack-300 items-center justify-center'
-//                     onClick={() => {
-//                         navigate("/dashboard/settings")
-//                 }}>
-//                     <p>Edit</p>
-//                     <RiEditBoxLine />
-//                 </button>
-//             </div>
-//             <div className='flex max-w-[770px] justify-between'>
-//                 <div className='flex flex-col gap-y-5'>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Semester</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.sem ?? "Add Your Sem"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Branch</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.brch ?? "Add Branch"}</p>
-//                     </div>
-//                     <div >
-//                         <p className='mb-2 text-sm text-richblack-600'>CGPA</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.cgpa ?? "Add CGPA"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Backlogs</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.bklgs ?? "Add Backlogs"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Resume</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.resume ?? "Add Gender"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Leetcode</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.leetcode ?? "Add Leetcode"}</p>
-//                     </div>
-//                 </div>
-//                 <div className='flex flex-col gap-y-5'>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Portfolio Website</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
-//                     </div>
+        // <div className={`${user.accountType === "Student" ? "flex flex-col" : "hidden"} my-10 gap-y-10 bg-richblack-800 rounded-md border-[1px] border-richblack-700 p-8 px-12`}>
+        //     <div className='flex w-full items-center justify-between'>
+        //         <p className='text-lg font-semibold text-richblack-5'>
+        //             Professional Details
+        //         </p>
+        //         <button
+        //         // text="Edit"
+        //             className='flex text-richblack-300 items-center justify-center'
+        //             onClick={() => {
+        //                 navigate("/dashboard/settings")
+        //         }}>
+        //             <p>Edit</p>
+        //             <RiEditBoxLine />
+        //         </button>
+        //     </div>
+        //     <div className='flex max-w-[770px] justify-between'>
+        //         <div className='flex flex-col gap-y-5'>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Semester</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.sem ?? "Add Your Sem"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Branch</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.brch ?? "Add Branch"}</p>
+        //             </div>
+        //             <div >
+        //                 <p className='mb-2 text-sm text-richblack-600'>CGPA</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.cgpa ?? "Add CGPA"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Backlogs</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.bklgs ?? "Add Backlogs"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Resume</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.resume ?? "Add Gender"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Leetcode</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.leetcode ?? "Add Leetcode"}</p>
+        //             </div>
+        //         </div>
+        //         <div className='flex flex-col gap-y-5'>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Portfolio Website</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
+        //             </div>
                     
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Github</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.github ?? "Add Github"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>LinkedIn</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.linkedin ?? "Add LinkedIn"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Codechef</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
-//                     </div>
-//                     <div>
-//                         <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
-//                         <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Github</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.github ?? "Add Github"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>LinkedIn</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.linkedin ?? "Add LinkedIn"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Codechef</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
+        //             </div>
+        //             <div>
+        //                 <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
+        //                 <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
 //     </div>
 //   )
 // }
@@ -352,7 +352,8 @@ export default function MyProfile() {
       </div>
 
       {/* Section 4 */}
-      {user.accountType === "Student" && (
+
+      {/* {user.accountType === "Student" && (
         <div className="my-6 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 lg:p-8">
           <div className="flex items-center justify-between">
             <p className="text-lg font-semibold text-richblack-5">
@@ -405,7 +406,178 @@ export default function MyProfile() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
+
+
+      {/* <div className={`${user.accountType === "Student" ? "flex flex-col" : "hidden"} my-10 gap-y-10 bg-richblack-800 rounded-md border-[1px] border-richblack-700 p-8 px-12`}>
+            <div className='flex w-full items-center justify-between'>
+                <p className='text-lg font-semibold text-richblack-5'>
+                    Professional Details
+                </p>
+                <button
+                // text="Edit"
+                    className='flex text-richblack-300 items-center justify-center'
+                    onClick={() => {
+                        navigate("/dashboard/settings")
+                }}>
+                    <p>Edit</p>
+                    <RiEditBoxLine />
+                </button>
+            </div>
+            <div className='flex max-w-[770px] justify-between'>
+                <div className='flex flex-col gap-y-5'>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Semester</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.sem ?? "Add Your Sem"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Branch</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.brch ?? "Add Branch"}</p>
+                    </div>
+                    <div >
+                        <p className='mb-2 text-sm text-richblack-600'>CGPA</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.cgpa ?? "Add CGPA"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Backlogs</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.bklgs ?? "Add Backlogs"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Resume</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.resume ?? "Add Gender"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Leetcode</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.leetcode ?? "Add Leetcode"}</p>
+                    </div>
+                </div>
+                <div className='flex flex-col gap-y-5'>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Portfolio Website</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Roll Number</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
+                    </div>
+                    
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Github</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.github ?? "Add Github"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>LinkedIn</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.linkedin ?? "Add LinkedIn"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Codechef</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
+                    </div>
+                    <div>
+                        <p className='mb-2 text-sm text-richblack-600'>Stack Overflow</p>
+                        <p className='text-sm font-medium text-richblack-5'>{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
+                    </div>
+                </div>
+            </div>
+        </div> */}
+
+
+     
+
+
+<div className={`${user.accountType === "Student" ? "flex flex-col items-start" : "hidden"} my-10 gap-y-10 bg-richblack-800 rounded-md border-[1px] border-richblack-700 p-8 px-6`}>
+  <div className="flex w-full items-center justify-between">
+    <p className="text-lg font-semibold text-richblack-5 mr-4  mt-2">Professional Details</p>
+    {/* <button
+      className="flex text-richblack-300 items-center justify-stretch"
+      onClick={() => {
+        navigate("/dashboard/settings");
+      }}
+    >
+      <p>Edit</p>
+      <RiEditBoxLine />
+    </button> */}
+
+    <button
+      className="flex items-center text-sm justify-center gap-x-2  font-medium text-richblack-300"
+      onClick={() => {
+        navigate("/dashboard/settings");
+      }}
+    >
+      <p>Edit</p>
+      <RiEditBoxLine />
+    </button>
+
+
+  </div>
+  <div className="flex flex-wrap max-w-[770px] justify-between gap-y-6">
+    <div className="flex flex-col gap-y-5 w-full sm:w-1/2">
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Semester</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.sem ?? "Add Your Sem"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Branch</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.brch ?? "Add Branch"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">CGPA</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.cgpa ?? "Add CGPA"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Backlogs</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.bklgs ?? "Add Backlogs"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Resume</p>
+        <p
+          className="text-sm font-medium text-richblack-5 break-words"
+          style={{ wordBreak: "break-word" }}
+        >
+          {user?.additionalDetails?.resume ?? "Add Resume"}
+        </p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Leetcode</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.leetcode ?? "Add Leetcode"}</p>
+      </div>
+    </div>
+    <div className="flex flex-col gap-y-5 w-full sm:w-1/2">
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Portfolio Website</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.website ?? "Add Portfolio Website"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Roll Number</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.rollNo ?? "Add Roll Number"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Github</p>
+        <p
+          className="text-sm font-medium text-richblack-5 break-words"
+          style={{ wordBreak: "break-word" }}
+        >
+          {user?.additionalDetails?.github ?? "Add Github"}
+        </p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">LinkedIn</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.linkedin ?? "Add LinkedIn"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Codechef</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.codechef ?? "Add Codechef"}</p>
+      </div>
+      <div>
+        <p className="mb-2 text-sm text-richblack-600">Stack Overflow</p>
+        <p className="text-sm font-medium text-richblack-5">{user?.additionalDetails?.stkoflw ?? "Add Stack Overflow Link"}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      
     </div>
   );
 }

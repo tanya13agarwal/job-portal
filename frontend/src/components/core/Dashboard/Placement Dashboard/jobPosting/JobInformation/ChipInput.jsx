@@ -5,6 +5,8 @@ import { MdClose } from "react-icons/md"
 import { useSelector } from "react-redux"
 
 // Defining a functional component ChipInput
+
+
 export default function ChipInput({
   // Props to be passed to the component
   label,
@@ -111,3 +113,4 @@ export default function ChipInput({
     </div>
   )
 }
+
